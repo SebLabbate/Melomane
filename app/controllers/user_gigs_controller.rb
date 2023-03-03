@@ -1,0 +1,2 @@
+class UserGigsController < ApplicationController
+end
