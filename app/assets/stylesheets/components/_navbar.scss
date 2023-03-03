@@ -1,12 +1,28 @@
-.navbar-lewagon {
+.navbar {
+  position: sticky;
+  top: 0;
+  border: 2px solid lightgray;
+}
+
+.navbar-melomane {
   justify-content: space-between;
   background: white;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-melomane .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar-melomane .navbar-brand img {
+  width: 45px;
+  border-radius: 50%;
+}
+
+.container-fluid {
+  height: 40px;
+  // display: flex;
+  // flex-wrap: inherit;
+  // align-items: center;
+  // justify-content: space-between;
+  flex-direction: row-reverse;
 }
