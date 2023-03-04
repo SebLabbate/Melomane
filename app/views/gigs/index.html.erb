@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="row mt-4 mb-4">
+      <% @gigs.each do |gig| %>
+          <div class="card" style="width: 18rem;">
+            <img src="<%= asset_path('Nirvana.jpeg')%>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= gig.artist %></h5>
+              <p class="card-text"><%= gig.venue %></p>
+              <a href="#" class="btn btn-primary">Add to upcoming gigs!</a>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
