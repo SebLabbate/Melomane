@@ -1,7 +1,12 @@
-<div class="container">
-  <div class="row">
-    <h1>Pages#home</h1>
-    <p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('homepage_banner.jpeg')%>);">
+  <div class="container">
+    <h1>Melomane</h1>
+    <p>Revisit your favourite music memories</p>
+      <% if !user_signed_in? %>
+        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-flat" %>
+        <%= link_to "Log in", new_user_session_path, class: "btn btn-flat" %>
+      <% else %>
+        <%= link_to "Your music dashboard", gigs_path, class: "btn btn-flat" %>
+      <% end %>
   </div>
-  
 </div>
