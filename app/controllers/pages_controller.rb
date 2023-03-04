@@ -5,6 +5,6 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @gigs = Gig.all
+    @user_gigs = UserGig.all
   end
 end
