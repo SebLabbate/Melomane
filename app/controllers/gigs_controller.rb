@@ -1,5 +1,5 @@
 class GigsController < ApplicationController
   def index
-    @gigs = Gig.all
+    @gigs = policy_scope(Gig).all
   end
 end
