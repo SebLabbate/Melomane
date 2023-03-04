@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_195349) do
 
   create_table "gigs", force: :cascade do |t|
     t.string "name"
-    t.integer "date"
+    t.string "date"
     t.string "artist"
     t.string "venue"
     t.string "genre"
