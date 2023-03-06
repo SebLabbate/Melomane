@@ -1,0 +1,47 @@
+.past-gigs-card, .upcoming-gigs-card {
+  border: 2px solid lightgray;
+  display: flex;
+  flex-direction: row;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 10px;
+  // width: 30vw;
+  // height: 10vw;
+  width: 400px;
+  height: 140px;
+}
+
+h2.pg, h2.ug {
+  text-align: center;
+}
+
+.gigs-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.past-gigs {
+  float: left;
+  margin: 0 20px;
+}
+
+.upcoming-gigs {
+  float: right;
+  margin: 0 20px;
+}
+
+
+.pg-card-img {
+  border: 2px solid lightgray;
+  border-radius: 8px;
+  // width: 10vw;
+  width: 140px;
+}
+
+.pg-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 15px;
+}
