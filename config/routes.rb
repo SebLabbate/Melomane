@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get "/dashboard", to: "pages#dashboard"
 
-  resources :gigs, only: :index
+  resources :gigs, only: :index do
+    resources :user_gigs, only: :create
+  end
+  resources :user_gigs, only: %i[index show]
 end
