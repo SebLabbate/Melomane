@@ -25,7 +25,7 @@ class UserGigsController < ApplicationController
     end
   end
 
-  private
+  # private
 
   # def set_user_gig
   #   @user_gig = UserGig.find(params[:gig_id])
