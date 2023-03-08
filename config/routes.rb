@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get "/dashboard", to: "pages#dashboard"
   get "/dashboard/new", to: "gigs#new"
-  post "/dashboard", to: "gigs#create"
+  post "/gigs", to: "gigs#create"
 
   resources :gigs, only: :index do
     resources :user_gigs, only: :create
