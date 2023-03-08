@@ -26,7 +26,7 @@
               <div class="upcoming-gigs-card">
                     <div class="pg-card-img"><img src="<%= asset_path('Nirvana.jpeg') %>" style="width:140px;height:116px"></div>
                     <div class="pg-card-content">
-                      <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= user_gig.gig.date %></span></div>
+                      <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= user_gig.gig.date.strftime("%e %b %Y %H:%M") %></span></div>
                       <div class="artist"><span><i class="fa-solid fa-music"></i> <%= user_gig.gig.artist %></span></div>
                       <div class="vanue"><span><i class="fa-solid fa-location-dot"></i> <%= user_gig.gig.genre %></span></div>
                       <div class="genre"><span><i class="fa-solid fa-guitar"></i> <%= user_gig.gig.genre %></span></div>

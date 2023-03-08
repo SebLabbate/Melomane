@@ -7,7 +7,7 @@
           </div>
           <div>
             <h2><%= user_gig.gig.artist %></h2>
-            <p><%= user_gig.gig.date %></p>
+            <p><%= user_gig.gig.date.strftime("%e %b %Y %H:%M") %></p>
             <p><%= user_gig.gig.genre %></p>
             <p><%= user_gig.gig.venue %></p>
           </div>
