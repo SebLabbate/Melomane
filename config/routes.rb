@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   get "/dashboard", to: "pages#dashboard"
+  get "/dashboard/new", to: "gigs#new"
+  post "/gigs", to: "gigs#create"
 
   resources :gigs, only: :index do
     resources :user_gigs, only: :create
