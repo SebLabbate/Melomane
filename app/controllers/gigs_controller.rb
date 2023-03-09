@@ -4,7 +4,8 @@ class GigsController < ApplicationController
   before_action :set_gig, only: %i[show]
 
   def index
-    @gigs = policy_scope(Gig).all
+    @gigs = policy_scope(Gig)
+    @pexels_array = pexel_photos
   end
 
   def show
@@ -39,6 +40,23 @@ class GigsController < ApplicationController
     authorize @gig
   end
 
+
+  def parse_wiki_image(name)
+    page = Wikipedia.find(name)
+    photo = page.main_image_url
+    return photo
+  end
+
+  def pexel_photos
+    client = Pexels::Client.new('41EOfTlvkrnn8r297MvVFXPjmYq2jLs9OGSGZLfrQpDRmFVXMvMJdCHO')
+    photo = client.photos.search('concert').to_a
+    first = photo[rand(1..12)].src
+    array = []
+    first.each_value do |value|
+      array << value
+    end
+    return array
+  end
   private
 
   def parse_wiki_info(name)
@@ -52,11 +70,7 @@ class GigsController < ApplicationController
     return info
   end
 
-  def parse_wiki_image(name)
-    page = Wikipedia.find(name)
-    photo = page.main_image_url
-    return photo
-  end
+
 
   def find_other_genres(array)
     new_array = []
@@ -68,16 +82,7 @@ class GigsController < ApplicationController
     return new_array
   end
 
-  def pexel_photos
-    client = Pexels::Client.new('41EOfTlvkrnn8r297MvVFXPjmYq2jLs9OGSGZLfrQpDRmFVXMvMJdCHO')
-    photo = client.photos.search('concert').to_a
-    first = photo[rand(1..12)].src
-    array = []
-    first.each_value do |value|
-      array << value
-    end
-    return array
-  end
+
 
   def other_gigs_photos
     if @other_gigs.length > 0
