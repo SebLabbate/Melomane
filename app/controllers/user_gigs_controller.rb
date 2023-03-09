@@ -46,6 +46,10 @@ class UserGigsController < ApplicationController
   def destroy
     authorize @user_gig
     @user_gig.destroy
+    respond_to do |format|
+      format.html { redirect_to user_gig_path, notice: "Gig removed" }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -55,6 +59,6 @@ class UserGigsController < ApplicationController
   end
 
   def user_gig_params
-    params.require(:user_gig).permit(:user_gig_id)
+    params.require(:user_gig).permit(:gig_id, :comment, :attended, :user_id)
   end
 end
