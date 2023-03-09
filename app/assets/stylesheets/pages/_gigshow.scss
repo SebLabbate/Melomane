@@ -1,11 +1,14 @@
 .show-page {
   height: 100%;
+  margin-top: 30px;
 }
 .show-banner {
   background-color: black;
   border-style: solid;
   height: 250px;
   width: 100%;
+  margin-top: 30px;
+  padding-bottom: 15px;
 
 }
 
@@ -27,6 +30,7 @@
   //border-color: white;
   //border-style: solid;
   height:210px;
+  margin-top: 20px;
 }
 
 .show-header-text-icon {
@@ -140,7 +144,7 @@
 
 .show-container-button{
   height: 230px;
-  width:40%;
+  width:35%;
   float:right;
  // border-radius: 20px;
 // border-style: solid;
@@ -268,8 +272,8 @@
 
 .show-grid-image {
   height:100%;
-  width:100%;
-  object-fit: fill;
+  max-width:100%;
+  object-fit: contain;
   border-radius: 20px;
   padding-bottom: 8px;
 }
