@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_05_154944) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_07_184208) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "gigs", force: :cascade do |t|
     t.string "name"
-    t.string "date"
     t.string "artist"
     t.string "venue"
     t.string "genre"
@@ -24,6 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_154944) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "artist_info"
+    t.datetime "date"
+    t.boolean "private", default: false
     t.index ["user_id"], name: "index_gigs_on_user_id"
   end
 

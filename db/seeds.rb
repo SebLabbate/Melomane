@@ -96,5 +96,12 @@ User.create!(
   )
 end
 
+UserGig.create!(
+  user_id: 1,
+  gig_id: 1,
+  attended: true
+)
+
 puts "created #{Gig.all.length} gigs"
 puts "created #{User.all.length} users"
+puts "created #{UserGig.all.length} users gig"

@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Your upcoming gigs</h1>
+    <% @user_gigs.each do |user_gig| %>
+      <div class="card-product">
+          <div class="card-product-infos">
+            <img src="<%= asset_path('Nirvana.jpeg')%>" />
+          </div>
+          <div>
+            <h2><%= user_gig.gig.artist %></h2>
+            <p><%= user_gig.gig.date.strftime("%e %b %Y %H:%M") %></p>
+            <p><%= user_gig.gig.genre %></p>
+            <p><%= user_gig.gig.venue %></p>
+          </div>
+          <% if user_gig.gig.date < Date.current %>
+            <div class="buttons pt-2">
+              <%= link_to "Attended ?", user_gigs_past_gigs_path, data: {turbo_method: :delete, turbo_confirm: "Have you attended #{user_gig.gig.artist}'s gig ?"}, class: "btn-attended" %>
+            </div>
+          <% end %>
+      </div>
+    <% end %>
+</div>
