@@ -79,3 +79,9 @@ group :test do
 end
 
 gem 'faker'
+
+gem 'open-uri'
+gem "nokogiri", force_ruby_platform: true
+gem 'wikipedia-client'
+
+gem 'pexels'
