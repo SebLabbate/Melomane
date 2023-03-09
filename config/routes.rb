@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :gigs, only: :index do
     resources :user_gigs, only: :create
   end
-  resources :user_gigs, only: %i[index show]
+  resources :user_gigs
+  # only: %i[index show update]
 end

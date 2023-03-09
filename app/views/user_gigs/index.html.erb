@@ -10,6 +10,8 @@
             <p><%= user_gig.gig.date.strftime("%e %b %Y %H:%M") %></p>
             <p><%= user_gig.gig.genre %></p>
             <p><%= user_gig.gig.venue %></p>
+            <%= link_to "Delete", user_gig_path(@user_gigs), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to reject it?"}, class: "text-decoration-none"%>
+            <%= link_to "Edit", edit_user_gig_path(@user_gigs), class: "text-decoration-none"%>
           </div>
       </div>
     <% end %>
