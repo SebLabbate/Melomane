@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
 
-  resources :gigs, only: :index
+  resources :gigs, only: %i[index show]
 end

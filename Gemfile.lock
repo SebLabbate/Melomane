@@ -139,6 +139,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.1)
     minitest (5.17.0)
     msgpack (1.6.0)
     net-imap (0.3.4)
@@ -151,11 +152,16 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
-    nokogiri (1.14.2-arm64-darwin)
+    nokogiri (1.14.2)
+      mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    nokogiri (1.14.2-x86_64-linux)
-      racc (~> 1.4)
+    open-uri (0.3.0)
+      stringio
+      time
+      uri
     orm_adapter (0.5.0)
+    pexels (0.5.0)
+      requests (~> 1.0.2)
     pg (1.4.6)
     public_suffix (5.0.1)
     puma (5.6.5)
@@ -196,6 +202,7 @@ GEM
     regexp_parser (2.7.0)
     reline (0.3.2)
       io-console (~> 0.5)
+    requests (1.0.2)
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -222,8 +229,11 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    stringio (3.0.5)
     thor (1.2.1)
     tilt (2.1.0)
+    time (0.2.1)
+      date
     timeout (0.3.2)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
@@ -231,6 +241,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (0.12.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -246,6 +257,8 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    wikipedia-client (1.17.0)
+      addressable (~> 2.7)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.7)
@@ -265,6 +278,9 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1)
   jbuilder
   jsbundling-rails
+  nokogiri
+  open-uri
+  pexels
   pg (~> 1.1)
   puma (~> 5.0)
   pundit
@@ -278,6 +294,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
+  wikipedia-client
 
 RUBY VERSION
    ruby 3.1.2p20

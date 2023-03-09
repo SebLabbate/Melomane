@@ -7,6 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 require 'open-uri'
+require 'nokogiri'
+require 'wikipedia'
 
 puts "Cleaning up database..."
 Gig.destroy_all
@@ -21,22 +23,48 @@ venue = [
   "Whelans, Dublin",
   "The 100 Club, London",
   "Sidecar, Barcelona",
-  "Prinzenbar, Hamburg"
+  "Prinzenbar, Hamburg",
+  "Madison Square Garden, New York",
+  "Sydney Opera House, Sydney",
+  "Harpa Concert Hall, Iceland",
+  "Hollywood Bowl, Los Angeles",
+  "Nippon Budokan, Tokyo",
+  "O2 Academy Brixton, London"
 ]
 
-artist = [
+artists = [
   "The Beatles",
   "The Rolling Stones",
   "Elton John",
   "Stevie Wonder",
-  "Drake",
+  "Ariana Grande",
   "Eminem",
   "Bee Gees",
   "The Temptations",
   "Aretha Franklin",
   "Adele",
   "Lionel Richie",
-  "Led Zeppelin"
+  "Led Zeppelin",
+  "Ed Sheeran",
+  "Kanye West",
+  "Jake Bugg",
+  "Rihanna",
+  "Beyonce",
+  "Maroon 5",
+  "The Notorious B.I.G.",
+  "Skepta",
+  "The Wombats",
+  "Rudimental",
+  "Noah And The Whale",
+  "Miley Cyrus",
+  "Taylor Swift",
+  "Lady Gaga",
+  "Madonna",
+  "Megan Thee Stallion",
+  "Tupac",
+  "Snoop Dogg",
+  "Dr Dre",
+  "Post Malone"
 ]
 
 genre = [
@@ -44,8 +72,12 @@ genre = [
   "Heavy Metal",
   "Soul",
   "Funk",
-  "Hip-hop"
+  "Hip-hop",
+  "Pop",
+  "Electronic Dance",
+  "Rap"
 ]
+
 
 User.create!(
   user_name: "Admin",
@@ -53,12 +85,12 @@ User.create!(
   email: "admin@admin.com"
 )
 
-20.times do
+80.times do
   Gig.create!(
     user_id: 1,
     name: Faker::Emotion.noun,
     date: Faker::Date.between(from: '2023-03-04', to: '2024-12-31'),
-    artist: artist.sample,
+    artist: artists.sample,
     venue: venue.sample,
     genre: genre.sample
   )
