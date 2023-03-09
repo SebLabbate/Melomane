@@ -1,5 +1,5 @@
 class UserGigsController < ApplicationController
-  # before_action :set_user_gig, only: %i[index show ]
+  before_action :set_user_gig, only: %i[ show edit update destroy]
 
   def index
     @user_gigs = policy_scope(UserGig).all
@@ -25,13 +25,36 @@ class UserGigsController < ApplicationController
     end
   end
 
-  # private
+  def edit
+    authorize @user_gig
+  end
 
-  # def set_user_gig
-  #   @user_gig = UserGig.find(params[:gig_id])
-  # end
+  def update
+    authorize @user_gig
+    @user_gig.user = current_user
+    respond_to do |format|
+      if @user_gig.save
+        format.html { redirect_to user_gigs_path, notice: "Gig edited" }
+        format.json { render :new, status: :edited, location: @user_gig }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @user_gig.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
-  # def user_gig_params
-  #   params.require(:user_gig).permit(:gig_id)
-  # end
+  def destroy
+    authorize @user_gig
+    @user_gig.destroy
+  end
+
+  private
+
+  def set_user_gig
+    @user_gig = UserGig.find(params[:id])
+  end
+
+  def user_gig_params
+    params.require(:user_gig).permit(:user_gig_id)
+  end
 end
