@@ -89,7 +89,7 @@ User.create!(
   Gig.create!(
     user_id: 1,
     name: Faker::Emotion.noun,
-    date: Faker::Date.between(from: '2023-03-04', to: '2024-12-31'),
+    date: Faker::Date.between(from: '2022-03-04', to: '2024-12-31'),
     artist: artists.sample,
     venue: venue.sample,
     genre: genre.sample
