@@ -11,6 +11,16 @@ class UserGigsController < ApplicationController
   def new
   end
 
+  def past_gigs
+    @user_gigs = policy_scope(UserGig).all
+    authorize @user_gigs
+  end
+
+  def upcoming_gigs
+    @user_gigs = policy_scope(UserGig).all
+    authorize @user_gigs
+  end
+
   def create
     @user_gig = UserGig.new
     @gig = Gig.find(params[:gig_id])
