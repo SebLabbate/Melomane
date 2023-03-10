@@ -16,8 +16,8 @@
        <p> <img src="<%= asset_path('timer2.png')%>" class="show-header-text-icon" alt="..."> 7pm to 9pm </p>
      </div>
      <div class="show-container-header-img">
-      <% if @artist_image != nil %>
-       <img src="<%= (@artist_image)%>" class="show-header-img" alt="...">
+      <% if @gig.wiki_photo_url != nil %>
+       <img src="<%= (@gig.wiki_photo_url)%>" class="show-header-img" alt="...">
        <% else %>
         <img src="<%= (@pexels_array_c[0]) %>" class="show-header-img" alt="...">
        <% end %>
@@ -31,13 +31,25 @@
          <%= @artist_sum %>
       </div>
       <div class="show-container-button">
+          <% if Date.current < @gig.date %>
        <div class="show-container-button-img" style="background-image: url(<%= @pexels_array_b[0] %>);">
              are you going?
-        <div class="show-container-button-box">
+          <div class="show-container-button-box">
                add it
-        </div>
+          </div>
           to your upcoming gigs
+
         </div>
+        <% else %>
+         <div class="show-container-button-img" style="background-image: url(<%= @pexels_array_b[0] %>);">
+             Did you go?
+          <div class="show-container-button-box">
+               add it
+          </div>
+          to your past gigs
+
+        </div>
+        <% end %>
       </div>
     </div>
     <div class="show-container-about">
@@ -159,12 +171,12 @@
              <% end %>
         </div>
       </div>
-      <div class="show-container-button-b">
+     <%# <div class="show-container-button-b">
         excited?
           <div class="show-container-button-box">
              share
           </div>
-          with your friends
+          with your friends%>
       </div>
     </div>
   </div>
