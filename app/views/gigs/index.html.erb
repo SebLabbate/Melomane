@@ -2,14 +2,18 @@
   <div class="d-flex justify-content-center align-items-center">
     <div class="row mt-4 mb-4">
       <% @gigs.each do |gig| %>
-        <% if gig.private == false %>
+        <% unless gig.private %>
           <div class="card" style="width: 18rem;">
-            <img src="<%= asset_path('Nirvana.jpeg')%>" class="card-img-top" alt="...">
+            <% if gig.wiki_photo_url != nil %>
+            <img src="<%= gig.wiki_photo_url %>" class="card-img-top" alt="...">
+            <% else %>
+            <img src="<%= @pexels_array[0] %>" class="card-img-top" alt="...">
+            <% end %>
             <div class="card-body">
-              <h5 class="card-title"><%= gig.artist %></h5>
-              <p class="card-text"><%= gig.venue %></p>
-              <p class="card-text"><%= gig.date.strftime("%e %b %Y %H:%M") %></p>
-              <%= link_to "Add to upcoming gigs!", gig_user_gigs_path(gig), data: { turbo_method: :post }, class: "btn btn-primary" %>
+              <h5 class="card-title"><%= link_to "#{gig.artist}", gig_path(gig) %></h5>
+              <p class="card-text"> <%= link_to "#{gig.venue}", gig_path(gig) %> </p>
+              <p class="card-text"><%= link_to "#{gig.date.strftime("%e %b %Y %H:%M")}", gig_path(gig) %></p>
+              <%= link_to "Add to upcoming gigs!", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "btn btn-primary" %>
             </div>
           </div>
         <% end %>

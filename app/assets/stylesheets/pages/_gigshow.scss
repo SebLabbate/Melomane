@@ -99,6 +99,7 @@
   border-bottom-width: 1px;
   width:60%;
   padding-top: 25px;
+  margin-bottom: 20px;
 }
 
 .show-container-text {
@@ -143,7 +144,7 @@
 }
 
 .show-container-button{
-  height: 230px;
+  height: 290px;
   width:35%;
   float:right;
  // border-radius: 20px;
@@ -160,6 +161,7 @@
     text-align: center;
     opacity: 1;
   }
+  margin-bottom: 20px;
 }
 
 .show-container-button-b{
@@ -181,7 +183,8 @@
 .show-container-button-img{
   height: 100%;
   background-size: cover;
-  width:100%;
+  object-fit: cover;
+  width:70%;
   opacity: 0.7;
   border-radius: 20px;
 }
@@ -272,8 +275,8 @@
 
 .show-grid-image {
   height:100%;
-  max-width:100%;
-  object-fit: contain;
+  width:60%;
+  object-fit: cover;
   border-radius: 20px;
   padding-bottom: 8px;
 }
