@@ -9,7 +9,7 @@
               <h5 class="card-title"><%= gig.artist %></h5>
               <p class="card-text"><%= gig.venue %></p>
               <p class="card-text"><%= gig.date.strftime("%e %b %Y %H:%M") %></p>
-              <%= link_to "Add to upcoming gigs!", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "btn btn-primary" %>
+              <%= link_to "Add to upcoming gigs!", gig_user_gigs_path(gig), data: { turbo_method: :post }, class: "btn btn-primary" %>
             </div>
           </div>
         <% end %>
