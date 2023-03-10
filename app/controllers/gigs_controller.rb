@@ -1,6 +1,5 @@
 require 'wikipedia'
 class GigsController < ApplicationController
-
   before_action :set_gig, only: %i[show]
 
   def index
@@ -40,7 +39,6 @@ class GigsController < ApplicationController
     authorize @gig
   end
 
-
   def parse_wiki_image(name)
     page = Wikipedia.find(name)
     photo = page.main_image_url
@@ -57,6 +55,7 @@ class GigsController < ApplicationController
     end
     return array
   end
+
   private
 
   def parse_wiki_info(name)
@@ -70,8 +69,6 @@ class GigsController < ApplicationController
     return info
   end
 
-
-
   def find_other_genres(array)
     new_array = []
     array.each do |item|
@@ -81,8 +78,6 @@ class GigsController < ApplicationController
     end
     return new_array
   end
-
-
 
   def other_gigs_photos
     if @other_gigs.length > 0
@@ -104,7 +99,6 @@ class GigsController < ApplicationController
       @genre_image_f = parse_wiki_image(@other_gigs[5].artist)
     end
   end
-
 
   def gig_params
     params.require(:gig).permit(:name, :artist, :venue, :genre, :user_id, :date, :private)

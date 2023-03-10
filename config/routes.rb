@@ -8,11 +8,16 @@ Rails.application.routes.draw do
   get "/dashboard", to: "pages#dashboard"
   get "/dashboard/new", to: "gigs#new"
   post "/gigs", to: "gigs#create"
-  get "/user_gigs/past_gigs", to: "past_gigs#index"
 
   resources :gigs, only: %i[index show] do
     resources :user_gigs, only: :create
   end
-  resources :user_gigs
+  resources :user_gigs do
+    collection do
+      get :past_gigs
+      get :upcoming_gigs
+    end
+  end
+
   # only: %i[index show update]
 end
