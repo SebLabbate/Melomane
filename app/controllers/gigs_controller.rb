@@ -1,11 +1,11 @@
 class GigsController < ApplicationController
 
-  before_action :set_gig, only: %i[show]
-  
+  before_action :set_gig, only: %i[show edit update]
+
   def index
     @gigs = policy_scope(Gig).all
   end
-  
+
   def show
     authorize @gig
     @artist_sum = parse_wiki_info(@gig.artist)
@@ -36,6 +36,24 @@ class GigsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
     authorize @gig
+  end
+
+  def edit
+    authorize @gig
+  end
+
+  def update
+    authorize @gig
+    @gig.user = current_user
+    respond_to do |format|
+      if @gig.update gig_params
+        format.html { redirect_to user_gigs_path, notice: "Gig edited" }
+        format.json { render :edit, status: :edited, location: @gig }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @gig.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
 private
@@ -97,7 +115,8 @@ private
     if @other_gigs.length > 5
       @genre_image_f = parse_wiki_image(@other_gigs[5].artist)
     end
-    
+  end
+
 
   def gig_params
     params.require(:gig).permit(:name, :artist, :venue, :genre, :user_id, :date, :private)

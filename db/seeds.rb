@@ -85,9 +85,15 @@ User.create!(
   email: "admin@admin.com"
 )
 
+User.create!(
+  user_name: "audra",
+  password: "123456",
+  email: "a@a.a"
+)
+
 80.times do
   Gig.create!(
-    user_id: 1,
+    user_id: 18,
     name: Faker::Emotion.noun,
     date: Faker::Date.between(from: '2023-03-04', to: '2024-12-31'),
     artist: artists.sample,
@@ -97,8 +103,8 @@ User.create!(
 end
 
 UserGig.create!(
-  user_id: 1,
-  gig_id: 1,
+  user_id: 18,
+  gig_id: 200,
   attended: true
 )
 

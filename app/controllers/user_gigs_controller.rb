@@ -1,5 +1,5 @@
 class UserGigsController < ApplicationController
-  before_action :set_user_gig, only: %i[ show edit update destroy]
+  before_action :set_user_gig, only: %i[show edit update destroy]
 
   def index
     @user_gigs = policy_scope(UserGig).all
@@ -33,8 +33,8 @@ class UserGigsController < ApplicationController
     authorize @user_gig
     @user_gig.user = current_user
     respond_to do |format|
-      if @user_gig.save
-        format.html { redirect_to user_gigs_path, notice: "Gig edited" }
+      if @user_gig.update user_gig_params
+        format.html { redirect_to user_gigs_path, notice: "Your gig edited" }
         format.json { render :new, status: :edited, location: @user_gig }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -59,6 +59,6 @@ class UserGigsController < ApplicationController
   end
 
   def user_gig_params
-    params.require(:user_gig).permit(:gig_id, :comment, :attended, :user_id)
+    params.require(:user_gig).permit(:comment, :attended, :user_id, gig_attributes: [:id, :name, :artist])
   end
 end

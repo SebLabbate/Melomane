@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   post "/gigs", to: "gigs#create"
   get "/user_gigs/past_gigs", to: "past_gigs#index"
 
-  resources :gigs, only: %i[index show] do
+  # resources :gigs, only: %i[index show] do
+  resources :gigs do
     resources :user_gigs, only: :create
   end
   resources :user_gigs
