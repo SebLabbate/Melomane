@@ -1,7 +1,7 @@
 require 'wikipedia'
 class GigsController < ApplicationController
+  before_action :set_gig, only: %i[show edit update]
 
-  before_action :set_gig, only: %i[show]
 
   def index
     @gigs = policy_scope(Gig)
@@ -43,8 +43,27 @@ class GigsController < ApplicationController
     authorize @gig
   end
 
+  def edit
+    authorize @gig
+  end
+
+  def update
+    authorize @gig
+    @gig.user = current_user
+    respond_to do |format|
+      if @gig.update gig_params
+        format.html { redirect_to user_gigs_path, notice: "Gig edited" }
+        format.json { render :edit, status: :edited, location: @gig }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @gig.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   private
+
 
   def parse_wiki_info(name)
     page = Wikipedia.find(name)
@@ -57,8 +76,6 @@ class GigsController < ApplicationController
     return info
   end
 
-
-
   def find_other_genres(array)
     new_array = []
     array.each do |item|
@@ -68,8 +85,6 @@ class GigsController < ApplicationController
     end
     return new_array
   end
-
-
 
   def other_gigs_photos
     if @other_gigs.length > 0
@@ -91,7 +106,6 @@ class GigsController < ApplicationController
       @genre_image_f = parse_wiki_image(@other_gigs[5].artist)
     end
   end
-
 
   def gig_params
     params.require(:gig).permit(:name, :artist, :venue, :genre, :user_id, :date, :private)
