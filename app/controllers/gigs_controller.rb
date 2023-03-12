@@ -21,6 +21,7 @@ class GigsController < ApplicationController
     other_gigs_photos
     @artist_image_b = parse_serpapi_image(@gig.artist, 2)
     @artist_image_c = parse_serpapi_image(@gig.artist, 3)
+    @user_gigs = UserGig.all
   end
 
   def new
@@ -36,7 +37,7 @@ class GigsController < ApplicationController
       @user_gig.user = current_user
       @user_gig.gig = @gig
       @user_gig.save
-      redirect_to user_gigs_path
+      redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
     end

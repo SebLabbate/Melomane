@@ -11,10 +11,10 @@
               <div class="pg-card-img"><img src="<%= @pexels_array[0] %>" style="width:140px;height:116px"></div>
             <% end %>
             <div class="pg-card-content">
-              <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", gig_path(user_gig.gig) %></span></div>
-              <div class="artist"><span><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  gig_path(user_gig.gig) %></span></div>
-              <div class="vanue"><span><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", gig_path(user_gig.gig) %></span></div>
-              <div class="genre"><span><i class="fa-solid fa-guitar"></i> <%= link_to "#{user_gig.gig.genre.titleize}", gig_path(user_gig.gig) %></span></div>
+              <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(user_gig) %></span></div>
+              <div class="artist"><span><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></span></div>
+              <div class="vanue"><span><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", user_gig_path(user_gig) %></span></div>
+              <div class="genre"><span><i class="fa-solid fa-guitar"></i> <%= link_to "#{user_gig.gig.genre.titleize}", user_gig_path(user_gig) %></span></div>
             </div>
           </div>
         <% end %>
