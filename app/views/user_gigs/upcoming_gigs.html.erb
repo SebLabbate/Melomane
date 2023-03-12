@@ -8,7 +8,7 @@
             <% if user_gig.gig.wiki_photo_url != nil %>
               <div class="pg-card-img"><img src="<%= user_gig.gig.wiki_photo_url %>" style="width:140px;height:116px"></div>
             <% else %>
-              <div class="pg-card-img"><img src="<%= pexels_array[0] %>" style="width:140px;height:116px"></div>
+              <div class="pg-card-img"><img src="<%= @pexels_array[0] %>" style="width:140px;height:116px"></div>
             <% end %>
             <div class="pg-card-content">
               <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", gig_path(user_gig.gig) %></span></div>
