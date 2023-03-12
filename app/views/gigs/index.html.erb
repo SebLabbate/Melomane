@@ -20,10 +20,17 @@
             <img src="<%= @pexels_array[0] %>" class="card-img-top" alt="...">
             <% end %>
             <div class="card-body">
+              <% if @user_gigs.find { |item| item.gig_id == gig.id } != nil %>
+              <% user_gig = @user_gigs.find { |item| item.gig_id == gig.id} %>
+               <h5 class="card-title"><%= link_to "#{gig.artist}", user_gig_path(user_gig) %></h5>
+              <p class="card-text"> <%= link_to "#{gig.venue}", user_gig_path(user_gig) %> </p>
+              <p class="card-text"><%= link_to "#{gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(user_gig) %></p>
+              <%else %>
               <h5 class="card-title"><%= link_to "#{gig.artist}", gig_path(gig) %></h5>
               <p class="card-text"> <%= link_to "#{gig.venue}", gig_path(gig) %> </p>
               <p class="card-text"><%= link_to "#{gig.date.strftime("%e %b %Y %H:%M")}", gig_path(gig) %></p>
               <%= link_to "Add to upcoming gigs!", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "btn btn-primary" %>
+              <% end %>
             </div>
           </div>
         <% end %>

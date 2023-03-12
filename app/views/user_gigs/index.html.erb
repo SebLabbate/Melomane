@@ -8,11 +8,16 @@
           <div>
             <h2><%= user_gig.gig.artist %></h2>
             <p><%= user_gig.gig.date.strftime("%e %b %Y %H:%M") %></p>
+            <p><%= user_gig.comment %></p>
             <p><%= user_gig.gig.genre %></p>
             <p><%= user_gig.gig.venue %></p>
-            <%= link_to "Cancel", user_gig_path(user_gig), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none"%>
-            <%# <%= link_to "Edit", edit_user_gig_path(user_gig), class: "text-decoration-none"%>
+            <%= link_to "Cancel", user_gig_path(user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-decoration-none"%>
+
+            <% if user_gig.gig.user_id == current_user.id%>
+              <%= link_to "Edit", edit_user_gig_path(user_gig), class: "text-decoration-none" %>
+            <% end %>
           </div>
+
           <% if user_gig.gig.date < Date.current %>
             <div class="buttons pt-2">
              <%= link_to "Attended ?", past_gigs_user_gigs_path, data: { turbo_method: :delete, turbo_confirm: "Have you attended #{user_gig.gig.artist}'s gig ?" }, class: "btn-attended" %>
