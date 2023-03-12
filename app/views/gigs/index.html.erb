@@ -1,4 +1,14 @@
 <div class="container">
+  <div class="search">
+    <%= form_with url: gigs_path, method: :get, class: "d-flex my-3" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a gig"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
   <div class="d-flex justify-content-center align-items-center">
     <div class="row mt-4 mb-4">
       <% @gigs.each do |gig| %>
