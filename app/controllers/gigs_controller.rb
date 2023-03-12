@@ -1,9 +1,11 @@
+require 'wikipedia'
 class GigsController < ApplicationController
-
   before_action :set_gig, only: %i[show edit update]
 
+
   def index
-    @gigs = policy_scope(Gig).all
+    @gigs = policy_scope(Gig)
+    @pexels_array = pexel_photos
   end
 
   def show
@@ -58,31 +60,10 @@ class GigsController < ApplicationController
 
 private
 
-  def parse_wiki_info(name)
-    page = Wikipedia.find(name)
-    if page != nil
-      info = "#{page.summary.split('.')[0]}.#{page.summary.split('.')[1]}.#{page.summary.split('.')[2]}."
-    else
-      page = Wikipedia.find("#{name} (singer)")
-      info = "#{page.summary.split('.')[0]}.#{page.summary.split('.')[1]}.#{page.summary.split('.')[2]}."
-    end
-    return info
-  end
-
   def parse_wiki_image(name)
     page = Wikipedia.find(name)
     photo = page.main_image_url
     return photo
-  end
-
-  def find_other_genres(array)
-    new_array = []
-    array.each do |item|
-      if item.genre == @gig.genre && @gig.name != item.name
-        new_array << item
-      end
-    end
-    return new_array
   end
 
   def pexel_photos
@@ -94,6 +75,30 @@ private
       array << value
     end
     return array
+  end
+
+  private
+
+
+  def parse_wiki_info(name)
+    page = Wikipedia.find(name)
+    if page != nil
+      info = "#{page.summary.split('.')[0]}.#{page.summary.split('.')[1]}.#{page.summary.split('.')[2]}."
+    else
+      page = Wikipedia.find("#{name} (singer)")
+      info = "#{page.summary.split('.')[0]}.#{page.summary.split('.')[1]}.#{page.summary.split('.')[2]}."
+    end
+    return info
+  end
+
+  def find_other_genres(array)
+    new_array = []
+    array.each do |item|
+      if item.genre == @gig.genre && @gig.name != item.name
+        new_array << item
+      end
+    end
+    return new_array
   end
 
   def other_gigs_photos
@@ -116,7 +121,6 @@ private
       @genre_image_f = parse_wiki_image(@other_gigs[5].artist)
     end
   end
-
 
   def gig_params
     params.require(:gig).permit(:name, :artist, :venue, :genre, :user_id, :date, :private)

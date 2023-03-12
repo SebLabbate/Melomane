@@ -1,11 +1,14 @@
 .show-page {
   height: 100%;
+  margin-top: 30px;
 }
 .show-banner {
   background-color: black;
   border-style: solid;
   height: 250px;
   width: 100%;
+  margin-top: 30px;
+  padding-bottom: 15px;
 
 }
 
@@ -27,6 +30,7 @@
   //border-color: white;
   //border-style: solid;
   height:210px;
+  margin-top: 20px;
 }
 
 .show-header-text-icon {
@@ -95,6 +99,7 @@
   border-bottom-width: 1px;
   width:60%;
   padding-top: 25px;
+  margin-bottom: 20px;
 }
 
 .show-container-text {
@@ -139,8 +144,8 @@
 }
 
 .show-container-button{
-  height: 230px;
-  width:40%;
+  height: 290px;
+  width:35%;
   float:right;
  // border-radius: 20px;
 // border-style: solid;
@@ -156,6 +161,7 @@
     text-align: center;
     opacity: 1;
   }
+  margin-bottom: 20px;
 }
 
 .show-container-button-b{
@@ -177,7 +183,8 @@
 .show-container-button-img{
   height: 100%;
   background-size: cover;
-  width:100%;
+  object-fit: cover;
+  width:70%;
   opacity: 0.7;
   border-radius: 20px;
 }
@@ -268,8 +275,8 @@
 
 .show-grid-image {
   height:100%;
-  width:100%;
-  object-fit: fill;
+  width:60%;
+  object-fit: cover;
   border-radius: 20px;
   padding-bottom: 8px;
 }

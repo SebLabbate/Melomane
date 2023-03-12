@@ -20,7 +20,7 @@
 
           <% if user_gig.gig.date < Date.current %>
             <div class="buttons pt-2">
-              <%= link_to "Attended ?", user_gigs_past_gigs_path, data: {turbo_method: :delete, turbo_confirm: "Have you attended #{user_gig.gig.artist}'s gig ?"}, class: "btn-attended" %>
+              <%= link_to "Attended ?", past_gigs_user_gigs_path, data: { turbo_method: :delete, turbo_confirm: "Have you attended #{user_gig.gig.artist}'s gig ?" }, class: "btn-attended" %>
             </div>
           <% end %>
       </div>

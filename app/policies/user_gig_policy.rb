@@ -5,6 +5,14 @@ class UserGigPolicy < ApplicationPolicy
     end
   end
 
+  def past_gigs?
+    return true
+  end
+
+  def upcoming_gigs?
+    return true
+  end
+
   def show?
     return record.user_id == user.id
   end

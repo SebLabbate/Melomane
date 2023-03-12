@@ -11,13 +11,13 @@
      <div class="show-container-header-text">
        <h3><%= @gig.artist %></h3>
        <br>
-       <p> <img src="<%= asset_path('calendar.png')%>" class="show-header-text-icon" alt="..."> <%= @gig.date%> </p>
+       <p> <img src="<%= asset_path('calendar.png')%>" class="show-header-text-icon" alt="..."> <%= @gig.date.strftime("%e %b %Y") %> </p>
        <p> <img src="<%= asset_path('Location.png')%>" class="show-header-text-icon" alt="..."> <%= @gig.venue %> </p>
        <p> <img src="<%= asset_path('timer2.png')%>" class="show-header-text-icon" alt="..."> 7pm to 9pm </p>
      </div>
      <div class="show-container-header-img">
-      <% if @artist_image != nil %>
-       <img src="<%= (@artist_image)%>" class="show-header-img" alt="...">
+      <% if @gig.wiki_photo_url != nil %>
+       <img src="<%= (@gig.wiki_photo_url)%>" class="show-header-img" alt="...">
        <% else %>
         <img src="<%= (@pexels_array_c[0]) %>" class="show-header-img" alt="...">
        <% end %>
@@ -31,13 +31,25 @@
          <%= @artist_sum %>
       </div>
       <div class="show-container-button">
+          <% if Date.current < @gig.date %>
        <div class="show-container-button-img" style="background-image: url(<%= @pexels_array_b[0] %>);">
              are you going?
-        <div class="show-container-button-box">
+          <div class="show-container-button-box">
                add it
-        </div>
+          </div>
           to your upcoming gigs
+
         </div>
+        <% else %>
+         <div class="show-container-button-img" style="background-image: url(<%= @pexels_array_b[0] %>);">
+             Did you go?
+          <div class="show-container-button-box">
+               add it
+          </div>
+          to your past gigs
+
+        </div>
+        <% end %>
       </div>
     </div>
     <div class="show-container-about">
@@ -75,7 +87,7 @@
             <% if @other_gigs.length > 0 %>
             <h4>  <%= link_to "#{@other_gigs[0].artist }", gig_path(@other_gigs[0].id) %> </h4>
              <h6><%= link_to "#{@other_gigs[0].venue  }", gig_path(@other_gigs[0].id) %> </h6>
-             <h6> <%= link_to "#{@other_gigs[0].date  }", gig_path(@other_gigs[0].id) %> </h6>
+             <h6> <%= link_to "#{@other_gigs[0].date.strftime("%e %b %Y")  }", gig_path(@other_gigs[0].id) %> </h6>
             <% end %>
         </div>
         <div class="show-container-grid-text-box-b">
@@ -91,7 +103,7 @@
            <% if @other_gigs.length > 1 %>
            <h4>  <%= link_to "#{@other_gigs[1].artist}", gig_path(@other_gigs[1].id) %> </h4>
              <h6><%= link_to "#{@other_gigs[1].venue }", gig_path(@other_gigs[1].id) %> </h6>
-             <h6> <%= link_to "#{@other_gigs[1].date }", gig_path(@other_gigs[1].id) %> </h6>
+             <h6> <%= link_to "#{@other_gigs[1].date.strftime("%e %b %Y") }", gig_path(@other_gigs[1].id) %> </h6>
             <% end %>
         </div>
         <div class="show-container-grid-text-box-c">
@@ -107,7 +119,7 @@
             <% if @other_gigs.length > 2 %>
              <h4>  <%= link_to "#{@other_gigs[2].artist if @other_gigs.length > 1}", gig_path(@other_gigs[2].id) %> </h4>
              <h6><%= link_to "#{@other_gigs[2].venue if @other_gigs.length > 1}", gig_path(@other_gigs[2].id) %> </h6>
-             <h6> <%= link_to "#{@other_gigs[2].date if @other_gigs.length > 1}", gig_path(@other_gigs[2].id) %> </h6>
+             <h6> <%= link_to "#{@other_gigs[2].date.strftime("%e %b %Y") if @other_gigs.length > 1}", gig_path(@other_gigs[2].id) %> </h6>
             <% end %>
         </div>
          <div class="show-container-grid-text-box-d">
@@ -123,7 +135,7 @@
            <% if @other_gigs.length > 3 %>
              <h4><%= link_to "#{@other_gigs[3].artist if @other_gigs.length > 2}", gig_path(@other_gigs[3].id) %> </h4>
              <h6><%= link_to "#{@other_gigs[3].venue if @other_gigs.length > 2}", gig_path(@other_gigs[3].id) %> </h6>
-             <h6> <%= link_to "#{@other_gigs[3].date if @other_gigs.length > 2}", gig_path(@other_gigs[3].id) %> </h6>
+             <h6> <%= link_to "#{@other_gigs[3].date.strftime("%e %b %Y") if @other_gigs.length > 2}", gig_path(@other_gigs[3].id) %> </h6>
            <% end %>
        </div>
                 <div class="show-container-grid-text-box-c">
@@ -139,7 +151,7 @@
            <% if @other_gigs.length > 4 %>
               <h4>  <%= link_to "#{@other_gigs[4].artist if @other_gigs.length > 3}", gig_path(@other_gigs[4].id) %> </h4>
              <h6><%= link_to "#{@other_gigs[4].venue if @other_gigs.length > 3}", gig_path(@other_gigs[4].id) %> </h6>
-             <h6> <%= link_to "#{@other_gigs[4].date if @other_gigs.length > 3}", gig_path(@other_gigs[4].id) %> </h6>
+             <h6> <%= link_to "#{@other_gigs[4].date.strftime("%e %b %Y") if @other_gigs.length > 3}", gig_path(@other_gigs[4].id) %> </h6>
             <% end %>
         </div>
                         <div class="show-container-grid-text-box-c">
@@ -155,16 +167,16 @@
              <% if @other_gigs.length > 5 %>
              <h4>  <%= link_to "#{@other_gigs[5].artist if @other_gigs.length > 4}", gig_path(@other_gigs[5].id) %> </h4>
              <h6><%= link_to "#{@other_gigs[5].venue if @other_gigs.length > 4}", gig_path(@other_gigs[5].id) %> </h6>
-             <h6> <%= link_to "#{@other_gigs[5].date if @other_gigs.length > 4}", gig_path(@other_gigs[5].id) %> </h6>
+             <h6> <%= link_to "#{@other_gigs[5].date.strftime("%e %b %Y") if @other_gigs.length > 4}", gig_path(@other_gigs[5].id) %> </h6>
              <% end %>
         </div>
       </div>
-      <div class="show-container-button-b">
+     <%# <div class="show-container-button-b">
         excited?
           <div class="show-container-button-box">
              share
           </div>
-          with your friends
+          with your friends%>
       </div>
     </div>
   </div>
