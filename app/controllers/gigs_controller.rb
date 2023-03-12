@@ -9,6 +9,7 @@ class GigsController < ApplicationController
       @gigs = policy_scope(Gig)
       @pexels_array = pexel_photos
     end
+    @user_gigs = UserGig.all
   end
 
   def show
