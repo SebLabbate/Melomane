@@ -1,6 +1,7 @@
 require 'wikipedia'
 class GigsController < ApplicationController
-  before_action :set_gig, only: %i[show]
+  before_action :set_gig, only: %i[show edit update]
+
 
   def index
     @gigs = policy_scope(Gig)
@@ -39,6 +40,26 @@ class GigsController < ApplicationController
     authorize @gig
   end
 
+  def edit
+    authorize @gig
+  end
+
+  def update
+    authorize @gig
+    @gig.user = current_user
+    respond_to do |format|
+      if @gig.update gig_params
+        format.html { redirect_to user_gigs_path, notice: "Gig edited" }
+        format.json { render :edit, status: :edited, location: @gig }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @gig.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+private
+
   def parse_wiki_image(name)
     page = Wikipedia.find(name)
     photo = page.main_image_url
@@ -57,6 +78,7 @@ class GigsController < ApplicationController
   end
 
   private
+
 
   def parse_wiki_info(name)
     page = Wikipedia.find(name)

@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get "/dashboard/new", to: "gigs#new"
   post "/gigs", to: "gigs#create"
 
-  resources :gigs, only: %i[index show] do
+  # resources :gigs, only: %i[index show] do
+  resources :gigs do
     resources :user_gigs, only: :create
   end
   resources :user_gigs do
