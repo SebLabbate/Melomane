@@ -13,6 +13,7 @@ class UserGigsController < ApplicationController
 
   def past_gigs
     @user_gigs = policy_scope(UserGig).all
+    @pexels_array = pexel_photos
     authorize @user_gigs
   end
 
@@ -60,6 +61,17 @@ class UserGigsController < ApplicationController
       format.html { redirect_to user_gig_path, notice: "Gig removed" }
       format.json { head :no_content }
     end
+  end
+
+  def pexel_photos
+    client = Pexels::Client.new('41EOfTlvkrnn8r297MvVFXPjmYq2jLs9OGSGZLfrQpDRmFVXMvMJdCHO')
+    photo = client.photos.search('concert').to_a
+    first = photo[rand(1..12)].src
+    array = []
+    first.each_value do |value|
+      array << value
+    end
+    return array
   end
 
   private

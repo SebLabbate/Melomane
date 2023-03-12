@@ -8,7 +8,7 @@
             <% if user_gig.gig.wiki_photo_url != nil %>
               <div class="pg-card-img"><img src="<%= user_gig.gig.wiki_photo_url %>" style="width:140px;height:116px"></div>
             <% else %>
-              <div class="pg-card-img"><img src="<%= pexels_array[0] %>" style="width:140px;height:116px"></div>
+              <div class="pg-card-img"><img src="<%= @pexels_array[0] %>" style="width:140px;height:116px"></div>
             <% end %>
             <div class="pg-card-content">
               <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", gig_path(user_gig.gig) %></span></div>
@@ -16,6 +16,17 @@
               <div class="vanue"><span><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", gig_path(user_gig.gig) %></span></div>
               <div class="genre"><span><i class="fa-solid fa-guitar"></i> <%= link_to "#{user_gig.gig.genre.titleize}", gig_path(user_gig.gig) %></span></div>
             </div>
+              <%# <label class="toggle">
+              <input type="checkbox" checked="checked">
+              <span class="checkmark"></span>
+              </label> %>
+
+                <div class="checkbox">
+                  <%= simple_form_for(user_gig, data: { turbo: :false }) do |f| %>
+                    <%= f.input :attended, as: :boolean, input_html: { class: "toggle" } %>
+                  <% end %>
+                </div>
+
           </div>
         <% end %>
       </div>
