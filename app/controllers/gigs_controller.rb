@@ -2,7 +2,6 @@ require 'wikipedia'
 class GigsController < ApplicationController
   before_action :set_gig, only: %i[show edit update]
 
-
   def index
     if params[:query].present?
       @gigs = policy_scope(Gig.search_by_artist_and_venue(params[:query]))
@@ -10,6 +9,7 @@ class GigsController < ApplicationController
       @gigs = policy_scope(Gig)
       @pexels_array = pexel_photos
     end
+    @user_gigs = UserGig.all
   end
 
   def show

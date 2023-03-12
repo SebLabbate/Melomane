@@ -78,7 +78,6 @@ genre = [
   "Rap"
 ]
 
-
 User.create!(
   user_name: "Admin",
   password: "password",
@@ -93,7 +92,7 @@ User.create!(
 
 80.times do
   Gig.create!(
-    user_id: 18,
+    user_id: 1,
     name: Faker::Emotion.noun,
     date: Faker::Date.between(from: '2022-03-04', to: '2024-12-31'),
     artist: artists.sample,
@@ -103,8 +102,8 @@ User.create!(
 end
 
 UserGig.create!(
-  user_id: 18,
-  gig_id: 200,
+  user_id: 1,
+  gig_id: 20,
   attended: true
 )
 
