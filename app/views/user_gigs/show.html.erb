@@ -2,29 +2,24 @@
   <div class="user-gig-page-main">
       <div class="user-gig-page-main-left">
         <div class="user-gig-page-main-left-about">
-          <h5><%= @gig.artist %> @ <%= @gig.venue %></h5>
-         <%= @gig.date.strftime("%e %b %Y") %>
-         <p> <strong> <%= @gig.genre %> </strong> - <%= @artist_sum %> </p>
+          <h5><%= @user_gig.gig.artist %> @ <%= @user_gig.gig.venue %></h5>
+         <%= @user_gig.gig.date.strftime("%e %b %Y") %>
+         <p> <strong> <%= @user_gig.gig.genre %> </strong> - <%= @artist_sum %> </p>
         </div>
         <div class="user-gig-page-main-left-map">
-        <% if @gig.date < Date.current%>
-          <p> This gig has already happened,<%= link_to "did you go?", gig_user_gigs_path(@gig), data: {turbo_method: :post}, class: "btn btn-primary" %> </p>
-          <% else %>
-           <p> <%= link_to "Are you going to this gig?", gig_user_gigs_path(@gig), data: {turbo_method: :post}, class: "btn btn-primary" %> </p>
-          <% end %>
-       MAP
+        MAP
         </div>
       </div>
       <div class="user-gig-page-main-right">
         <div class="user-gig-page-main-right-spotify">
-           <h5> Listen to <%= @gig.artist%> on spotify </h5>
+           <h5> Listen to <%= @user_gig.gig.artist%> on spotify </h5>
         </div>
            <div class="user-gig-page-main-right-carousel">
                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                           <div class="carousel-inner">
                             <div class="carousel-item active">
-                              <% if @gig.wiki_photo_url != nil %>
-                               <img src="<%= (@gig.wiki_photo_url) %>" class="show-carousel-img" alt="...">
+                              <% if @user_gig.gig.wiki_photo_url != nil %>
+                               <img src="<%= (@user_gig.gig.wiki_photo_url) %>" class="show-carousel-img" alt="...">
                                <% else %>
                                 <img src="<%= (@pexels_array_c[0]) %>" class="show-carousel-img" alt="...">
                               <% end %>
@@ -77,7 +72,7 @@
              <h6><%= link_to "#{@other_gigs[1].venue  }", gig_path(@other_gigs[1].id) %> </h6>
              <h6> <%= link_to "#{@other_gigs[1].date.strftime("%e %b %Y")  }", gig_path(@other_gigs[1].id) %> </h6>
              <h6> <%= link_to "#{@other_gigs[1].genre }", gig_path(@other_gigs[2].id) %> </h6>
-            <% end %>
+           <% end %>
      </div>
      <div class="user-gig-suggested-c">
       <% if @other_gigs.length > 0 %>

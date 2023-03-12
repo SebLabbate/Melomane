@@ -11,6 +11,4 @@ class Gig < ApplicationRecord
     photo = page.main_image_url
     self.wiki_photo_url = photo
   end
-
-
 end

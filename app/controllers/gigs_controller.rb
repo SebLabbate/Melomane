@@ -6,6 +6,7 @@ class GigsController < ApplicationController
   def index
     @gigs = policy_scope(Gig)
     @pexels_array = pexel_photos
+    @user_gigs = UserGig.all
   end
 
   def show
@@ -18,6 +19,8 @@ class GigsController < ApplicationController
     @pexels_array_b = pexel_photos
     @pexels_array_c = pexel_photos
     other_gigs_photos
+    @artist_image_b = parse_serpapi_image(@gig.artist, 2)
+    @artist_image_c = parse_serpapi_image(@gig.artist, 3)
   end
 
   def new
@@ -41,22 +44,6 @@ class GigsController < ApplicationController
   end
 
 
-  def parse_wiki_image(name)
-    page = Wikipedia.find(name)
-    photo = page.main_image_url
-    return photo
-  end
-
-  def pexel_photos
-    client = Pexels::Client.new('41EOfTlvkrnn8r297MvVFXPjmYq2jLs9OGSGZLfrQpDRmFVXMvMJdCHO')
-    photo = client.photos.search('concert').to_a
-    first = photo[rand(1..12)].src
-    array = []
-    first.each_value do |value|
-      array << value
-    end
-    return array
-  end
   private
 
   def parse_wiki_info(name)
@@ -75,7 +62,7 @@ class GigsController < ApplicationController
   def find_other_genres(array)
     new_array = []
     array.each do |item|
-      if item.genre == @gig.genre && @gig.name != item.name
+      if item.genre == @gig.genre && @gig.name != item.name && item.date > Date.current
         new_array << item
       end
     end
@@ -113,4 +100,34 @@ class GigsController < ApplicationController
   def set_gig
     @gig = Gig.find(params[:id])
   end
+
+
+  def parse_wiki_image(name)
+    page = Wikipedia.find(name)
+    photo = page.main_image_url
+    return photo
+  end
+
+  def pexel_photos
+    client = Pexels::Client.new('41EOfTlvkrnn8r297MvVFXPjmYq2jLs9OGSGZLfrQpDRmFVXMvMJdCHO')
+    photo = client.photos.search('concert').to_a
+    first = photo[rand(1..12)].src
+    array = []
+    first.each_value do |value|
+      array << value
+    end
+    return array
+  end
+
+  def parse_serpapi_image(name, number)
+    params = {
+      q: name,
+      tbm: "isch",
+      api_key: "e39ea7280a6e3bbfec7c0f49409964674caaff3d39777d6c05ac14cfeab4be7f"
+    }
+    search = GoogleSearch.new(params)
+    related_searches = search.get_hash[:images_results]
+    return related_searches[number][:thumbnail]
+  end
+
 end
