@@ -3,8 +3,12 @@ class GigsController < ApplicationController
   before_action :set_gig, only: %i[show]
 
   def index
-    @gigs = policy_scope(Gig)
-    @pexels_array = pexel_photos
+    if params[:query].present?
+      @gigs = policy_scope(Gig.search_by_artist_and_venue(params[:query]))
+    else
+      @gigs = policy_scope(Gig)
+      @pexels_array = pexel_photos
+    end
   end
 
   def show

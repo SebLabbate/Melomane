@@ -12,5 +12,12 @@ class Gig < ApplicationRecord
     self.wiki_photo_url = photo
   end
 
-
+  include PgSearch::Model
+  pg_search_scope :search_by_artist_and_venue,
+    against: [ :artist, :venue ],
+    using: {
+      tsearch: { prefix: true }
+    }
+  # include PgSearch::Model
+  # multisearchable against: [ :artist, :venue ]
 end
