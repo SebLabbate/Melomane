@@ -9,6 +9,7 @@ class UserGigsController < ApplicationController
 
   def show
     @gigs = Gig.all
+    @user_gigs = UserGig.all
     authorize @user_gig
     @artist_sum = parse_wiki_info(@user_gig.gig.artist)
     @artist_image = parse_wiki_image(@user_gig.gig.artist)
@@ -43,9 +44,8 @@ class UserGigsController < ApplicationController
     @user_gig.gig = @gig
     @user_gig.user = current_user
     authorize @user_gig
-
     if @user_gig.save
-      redirect_to user_gigs_path, notice: "Added to your gigs!"
+      redirect_to dashboard_path, notice: "Added to your gigs!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -76,17 +76,6 @@ class UserGigsController < ApplicationController
       format.html { redirect_to user_gig_path, notice: "Gig removed" }
       format.json { head :no_content }
     end
-  end
-
-  def pexel_photos
-    client = Pexels::Client.new('41EOfTlvkrnn8r297MvVFXPjmYq2jLs9OGSGZLfrQpDRmFVXMvMJdCHO')
-    photo = client.photos.search('concert').to_a
-    first = photo[rand(1..12)].src
-    array = []
-    first.each_value do |value|
-      array << value
-    end
-    return array
   end
 
   private

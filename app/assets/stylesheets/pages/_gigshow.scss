@@ -1,20 +1,14 @@
 .user-gig-page {
-  border-color: black;
-  border-style: solid;
   height:1000px;
 }
 
 .user-gig_page-main {
-  border-color: pink;
-  border-style: solid;
   height:500px;
   margin-left: 100px;
   margin-right: 100px;
 }
 
 .user-gig-page-suggested {
-  border-color: red;
-  border-style: solid;
   height:500px;
   margin-left: 100px;
   margin-right: 100px;
@@ -24,8 +18,6 @@
 }
 
 .user-gig-page-main-left {
-  border-color: blue;
-  border-style: solid;
   height:400px;
   width:50%;
   margin-left: 100px;
@@ -33,39 +25,30 @@
 }
 
 .user-gig-page-main-left-about{
-  border-color: brown;
-  border-style: solid;
   height:55%;
   width:100%;
 }
 
 .user-gig-page-main-right {
-  border-color: orange;
-  border-style: solid;
   height:400px;
   width:30%;
   margin-right: 100px;
   float:right;
+  margin-bottom:20px;
 }
 
 .user-gig-page-main-right-spotify {
-  border-color: brown;
-  border-style: solid;
   height:50%;
   width:100%;
 }
 
 .user-gig-page-main-right-carousel{
-  border-color: yellow;
-  border-style: solid;
   height:200px;
   width:100%;
 }
 
 #carouselExampleControls, .carousel-inner{
   height:200px;
-  border-color: green;
-  border-style: solid;
   width:300px;
 }
 
@@ -76,29 +59,21 @@
 }
 
 .user-gig-suggested-a{
-  border-style: solid;
-  border-color: turquoise;
   width:400px;
   height:200px;
 }
 
 .user-gig-suggested-b{
-  border-style: solid;
-  border-color: turquoise;
   width:400px;
   height:200px;
 }
 
 .user-gig-suggested-c{
-  border-style: solid;
-  border-color: turquoise;
   width:400px;
   height:200px;
 }
 
 .user-gig-suggested-d{
-  border-style: solid;
-  border-color: turquoise;
   width:400px;
   height:200px;
 }
