@@ -3,7 +3,7 @@
       <div class="user-gig-page-main-left">
         <div class="user-gig-page-main-left-about">
           <% if @user_gig.gig.date > Date.current %>
-         <p> <h5><%= @user_gig.gig.artist %> @ <%= @user_gig.gig.venue %> - <strong> YOU ARE GOING! </strong> </h5> </p>
+         <p> <%= @user_gig.gig.artist %> @ <%= @user_gig.gig.venue %> - <strong> YOU ARE GOING! </strong>  </p>
           <% else %>
         <p>   <h5><%= @user_gig.gig.artist %> @ <%= @user_gig.gig.venue %> </h5> </p>
            <% end %>
