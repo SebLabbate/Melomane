@@ -16,6 +16,10 @@
               <div class="vanue"><span><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", user_gig_path(user_gig) %></span></div>
               <div class="genre"><span><i class="fa-solid fa-guitar"></i> <%= link_to "#{user_gig.gig.genre.titleize}", user_gig_path(user_gig) %></span></div>
             </div>
+            <%= link_to "Cancel", user_gig_path(user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-decoration-none"%>
+            <% if user_gig.gig.user_id == current_user.id%>
+              <%= link_to "Edit", edit_user_gig_path(user_gig), class: "text-decoration-none" %>
+            <% end %>
           </div>
         <% end %>
       </div>
