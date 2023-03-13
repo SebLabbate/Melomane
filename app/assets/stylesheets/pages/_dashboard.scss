@@ -7,8 +7,12 @@
   padding: 10px;
   // width: 30vw;
   // height: 10vw;
-  width: 400px;
+  width: 450px;
   height: 140px;
+  a{
+  text-decoration: none;
+  color: black;
+}
 }
 
 h2.pg, h2.ug {
@@ -18,6 +22,7 @@ h2.pg, h2.ug {
 .gigs-container {
   display: flex;
   justify-content: space-around;
+  padding-bottom: 60px;
 }
 
 .past-gigs {

@@ -2,29 +2,57 @@
   <div class="user-gig-page-main">
       <div class="user-gig-page-main-left">
         <div class="user-gig-page-main-left-about">
-          <h5><%= @gig.artist %> @ <%= @gig.venue %></h5>
-         <%= @gig.date.strftime("%e %b %Y") %>
-         <p> <strong> <%= @gig.genre %> </strong> - <%= @artist_sum %> </p>
-        </div>
-        <div class="user-gig-page-main-left-map">
-        <% if @gig.date < Date.current%>
-          <p> This gig has already happened,<%= link_to "did you go?", gig_user_gigs_path(@gig), data: {turbo_method: :post}, class: "btn btn-primary" %> </p>
+          <% if @user_gig.gig.date > Date.current %>
+          <h5><%= @user_gig.gig.artist %> @ <%= @user_gig.gig.venue %> - <strong> YOU ARE GOING! </strong> </h5>
           <% else %>
-           <p> <%= link_to "Are you going to this gig?", gig_user_gigs_path(@gig), data: {turbo_method: :post}, class: "btn btn-primary" %> </p>
-          <% end %>
-       MAP
+           <h5><%= @user_gig.gig.artist %> @ <%= @user_gig.gig.venue %> </h5>
+           <% end %>
+         <%= @user_gig.gig.date.strftime("%e %b %Y") %>
+         <p> <strong> <%= @user_gig.gig.genre %> </strong> - <%= @artist_sum %> </p>
         </div>
+        <% if @user_gig.gig.date > Date.current %>
+        <div class="user-gig-page-main-left-map">
+        MAP
+        </div>
+        <% else %>
+        <div class="user-gig-page-main-left-user-info">
+        <strong> YOU WENT! </strong> how was it? ADD SOME INFO AND PHOTOS!
+        <div class="user-gig-page-main-left-carousel">
+                   <div id="carouselExampleControlsb" class="carousel slide" data-bs-ride="carousel">
+                          <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="<%= (@pexels_array_e[0]) %>" class="show-carousel-left-img" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                              <img src="<%= (@pexels_array_b[0]) %>" class="show-carousel-left-img" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                              <img src="<%= (@pexels_array_d[0]) %>" class="show-carousel-left-img" alt="...">
+                            </div>
+                          </div>
+                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="prev">
+                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                           <span class="visually-hidden">Previous</span>
+                         </button>
+                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="next">
+                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                           <span class="visually-hidden">Next</span>
+                         </button>
+                   </div>
+           </div>
+        </div>
+        <% end %>
       </div>
       <div class="user-gig-page-main-right">
         <div class="user-gig-page-main-right-spotify">
-           <h5> Listen to <%= @gig.artist%> on spotify </h5>
+           <h5> Listen to <%= @user_gig.gig.artist%> on spotify </h5>
         </div>
            <div class="user-gig-page-main-right-carousel">
                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                           <div class="carousel-inner">
                             <div class="carousel-item active">
-                              <% if @gig.wiki_photo_url != nil %>
-                               <img src="<%= (@gig.wiki_photo_url) %>" class="show-carousel-img" alt="...">
+                              <% if @user_gig.gig.wiki_photo_url != nil %>
+                               <img src="<%= (@user_gig.gig.wiki_photo_url) %>" class="show-carousel-img" alt="...">
                                <% else %>
                                 <img src="<%= (@pexels_array_c[0]) %>" class="show-carousel-img" alt="...">
                               <% end %>
@@ -59,7 +87,7 @@
               <% end %>
                     <% if @other_gigs.length > 0 %>
                  <% if @user_gigs.find { |item| item.gig_id == @other_gigs[0].id } != nil %>
-                    <% user_gig = @user_gigs.find { |item| item.gig_id == @other_gigs[0].id } %>
+                    <% user_gig = @user_gigs.find { |item| item.gig_id == @other_gigs[0].id} %>
             <h4>  <%= link_to "#{@other_gigs[0].artist }", user_gig_path(user_gig) %> </h4>
              <h6><%= link_to "#{@other_gigs[0].venue  }", user_gig_path(user_gig) %> </h6>
              <h6> <%= link_to "#{@other_gigs[0].date.strftime("%e %b %Y")  }", user_gig_path(user_gig) %> </h6>
@@ -82,7 +110,7 @@
              <% end %>
                     <% if @other_gigs.length > 1 %>
               <% if @user_gigs.find { |item| item.gig_id == @other_gigs[1].id } != nil %>
-                    <% user_gig = @user_gigs.find { |item| item.gig_id == @other_gigs[1].id } %>
+                    <% user_gig = @user_gigs.find { |item| item.gig_id == @other_gigs[1].id} %>
             <h4>  <%= link_to "#{@other_gigs[1].artist }", user_gig_path(user_gig) %> </h4>
              <h6><%= link_to "#{@other_gigs[1].venue  }", user_gig_path(user_gig) %> </h6>
              <h6> <%= link_to "#{@other_gigs[1].date.strftime("%e %b %Y")  }", user_gig_path(user_gig) %> </h6>
