@@ -2,7 +2,7 @@
   <div class="user-gig-page-main">
       <div class="user-gig-page-main-left">
         <div class="user-gig-page-main-left-about">
-         <p> <h5><%= @gig.artist %> @ <%= @gig.venue %></h5></p>
+         <p> <%= @gig.artist %> @ <%= @gig.venue %></p>
          <p> <%= @gig.date.strftime("%e %b %Y") %> </p>
          <p> <strong> <%= @gig.genre %> </strong> - <%= @artist_sum %> </p>
         </div>
@@ -17,7 +17,7 @@
       </div>
       <div class="user-gig-page-main-right">
         <div class="user-gig-page-main-right-spotify">
-         <h5> Top 5 <%= @gig.artist%> songs </h5>
+         <p>Top 5 <%= @gig.artist%> songs </p>
            <p> <%= @spotify_top_songs[0].name %> </p>
            <p> <%= @spotify_top_songs[1].name %> </p>
            <p> <%= @spotify_top_songs[2].name %> </p>

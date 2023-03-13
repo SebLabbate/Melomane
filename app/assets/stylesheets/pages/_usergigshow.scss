@@ -1,16 +1,16 @@
 .user-gig-page {
   height:1000px;
   padding-top: 30px;
-  border-style: solid;
-  border-color:blue;
+  //border-color:blue;
+  //border-style: solid;
 }
 
 .user-gig_page-main {
   height:500px;
   margin-left: 100px;
   margin-right: 100px;
-  border-style: solid;
-  border-color:blue;
+  //border-style: solid;
+  //border-color:blue;
 }
 
 .user-gig-page-suggested {
@@ -21,15 +21,15 @@
   position:relative;
   display:flex;
   margin-top: 200px;
-  border-style: solid;
-  border-color:blue;
+  //border-style: solid;
+  //border-color:blue;
   text-align: center;
 }
 
 .user-gig-page-suggested-title{
   display: flex;
-  border-style: solid;
-  border-color:blue;
+  //border-style: solid;
+  //border-color:blue;
   height:25px;
   width:1000px;
   float:right;
@@ -44,15 +44,16 @@
   width:40%;
   margin-left: 100px;
   float:left;
-  border-style: solid;
-  border-color:blue;
+  //border-style: solid;
+ // border-color:blue;
+  color: white;
 }
 
 .user-gig-page-main-left-about{
   height:55%;
   width:100%;
-  border-style: solid;
-  border-color:blue;
+ // border-style: solid;
+ // border-color:blue;
 }
 
 .user-gig-page-main-right {
@@ -61,15 +62,16 @@
   margin-right: 100px;
   float:right;
   margin-bottom:20px;
-  border-style: solid;
-  border-color:blue;
+ // border-style: solid;
+ // border-color:blue;
 }
 
 .user-gig-page-main-right-spotify {
   height:50%;
   width:100%;
-  border-style: solid;
-  border-color:blue;
+  //border-style: solid;
+  //border-color:blue;
+  color:white;
 }
 
 .user-gig-page-main-right-carousel{
@@ -91,34 +93,37 @@
 .user-gig-suggested-a{
   width:400px;
   height:200px;
-  border-style: solid;
-  border-color:blue;
+  //border-style: solid;
+  //border-color:blue;
   a {
     text-decoration: none;
-    color: black;
+    color: white;
  }
+ color:white;
 }
 
 .user-gig-suggested-b{
   width:400px;
   height:200px;
-  border-style: solid;
-  border-color:blue;
+  //border-style: solid;
+  //border-color:blue;
   a {
     text-decoration: none;
-    color: black;
+    color: white;
  }
+ color:white;
 }
 
 .user-gig-suggested-c{
   width:400px;
   height:200px;
-  border-style: solid;
-  border-color:blue;
+ // border-style: solid;
+  //border-color:blue;
   a {
     text-decoration: none;
-    color: black;
+    color: white;
  }
+ color:white;
 }
 
 .user-gig-suggested-image {
