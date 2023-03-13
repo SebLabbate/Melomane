@@ -1,12 +1,14 @@
 .navbar {
   position: sticky;
   top: 0;
-  border: 2px solid lightgray;
+  border-bottom: 1px solid lightgray;
 }
 
 .navbar-melomane {
   justify-content: space-between;
-  background: white;
+  background: #121212;
+  margin-top: 5px;
+  margin-bottom: 3px;
 }
 
 .navbar-melomane .navbar-collapse {
