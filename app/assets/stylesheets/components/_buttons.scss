@@ -1,0 +1,74 @@
+.primary-button {
+  background-color: #F4F798;
+  border: none;
+  border-radius: 45px;
+  color: #121212;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Open Sans";
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+  color: #121212;
+}
+
+.primary-button-inverse {
+  background-color: #121212;
+  border: 2px solid #F4F798;
+  border-radius: 45px;
+  color: #F4F798;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Open Sans";
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.primary-button-inverse:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+  color: #F4F798;
+}
+
+.warning-button {
+  background-color: #CF6679;
+  border: none;
+  border-radius: 45px;
+  color: #121212;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Open Sans";
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.warning-button:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+  color: #121212;
+}
