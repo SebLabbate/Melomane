@@ -1,8 +1,34 @@
 .footer {
-  background: white;
-  border: 2px solid lightgray;
+  background: #121212;
+  border-top: 1px solid lightgray;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 50px;
+}
+
+#socials {
+  margin-left: 20px;
+}
+
+#socials a {
+  color: #F4F798;
+  padding-right: 5px;
+}
+
+#socials a:hover {
+  color: #F7C729;
+}
+
+#footer-links {
+  margin-right: 20px;
+}
+
+#footer-links a {
+  color: #ffffff;
+  padding-left: 5px;
+}
+
+#footer-links a:hover {
+  color: #F4F798;
 }
