@@ -96,8 +96,7 @@ User.create!(
     name: Faker::Emotion.noun,
     date: Faker::Date.between(from: '2022-03-04', to: '2024-12-31'),
     artist: artists.sample,
-    venue: venue.sample,
-    genre: genre.sample
+    venue: venue.sample
   )
 end
 

@@ -2,8 +2,8 @@
   <div class="user-gig-page-main">
       <div class="user-gig-page-main-left">
         <div class="user-gig-page-main-left-about">
-          <h5><%= @gig.artist %> @ <%= @gig.venue %></h5>
-         <%= @gig.date.strftime("%e %b %Y") %>
+         <p> <h5><%= @gig.artist %> @ <%= @gig.venue %></h5></p>
+         <p> <%= @gig.date.strftime("%e %b %Y") %> </p>
          <p> <strong> <%= @gig.genre %> </strong> - <%= @artist_sum %> </p>
         </div>
         <div class="user-gig-page-main-left-map">
@@ -17,7 +17,12 @@
       </div>
       <div class="user-gig-page-main-right">
         <div class="user-gig-page-main-right-spotify">
-           <h5> Listen to <%= @gig.artist%> on spotify </h5>
+         <h5> Top 5 <%= @gig.artist%> songs </h5>
+           <p> <%= @spotify_top_songs[0].name %> </p>
+           <p> <%= @spotify_top_songs[1].name %> </p>
+           <p> <%= @spotify_top_songs[2].name %> </p>
+           <p> <%= @spotify_top_songs[3].name %> </p>
+           <p> <%= @spotify_top_songs[4].name %> </p>
         </div>
            <div class="user-gig-page-main-right-carousel">
                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -30,10 +35,10 @@
                               <% end %>
                             </div>
                             <div class="carousel-item">
-                              <img src="<%= (@artist_image_b) %>" class="show-carousel-img" alt="...">
+                              <img src="<%= (@spotify_image) %>" class="show-carousel-img" alt="...">
                             </div>
                             <div class="carousel-item">
-                              <img src="<%= (@artist_image_c) %>" class="show-carousel-img" alt="...">
+                              <img src="<%= (@spotify_image_b) %>" class="show-carousel-img" alt="...">
                             </div>
                           </div>
                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -48,6 +53,7 @@
            </div>
       </div>
   </div>
+  <div class="user-gig-page-suggested-title"> <p> Other <%= @gig.genre%> gigs you might like </p> </div>
   <div class="user-gig-page-suggested">
      <div class="user-gig-suggested-a">
         <% if @other_gigs.length > 0 %>
@@ -117,8 +123,6 @@
              <h6> <%= link_to "#{@other_gigs[2].genre }", gig_path(@other_gigs[2].id) %> </h6>
              <% end %>
             <% end %>
-     </div>
-     <div class="user-gig-suggested-d">
      </div>
   </div>
 </div>

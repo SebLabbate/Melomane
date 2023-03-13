@@ -86,5 +86,5 @@ gem "nokogiri", force_ruby_platform: true
 gem 'wikipedia-client'
 
 gem 'pexels'
-gem 'musicbrainz-ruby', :require => 'musicbrainz'
-gem 'google_search_results'
+gem 'rspotify'
+gem 'spotify-ruby'

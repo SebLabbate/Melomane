@@ -1,5 +1,3 @@
-require 'google_search_results'
-
 class UserGigsController < ApplicationController
   before_action :set_user_gig, only: %i[show edit update destroy]
 
@@ -13,8 +11,6 @@ class UserGigsController < ApplicationController
     authorize @user_gig
     @artist_sum = parse_wiki_info(@user_gig.gig.artist)
     @artist_image = parse_wiki_image(@user_gig.gig.artist)
-    @artist_image_b = parse_serpapi_image(@user_gig.gig.artist, 2)
-    @artist_image_c = parse_serpapi_image(@user_gig.gig.artist, 3)
     @other_gigs = find_other_genres(@gigs)
     @pexels_array = pexel_photos
     @pexels_array_b = pexel_photos
@@ -22,6 +18,9 @@ class UserGigsController < ApplicationController
     @pexels_array_d = pexel_photos
     @pexels_array_e = pexel_photos
     other_gigs_photos
+    @spotify_top_songs = spotify_top_five(@user_gig.gig.artist)
+    @spotify_image = spotify_images_artist(@user_gig.gig.artist)
+    @spotify_image_b = spotify_images_albums(@user_gig.gig.artist, 1)
   end
 
   def new
@@ -102,10 +101,10 @@ class UserGigsController < ApplicationController
   def parse_wiki_info(name)
     page = Wikipedia.find(name)
     if page != nil
-      info = "#{page.summary.split('.')[0]}.#{page.summary.split('.')[1]}.#{page.summary.split('.')[2]}"
+      info = "#{page.summary.split('.')[0]}.#{page.summary.split('.')[1]}."
     else
       page = Wikipedia.find("#{name} (singer)")
-      info = "#{page.summary.split('.')[0]}.#{page.summary.split('.')[1]}.#{page.summary.split('.')[2]}"
+      info = "#{page.summary.split('.')[0]}.#{page.summary.split('.')[1]}."
     end
     return info
   end
@@ -141,16 +140,6 @@ class UserGigsController < ApplicationController
     end
   end
 
-  def parse_serpapi_image(name, number)
-    params = {
-      q: name,
-      tbm: "isch",
-      api_key: "e39ea7280a6e3bbfec7c0f49409964674caaff3d39777d6c05ac14cfeab4be7f"
-    }
-    search = GoogleSearch.new(params)
-    related_searches = search.get_hash[:images_results]
-    return related_searches[number][:thumbnail]
-  end
 
   def parse_wiki_image(name)
     page = Wikipedia.find(name)
@@ -158,4 +147,29 @@ class UserGigsController < ApplicationController
     return photo
   end
 
+  def spotify_top_five(name)
+    RSpotify::authenticate('13a5a78c35794c128471c373008efb01', '1cfa0c2e5bc04728b9e9e56731e0db20')
+    artists = RSpotify::Artist.search(name)
+    adele = artists.first
+    top_songs = adele.top_tracks(:US)
+    top_five = top_songs[0..5]
+    return top_five
+  end
+
+  def spotify_images_artist(name)
+    RSpotify::authenticate('13a5a78c35794c128471c373008efb01', '1cfa0c2e5bc04728b9e9e56731e0db20')
+    artists = RSpotify::Artist.search(name)
+    artist = artists.first
+    image = artist.images[0]
+    return image.values[1]
+  end
+
+  def spotify_images_albums(name, number)
+    RSpotify::authenticate('13a5a78c35794c128471c373008efb01', '1cfa0c2e5bc04728b9e9e56731e0db20')
+    artists = RSpotify::Artist.search(name)
+    artist = artists.first
+    albums = artist.albums[number]
+    image = albums.images[0]
+    return image.values[1]
+  end
 end

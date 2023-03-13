@@ -1,4 +1,5 @@
 require 'wikipedia'
+require 'rspotify'
 class GigsController < ApplicationController
   before_action :set_gig, only: %i[show edit update]
 
@@ -22,9 +23,10 @@ class GigsController < ApplicationController
     @pexels_array_b = pexel_photos
     @pexels_array_c = pexel_photos
     other_gigs_photos
-    @artist_image_b = parse_serpapi_image(@gig.artist, 2)
-    @artist_image_c = parse_serpapi_image(@gig.artist, 3)
     @user_gigs = UserGig.all
+    @spotify_top_songs = spotify_top_five(@gig.artist)
+    @spotify_image = spotify_images_artist(@gig.artist)
+    @spotify_image_b = spotify_images_albums(@gig.artist, 1)
   end
 
   def new
@@ -72,10 +74,10 @@ class GigsController < ApplicationController
   def parse_wiki_info(name)
     page = Wikipedia.find(name)
     if page != nil
-      info = "#{page.summary.split('.')[0]}.#{page.summary.split('.')[1]}.#{page.summary.split('.')[2]}."
+      info = "#{page.summary.split('.')[0]}.#{page.summary.split('.')[1]}."
     else
       page = Wikipedia.find("#{name} (singer)")
-      info = "#{page.summary.split('.')[0]}.#{page.summary.split('.')[1]}.#{page.summary.split('.')[2]}."
+      info = "#{page.summary.split('.')[0]}.#{page.summary.split('.')[1]}."
     end
     return info
   end
@@ -119,7 +121,6 @@ class GigsController < ApplicationController
     @gig = Gig.find(params[:id])
   end
 
-
   def parse_wiki_image(name)
     page = Wikipedia.find(name)
     photo = page.main_image_url
@@ -137,15 +138,30 @@ class GigsController < ApplicationController
     return array
   end
 
-  def parse_serpapi_image(name, number)
-    params = {
-      q: name,
-      tbm: "isch",
-      api_key: "e39ea7280a6e3bbfec7c0f49409964674caaff3d39777d6c05ac14cfeab4be7f"
-    }
-    search = GoogleSearch.new(params)
-    related_searches = search.get_hash[:images_results]
-    return related_searches[number][:thumbnail]
+  def spotify_top_five(name)
+    RSpotify::authenticate('13a5a78c35794c128471c373008efb01', '1cfa0c2e5bc04728b9e9e56731e0db20')
+    artists = RSpotify::Artist.search(name)
+    artist = artists.first
+    top_songs = artist.top_tracks(:US)
+    top_five = top_songs[0..5]
+    return top_five
+  end
+
+  def spotify_images_artist(name)
+    RSpotify::authenticate('13a5a78c35794c128471c373008efb01', '1cfa0c2e5bc04728b9e9e56731e0db20')
+    artists = RSpotify::Artist.search(name)
+    artist = artists.first
+    image = artist.images[0]
+    return image.values[1]
+  end
+
+  def spotify_images_albums(name, number)
+    RSpotify::authenticate('13a5a78c35794c128471c373008efb01', '1cfa0c2e5bc04728b9e9e56731e0db20')
+    artists = RSpotify::Artist.search(name)
+    artist = artists.first
+    albums = artist.albums[number]
+    image = albums.images[0]
+    return image.values[1]
   end
 
 end
