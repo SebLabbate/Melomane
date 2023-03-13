@@ -4,8 +4,8 @@
 
 import { application } from "./application"
 
-import AttendedCheckboxController from "./attended_checkbox_controller"
-application.register("attended-checkbox", AttendedCheckboxController)
+import CheckboxController from "./checkbox_controller"
+application.register("checkbox", CheckboxController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
