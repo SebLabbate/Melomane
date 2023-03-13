@@ -92,7 +92,7 @@ User.create!(
 
 80.times do
   Gig.create!(
-    user_id: 1,
+    user_id: User.first.id,
     name: Faker::Emotion.noun,
     date: Faker::Date.between(from: '2022-03-04', to: '2024-12-31'),
     artist: artists.sample,
@@ -102,8 +102,8 @@ User.create!(
 end
 
 UserGig.create!(
-  user_id: 1,
-  gig_id: 20,
+  user_id: User.all.sample.id,
+  gig_id: Gig.all.sample.id,
   attended: true
 )
 
