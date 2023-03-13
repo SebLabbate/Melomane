@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Edit your gig</h1>
+  <%= simple_form_for (@gig) do |f|%>
+    <%= f.simple_fields_for :user_gig do |g|%>
+      <%= g.input :comment %>
+    <% end %>
+    <div class="form-actions">
+      <div class="form-actions-buttons">
+        <%= f.button :submit %>
+      </div>
+    </div>
+  <% end %>
+</div>
