@@ -38,6 +38,21 @@ class UserGigsController < ApplicationController
     authorize @user_gigs
   end
 
+  def toggle
+    @user_gig = UserGig.find(params[:id])
+    @user_gig.update(attended: params[:attended])
+    respond_to do |format|
+      if @user_gig.update user_gig_params
+        format.html { redirect_to user_gigs_path, notice: 'Gig was attended' }
+        format.json { render @user_gig.json }
+      else
+        format.html { render :new }
+        format.json { render json: @user_gig.errors, status: :unprocessable_entity }
+      end
+    end
+    authorize @user_gig
+  end
+
   def create
     @user_gig = UserGig.new
     @gig = Gig.find(params[:gig_id])

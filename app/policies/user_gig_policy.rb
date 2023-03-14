@@ -13,6 +13,10 @@ class UserGigPolicy < ApplicationPolicy
     return true
   end
 
+  def toggle?
+    return true
+  end
+
   def show?
     return record.user_id == user.id
   end
