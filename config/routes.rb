@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "/dashboard", to: "pages#dashboard"
   get "/dashboard/new", to: "gigs#new"
   post "/gigs", to: "gigs#create"
+  # get "/attend", to: "user_gigs#attend", as: "user_gig_attend"
+  post "user_gigs/:id/toggle", to: "user_gigs#toggle"
 
   # resources :gigs, only: %i[index show] do
   resources :gigs do

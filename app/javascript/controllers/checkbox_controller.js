@@ -18,17 +18,34 @@ export default class extends Controller {
     }
   }
 
-  toggleParent() {
+  toggleParent(e) {
+    const id = e.target.dataset.id
+    const csrfToken = document.querySelector("[name='csrf-token']").content
     if (this.childTargets.map(x => x.checked).includes(false)) {
       this.parentTarget.checked = false
     } else {
       this.parentTarget.checked = true
     }
-    // this.childTargets.map(x => x.checked)
-    // console.log(this.childTargets.map(x => x.checked).includes(false));
+    fetch(`/user_gigs/${id}/toggle`, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      body: JSON.stringify({ attended: e.target.checked }) })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message)
+      })
+    console.log("Test 123");
+    }
   }
-}
 
+  // this.childTargets.map(x => x.checked)
+  // console.log(this.childTargets.map(x => x.checked).includes(false));
 
 // https://stimulus.hotwired.dev/handbook/managing-state
 // https://gist.github.com/mrmartineau/a4b7dfc22dc8312f521b42bb3c9a7c1e
