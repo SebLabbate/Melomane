@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_12_175327) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_195440) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_12_175327) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_gig_id"
+    t.index ["user_gig_id"], name: "index_comments_on_user_gig_id"
+  end
+
   create_table "gigs", force: :cascade do |t|
     t.string "name"
     t.string "artist"
@@ -50,9 +59,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_12_175327) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "artist_info"
     t.datetime "date"
     t.boolean "private", default: false
-    t.string "artist_info"
     t.string "wiki_photo_url"
     t.index ["user_id"], name: "index_gigs_on_user_id"
   end
@@ -92,6 +101,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_12_175327) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "user_gigs"
   add_foreign_key "gigs", "users"
   add_foreign_key "user_gigs", "gigs"
   add_foreign_key "user_gigs", "users"
