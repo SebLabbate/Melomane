@@ -13,11 +13,13 @@ Rails.application.routes.draw do
   resources :gigs do
     resources :user_gigs, only: :create
   end
+
   resources :user_gigs do
     collection do
       get :past_gigs
       get :upcoming_gigs
     end
+    resources :comments, only: %i[new create]
   end
 
   # only: %i[index show update]
