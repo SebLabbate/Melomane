@@ -1,5 +1,6 @@
 .user-gig-page {
   height:1000px;
+  color: white;
   padding-top: 30px;
   //border-color:blue;
   //border-style: solid;
@@ -97,10 +98,11 @@
   //border-color:blue;
   a {
     text-decoration: none;
-    color: white;
+    font-size: 18px;
+    color:white;
+  }
+  margin-left: 10px;
  }
- color:white;
-}
 
 .user-gig-suggested-b{
   width:400px;
@@ -109,10 +111,11 @@
   //border-color:blue;
   a {
     text-decoration: none;
-    color: white;
+    font-size: 18px;
+    color:white;
+  }
+  margin-left: 10px;
  }
- color:white;
-}
 
 .user-gig-suggested-c{
   width:400px;
@@ -121,10 +124,17 @@
   //border-color:blue;
   a {
     text-decoration: none;
-    color: white;
- }
- color:white;
+    font-size: 18px;
+    color:white;
+  }
+  margin-left: 10px;
 }
+
+.user-gig-suggested-d{
+  width:300px;
+  height:100px;
+  color: white;
+ }
 
 .user-gig-suggested-image {
   height:65%;
