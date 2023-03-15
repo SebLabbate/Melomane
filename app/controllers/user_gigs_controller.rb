@@ -59,7 +59,7 @@ class UserGigsController < ApplicationController
     @user_gig.user = current_user
     respond_to do |format|
       if @user_gig.update user_gig_params
-        format.html { redirect_to user_gig_path, notice: "Your gig edited" }
+        format.html { redirect_to upcoming_gigs_user_gigs_path, notice: "Your gig edited" }
         format.json { render :new, status: :edited, location: @user_gig }
       else
         format.html { render :edit, status: :unprocessable_entity }
