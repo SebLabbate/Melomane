@@ -46,11 +46,11 @@
       <div class="user-gig-page-main-right">
         <div class="user-gig-page-main-right-spotify">
            <h5> Top 5 <%= @user_gig.gig.artist%> songs </h5>
-           <p> <%= @spotify_top_songs[0].name %> </p>
-           <p> <%= @spotify_top_songs[1].name %> </p>
-           <p> <%= @spotify_top_songs[2].name %> </p>
-           <p> <%= @spotify_top_songs[3].name %> </p>
-           <p> <%= @spotify_top_songs[4].name %> </p>
+           <p> <%= @spotify_top_songs[0].name %> <audio controls> <source src="<%= @audio_array[0]%>" type="audio/mpeg"> </audio> </p>
+           <p> <%= @spotify_top_songs[1].name %>  <audio controls> <source src="<%= @audio_array[1]%>" type="audio/mpeg"> </audio></p>
+           <p> <%= @spotify_top_songs[2].name %>  <audio controls> <source src="<%= @audio_array[2]%>" type="audio/mpeg"> </audio></p>
+           <p> <%= @spotify_top_songs[3].name %>  <audio controls> <source src="<%= @audio_array[3]%>" type="audio/mpeg"> </audio></p>
+           <p> <%= @spotify_top_songs[4].name %>  <audio controls> <source src="<%= @audio_array[4]%>" type="audio/mpeg"> </audio></p>
         </div>
            <div class="user-gig-page-main-right-carousel">
                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
