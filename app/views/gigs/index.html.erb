@@ -29,7 +29,11 @@
               <h5 class="card-title"><%= link_to "#{gig.artist}", gig_path(gig) %></h5>
               <p class="card-text"> <%= link_to "#{gig.venue}", gig_path(gig) %> </p>
               <p class="card-text"><%= link_to "#{gig.date.strftime("%e %b %Y %H:%M")}", gig_path(gig) %></p>
+              <% if gig.date < Date.current %>
+              <%= link_to "Add to past gigs!", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "btn btn-primary" %>
+              <% else %>
               <%= link_to "Add to upcoming gigs!", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "btn btn-primary" %>
+              <% end %>
               <% end %>
             </div>
           </div>

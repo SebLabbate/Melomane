@@ -84,7 +84,7 @@ gem 'faker'
 gem 'open-uri'
 gem "nokogiri", force_ruby_platform: true
 gem 'wikipedia-client'
-
 gem 'pexels'
 gem 'rspotify'
 gem 'spotify-ruby'
+gem 'react-rails'

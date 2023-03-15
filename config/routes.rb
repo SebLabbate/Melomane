@@ -8,16 +8,20 @@ Rails.application.routes.draw do
   get "/dashboard", to: "pages#dashboard"
   get "/dashboard/new", to: "gigs#new"
   post "/gigs", to: "gigs#create"
+  # get "/attend", to: "user_gigs#attend", as: "user_gig_attend"
+  post "user_gigs/:id/toggle", to: "user_gigs#toggle"
 
   # resources :gigs, only: %i[index show] do
   resources :gigs do
     resources :user_gigs, only: :create
   end
+
   resources :user_gigs do
     collection do
       get :past_gigs
       get :upcoming_gigs
     end
+    resources :comments, only: %i[new create]
   end
 
   # only: %i[index show update]

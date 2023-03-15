@@ -2,16 +2,14 @@
   height:1000px;
   color: white;
   padding-top: 30px;
-  //border-color:blue;
-  //border-style: solid;
+  color: white;
 }
 
 .user-gig_page-main {
   height:500px;
   margin-left: 100px;
   margin-right: 100px;
-  //border-style: solid;
-  //border-color:blue;
+  color: white;
 }
 
 .user-gig-page-suggested {
@@ -22,22 +20,22 @@
   position:relative;
   display:flex;
   margin-top: 200px;
-  //border-style: solid;
-  //border-color:blue;
   text-align: center;
+  color: white;
 }
 
 .user-gig-page-suggested-title{
   display: flex;
-  //border-style: solid;
-  //border-color:blue;
   height:25px;
   width:1000px;
   float:right;
   padding-bottom: 60px;
+  padding-top: 60px;
   p {
     font-size: 22px;
+    color: white;
   }
+  color: white;
 }
 
 .user-gig-page-main-left {
@@ -45,16 +43,16 @@
   width:40%;
   margin-left: 100px;
   float:left;
-  //border-style: solid;
- // border-color:blue;
   color: white;
+    i {
+      color: rgb(215, 170, 7);
+    }
 }
 
 .user-gig-page-main-left-about{
   height:55%;
   width:100%;
- // border-style: solid;
- // border-color:blue;
+ color: white;
 }
 
 .user-gig-page-main-right {
@@ -63,32 +61,38 @@
   margin-right: 100px;
   float:right;
   margin-bottom:20px;
- // border-style: solid;
- // border-color:blue;
+  color: white;
 }
 
 .user-gig-page-main-right-spotify {
-  height:50%;
-  width:100%;
-  //border-style: solid;
-  //border-color:blue;
+  height:70%;
+  width:1100px;
   color:white;
+  audio{
+    float:right;
+  }
+  p {
+    padding-bottom: 20px;
+  }
 }
 
 .user-gig-page-main-right-carousel{
   height:200px;
   width:100%;
+  color: white;
 }
 
 #carouselExampleControls, .carousel-inner{
   height:200px;
   width:300px;
+  color: white;
 }
 
 .show-carousel-img{
   object-fit: fill;
   width:300px;
   height:200px;
+  color: white;
 }
 
 .user-gig-suggested-a{
@@ -148,7 +152,7 @@
 
 .user-gig-page-main-left-carousel{
   height:150px;
-  width:100%;
+  width:300px;
   float:right;
 }
 
