@@ -1,6 +1,14 @@
 body {
   background-color: #121212;
-  margin :0px;
+  // margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
 }
 
 html {
@@ -12,13 +20,19 @@ a:link {
 }
 
 .hp-container-top {
-  position: relative;
-  height: 100vh;
-  top: 65px;
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
 }
 
 .hp-container-bottom {
-  height: 100vh;
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .logo {
@@ -27,25 +41,25 @@ a:link {
   font-size: 96px;
   color: #FFFFFF;
   opacity: 87%;
-  position: relative;
-  top: 50px;
+  // position: relative;
+  // top: 50px;
 }
 
 .homepage-logo-img {
-  position: relative;
-  top: 70px;
+  // position: relative;
+  // top: 70px;
   text-align: center;
 }
 
 .homepage-typed-js {
-  position: relative;
-  top: 100px;
+  // position: relative;
+  // top: 100px;
   text-align: center;
 }
 
 .homepage-arrows {
-  position: relative;
-  top: 145px;
+  // position: relative;
+  // top: 145px;
   text-align: center;
 }
 

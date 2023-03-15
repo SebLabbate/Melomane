@@ -11,15 +11,19 @@
   </head>
 
   <body>
-    <% unless current_page?(root_path) %>
-      <%= render "shared/navbar" %>
-    <% end %>
+    <header>
+      <% unless current_page?(root_path) %>
+        <%= render "shared/navbar" %>
+      <% end %>
+      <%= render "shared/flashes" %>
+    </header>
 
-    <%= render "shared/flashes" %>
+    <main>
       <%= yield %>
+    </main>
 
-    <% unless current_page?(root_path) %>
+    <footer>
       <%= render 'shared/footer' %>
-    <% end %>
+    </footer>
   </body>
 </html>
