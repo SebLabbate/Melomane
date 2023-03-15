@@ -1,12 +1,79 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('homepage_banner.jpeg')%>);">
-  <div class="container">
-    <h1>Melomane</h1>
-    <p>Revisit your favourite music memories</p>
-      <% if !user_signed_in? %>
-        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-flat" %>
-        <%= link_to "Log in", new_user_session_path, class: "btn btn-flat" %>
-      <% else %>
-        <%= link_to "Your music dashboard", dashboard_path, class: "btn btn-flat" %>
-      <% end %>
+<!-- landing screen -->
+<div class="hp-container-top">
+  <h1 class="logo">mélomane</h1>
+  <div class="homepage-logo-img">
+    <%= image_tag "logo.png" %>
   </div>
+  <div class="homepage-typed-js">
+    <h4><span data-controller="typed-js"></span></h4>
+  </div>
+
+  <% if user_signed_in? %>
+    <div class="homepage-arrows">
+      <h3 class="pb-4">Click the arrows 𝄞</h3>
+      <a href="/dashboard">
+        <svg id="more-arrows" style="transform: rotate(270deg)">
+          <polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
+          <polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/>
+          <polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
+        </svg>
+      </a>
+    </div>
+
+  <% else %>
+    <div class="homepage-arrows">
+      <h3 class="pb-4">Get Started !</h3>
+      <a href="#scroll-point">
+        <svg id="more-arrows" >
+          <polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
+          <polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/>
+          <polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
+        </svg>
+      </a>
+    </div>
+  <% end %>
 </div>
+
+<!-- sign in / log in section -->
+<% if !user_signed_in? %>
+  <div class="hp-container-bottom container">
+
+    <div class="row justify-content-center" style="gap: 20px;">
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="form-signup overlay">
+          <h2>Sign up</h2>
+          <%= simple_form_for(:user, :url => new_user_registration_path) do |f| %>
+            <div class="form-labels">
+              <%= f.input :user_name %>
+              <%= f.input :email %>
+              <%= f.input :password %>
+              <%= f.input :password_confirmation %>
+            </div>
+            <div class="form-actions">
+              <%= f.button :submit, "Sign up", class: "btn primary-btn" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="form-login overlay">
+          <h2>Log in</h2>
+          <%= simple_form_for(:user, :url => session_path(:user)) do |f| %>
+            <div class="form-labels">
+              <%= f.input :email %>
+              <%= f.input :password %>
+              <%= f.label :remember_me %>
+              <%= f.check_box :remember_me %>
+            </div>
+            <div class="form-actions">
+              <%= f.submit 'Sign in', class: "btn primary-btn" %>
+              <%= link_to "Forgot your password?", new_password_path(:user), class: "forgotten-password" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
+    redirect_to dashboard_path
   end
 
   def destroy
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
     # session[:user_id] = nil
     @user.destroy
     # flash[:success] = "User deleted"
-    redirect_to new_user_registration, status: :see_other
+    redirect_to new_user_registration, status: :unprocessible_entity
   end
 
   private

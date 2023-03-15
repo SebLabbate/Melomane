@@ -72,9 +72,7 @@ class GigsController < ApplicationController
     end
   end
 
-
   private
-
 
   def parse_wiki_info(name)
     page = Wikipedia.find(name)
@@ -169,7 +167,6 @@ class GigsController < ApplicationController
     return image.values[1]
   end
 
-
   def get_track_id(artist_first_name, artist_last_name, song_name)
     url = URI("https://soundcloud-scraper.p.rapidapi.com/v1/search/tracks?term=#{artist_first_name}%20#{artist_last_name}%20#{song_name}")
     http = Net::HTTP.new(url.host, url.port)
@@ -236,5 +233,4 @@ class GigsController < ApplicationController
     end
     return array
   end
-
 end

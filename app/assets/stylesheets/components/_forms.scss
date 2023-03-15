@@ -1,0 +1,54 @@
+.form-signup, .form-login {
+  padding: 20px;
+  margin-top: 50px;
+  border: 0.1rem solid white;
+  border-radius: 20px;
+  height: auto;
+
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    color: white;
+    opacity: 87%;
+  }
+  .btn {
+    width: 100%;
+    background-color: #F4F798;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+  .btn:hover {
+    background-color: #F7C729;
+  }
+}
+
+.form-labels {
+  color: #FFFFFF;
+  opacity: 87%;
+  font-family: "Open Sans";
+  font-size: 20px;
+}
+
+.form-login {
+
+
+  .btn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.forgotten-password {
+  color: #F7C729;
+  opacity: 87%;
+  font-family: "Open Sans";
+  font-size: 18px;
+}
+
+.forgotten-password:hover {
+  color: #F4F798;
+  margin: 10px;
+}
