@@ -2,32 +2,32 @@
   <div class="user-gig-page-main">
       <div class="user-gig-page-main-left">
         <div class="user-gig-page-main-left-about">
+          <p> <%= @user_gig.gig.date.strftime("%e %b %Y") %> </p>
           <% if @user_gig.gig.date > Date.current %>
-         <p> <%= @user_gig.gig.artist %> @ <%= @user_gig.gig.venue %> - <strong> YOU ARE GOING! </strong>  </p>
+            <p><%= @user_gig.gig.artist %> @ <%= @user_gig.gig.venue %> - <strong> YOU ARE GOING! </strong>  </p>
+            <p> <strong> <%= @user_gig.gig.genre %> </strong> - <%= @artist_sum %> </p>
+            <div class="user-gig-page-main-left-map">
+              MAP
+            </div>
           <% else %>
-        <p>   <h5><%= @user_gig.gig.artist %> @ <%= @user_gig.gig.venue %> </h5> </p>
-           <% end %>
-        <p> <%= @user_gig.gig.date.strftime("%e %b %Y") %> </p>
-         <p> <strong> <%= @user_gig.gig.genre %> </strong> - <%= @artist_sum %> </p>
-        </div>
-        <% if @user_gig.gig.date > Date.current %>
-        <div class="user-gig-page-main-left-map">
-        MAP
-        </div>
-        <% else %>
-        <div class="user-gig-page-main-left-user-info">
-        <p> <strong> YOU WENT! </strong> how was it? ADD SOME INFO AND PHOTOS!</p>
-        <%= link_to "Leave a comment",  new_user_gig_comment_path(@user_gig), class: "btn btn-primary", style: "text-decoration: none" %>
-          <% @user_gig.comments.each do |comment| %>
-            <%= comment.content %>
+            <p> <h5><%= @user_gig.gig.artist %> @ <%= @user_gig.gig.venue %> </h5> </p>
+            <div class="user-gig-page-main-left-user-info">
+              <p> <strong> YOU WENT! </strong> how was it? ADD SOME INFO AND PHOTOS!</p>
+              <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), class: "btn btn-primary text-decoration-none mb-2" %>
+                <div>
+                  <% @user_gig.comments.each do |comment| %>
+                    <% if comment.rating != nil %>
+                      <% comment.rating.times do %>
+                        <i class="fas fa-star star-yellow"></i></span>
+                      <% end %>
+                      <br>
+                      <%= comment.content %>
+                    <% end %>
+                  <% end %>
+                </div>
+            </div>
           <% end %>
         </div>
-
-
-
-
-
-
 
 
           <div class="user-gig-page-main-left-carousel">
@@ -54,8 +54,10 @@
                     </div>
             </div>
           </div>
-          <% end %>
         </div>
+
+
+
         <div class="user-gig-page-main-right">
           <div class="user-gig-page-main-right-spotify">
             <h5> Top 5 <%= @user_gig.gig.artist%> songs </h5>
@@ -95,7 +97,10 @@
         </div>
         </div>
 
-          <div class="user-gig-page-suggested-title"> <p> Other <%= @user_gig.gig.genre%> gigs you might like </p> </div>
+        <%= link_to "Edit gig", edit_user_gig_path(@user_gig), class: " btn btn-primary text-decoration-none"%>
+        <%= link_to "Remove", user_gig_path(@user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-primary text-decoration-none"%>
+
+        <div class="user-gig-page-suggested-title"> <p> Other <%= @user_gig.gig.genre%> gigs you might like </p> </div>
 
         <div class="user-gig-page-suggested">
           <div class="user-gig-suggested-a">
@@ -168,4 +173,6 @@
                   <% end %>
           </div>
         </div>
+      </div>
+  </div>
 </div>

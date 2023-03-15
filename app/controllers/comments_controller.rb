@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     @comment.user_gig = @user_gig
     authorize @comment
     if @comment.save
-      redirect_to user_gig_path(@comment.user_gig), notice: "Comment added!"
+      redirect_to user_gig_path(@comment.user_gig), notice: "Memory added!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,6 +24,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:comment, :rating)
+    params.require(:comment).permit(:content, :rating)
   end
 end

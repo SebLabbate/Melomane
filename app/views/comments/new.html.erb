@@ -1,9 +1,11 @@
 <div class="container">
   <%= simple_form_for [@user_gig, @comment] do |f|%>
-    <%= f.input :comment %>
+    <%= f.input :content, label: 'Comment' %>
+    <%= f.input :rating %>
+    <%= f.input :photo, as: :file  %>
     <div class="form-actions">
       <div class="form-actions-buttons">
-        <%= f.submit "Leave a comment", class: "btn btn-primary" %>
+        <%= f.submit "Upload memories", class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>
