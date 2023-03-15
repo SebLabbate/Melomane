@@ -67,9 +67,7 @@ class GigsController < ApplicationController
     end
   end
 
-
   private
-
 
   def parse_wiki_info(name)
     page = Wikipedia.find(name)
@@ -163,5 +161,4 @@ class GigsController < ApplicationController
     image = albums.images[0]
     return image.values[1]
   end
-
 end

@@ -1,16 +1,52 @@
 body {
   background-color: #121212;
+  margin :0px;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 a:link {
   text-decoration: none;
 }
 
+.hp-container-top {
+  position: relative;
+  height: 100vh;
+  top: 65px;
+}
+
+.hp-container-bottom {
+  height: 100vh;
+}
+
 .logo {
   font-family: "Permanent Marker";
+  text-align: center;
   font-size: 96px;
   color: #FFFFFF;
   opacity: 87%;
+  position: relative;
+  top: 50px;
+}
+
+.homepage-logo-img {
+  position: relative;
+  top: 70px;
+  text-align: center;
+}
+
+.homepage-typed-js {
+  position: relative;
+  top: 100px;
+  text-align: center;
+}
+
+.homepage-arrows {
+  position: relative;
+  top: 145px;
+  text-align: center;
 }
 
 h1 {
