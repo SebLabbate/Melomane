@@ -5,8 +5,24 @@
   color: white;
 }
 
+.menu-bar {
+  text-align: center;
+    a {
+      font-family: "Open Sans";
+      font-size: 24px;
+      color: #FFFFFF;
+      opacity: 87%;
+      font-weight: "regular";
+      letter-spacing: 7.5%;
+    }
+    span {
+      color: #F7C729;
+    }
+}
+
 .user-gig_page-main {
   height:500px;
+  width: 100%;
   margin-left: 100px;
   margin-right: 100px;
   color: white;
@@ -45,19 +61,22 @@
   float:left;
   color: white;
     i {
-      color: rgb(215, 170, 7);
+      color: #F4F798;
     }
 }
 
 .user-gig-page-main-left-about{
   height:55%;
   width:100%;
- color: white;
+  color: white;
+    span {
+      color: #F4F798;
+    }
 }
 
 .user-gig-page-main-right {
-  height:520px;
-  width:30%;
+  // height:520px;
+  width: 30%;
   margin-right: 100px;
   float:right;
   margin-bottom:20px;
@@ -65,8 +84,8 @@
 }
 
 .user-gig-page-main-right-spotify {
-  height:70%;
-  width:1100px;
+  // height:70%;
+  width: 94%;
   color:white;
   audio{
     float:right;
@@ -76,6 +95,13 @@
   }
 }
 
+.player {
+  border-radius: 24px;
+    .list-group-item{
+      background-color: #F4F798;
+      color: black;
+    }
+  }
 .user-gig-page-main-right-carousel{
   height:200px;
   width:100%;
