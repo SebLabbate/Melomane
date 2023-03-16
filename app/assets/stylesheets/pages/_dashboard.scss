@@ -4,6 +4,12 @@
   margin: 10px 0;
 }
 
+.vl-s {
+  border-left: 1px solid #F4F798;
+  opacity: 50%;
+  height: 40px;
+}
+
 .link-pg-btn, .link-ug-btn, .link-gg-btn {
   color: #F4F798;
   text-decoration: none;
@@ -31,9 +37,12 @@
   // height: 10vw;
   width: 240px;
   height: 270px;
-  a{
+  a {
   text-decoration: none;
   color: white;
+}
+a:hover {
+  color: #F4F798;
 }
 }
 
@@ -89,6 +98,7 @@ h2.pg, h2.ug, h2.gg {
   display: flex;
   flex-direction: column;
   margin: 4%;
-  color: white;
+  color: #F4F798;
   font-size: 14px;
+  letter-spacing: 0.5px;
 }
