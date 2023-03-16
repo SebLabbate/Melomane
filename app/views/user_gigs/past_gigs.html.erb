@@ -21,14 +21,9 @@
               <div class="genre"><span><i class="fa-solid fa-guitar"></i> <%= link_to "#{user_gig.gig.genre.titleize}", user_gig_path(user_gig) %></span></div>
             </div>
            <div class="toggle-box">
-              <input data-id="<%= user_gig.id %>" type="checkbox" data-checkbox-target="child" data-action="change->checkbox#toggleParent">
+              <input data-id="<%= user_gig.id %>" <%= user_gig.attended ? "checked" : "" %> type="checkbox" data-checkbox-target="child" data-action="change->checkbox#toggleParent">
               <label class="toggle"></label>
             </div>
-              <!-- <div class="checkbox">
-                  <%= simple_form_for(user_gig, data: { turbo: :false }) do |f| %>
-                    <%= f.input :attended, as: :boolean, input_html: { class: "toggle" }, value: user_gig.attended %>
-                  <% end %>
-                </div> -->
 
           </div>
         <% end %>
