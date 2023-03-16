@@ -35,6 +35,13 @@ a:link {
   justify-content: center;
 }
 
+.center-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .logo {
   font-family: "Permanent Marker";
   text-align: center;

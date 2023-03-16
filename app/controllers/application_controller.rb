@@ -14,6 +14,14 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:user_name])
   end
 
+  def after_sign_in_path_for(_)
+    dashboard_path
+  end
+
+  def after_sign_up_path_for(_)
+    dashboard_path
+  end
+
   private
 
   def skip_pundit?
