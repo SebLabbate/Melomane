@@ -1,5 +1,5 @@
 <div class="gigs-buttons">
-  <h2 class="pg"><%= link_to "Dashboard", dashboard_path, class: "link-pg-btn" %></h2>
+  <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
         <div class="vl-s"></div>
   <h2 class="ug"><%= link_to "Upcoming Gigs", upcoming_gigs_user_gigs_path, class: "link-ug-btn" %></h2>
         <div class="vl-s"></div>
@@ -7,36 +7,48 @@
 </div>
 
 <div class="gigs-container">
-  <div class="past-gigs" data-controller="checkbox">
-    <h2 class="ug">Past Gigs</h2>
+  <div class="past-gigs-container" data-controller="checkbox">
+    <div class="text-btn">
+      <h2 class="pg">Your past gigs</h2>
+      <div class="pt-2">
+        <%= link_to(dashboard_new_path, class: "primary-button") do %>
+        Add a new gig!
+        <% end %>
+      </div>
+    </div>
+    <!--
     <div class="toggle-box">
       <input type="checkbox" data-checkbox-target="parent" data-action="change->checkbox#toggleChildren">
       <label class="toggle"></label>
     </div>
-    <% @user_gigs.each do |user_gig| %>
-      <div class="all-past-gigs">
-        <% if user_gig.user_id == current_user.id && user_gig.gig.date < Date.current %>
-          <%= link_to user_gig_path(user_gig) do %>
-            <div class="past-gigs-card">
-              <% if user_gig.gig.wiki_photo_url != nil %>
-                <div class="pg-card-img"><img src="<%= user_gig.gig.wiki_photo_url %>" style="width:140px;height:116px"></div>
-              <% else %>
-                <div class="pg-card-img"><img src="<%= @pexels_array[0] %>" style="width:140px;height:116px"></div>
-              <% end %>
-              <div class="pg-card-content">
-                <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(user_gig) %></span></div>
-                <div class="artist"><span><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></span></div>
-                <div class="vanue"><span><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", user_gig_path(user_gig) %></span></div>
-                <div class="genre"><span><i class="fa-solid fa-guitar"></i> <%= link_to "#{user_gig.gig.genre.titleize}", user_gig_path(user_gig) %></span></div>
+    -->
+    <div class="past-gigs row">
+      <% @user_gigs.each do |user_gig| %>
+        <div class="all-past-gigs col">
+          <% if user_gig.user_id == current_user.id && user_gig.gig.date < Date.current %>
+              <div class="past-gigs-card">
+            <%= link_to user_gig_path(user_gig) do %>
+                <% if user_gig.gig.wiki_photo_url != nil %>
+                  <div class="pg-card-img-wrap"><img src="<%= user_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
+                <% else %>
+                  <div class="pg-card-img-wrap"><img src="<%= @pexels_array[0] %>" class="pg-card-img"></div>
+                <% end %>
+                <div class="pg-card-content">
+                  <div class="artist"><span><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></span></div>
+                  <div class="vanue"><span><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", user_gig_path(user_gig) %></span></div>
+                  <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(user_gig) %></span></div>
+                </div>
+                <!--
+                  <div class="toggle-box">
+                  <input data-id="<%= user_gig.id %>" <%= user_gig.attended ? "checked" : "" %> type="checkbox" data-checkbox-target="child" data-action="change->checkbox#toggleParent">
+                  <label class="toggle"></label>
+                </div>
+                -->
+            <% end %>
               </div>
-            <div class="toggle-box">
-                <input data-id="<%= user_gig.id %>" <%= user_gig.attended ? "checked" : "" %> type="checkbox" data-checkbox-target="child" data-action="change->checkbox#toggleParent">
-                <label class="toggle"></label>
-              </div>
-            </div>
           <% end %>
-        <% end %>
-      </div>
-    <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

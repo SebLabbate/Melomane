@@ -1,33 +1,102 @@
 // Upcoming gigs cards
-.card-product {
-  overflow: hidden;
-  height: 120px;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+// .card-product {
+//   overflow: hidden;
+//   height: 120px;
+//   background: white;
+//   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+//   display: flex;
+//   align-items: center;
+// }
+
+// .card-product img {
+//   height: 100%;
+//   width: 120px;
+//   object-fit: cover;
+// }
+
+// .card-product h2 {
+//   font-size: 16px;
+//   font-weight: bold;
+//   margin: 0;
+// }
+
+// .card-product p {
+//   font-size: 12px;
+//   line-height: 1.4;
+//   opacity: .7;
+//   margin-bottom: 0;
+//   margin-top: 8px;
+// }
+
+// .card-product .card-product-infos {
+//   padding: 16px;
+// }
+
+.up-gigs-card {
+  // border: 1px solid #F4F798;
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  border-radius: 18px;
+  margin: 25px 0;
+  padding: 10px;
+  width: 500px;
+  height: 160px;
+  box-shadow: 0px 0px 8px #7e7e7e;
+  position: relative;
+  a {
+  text-decoration: none;
+  color: white;
+  }
+a:hover {
+  color: #F4F798;
+  }
+&:hover {
+  box-shadow: 0px 0px 20px #7e7e7e;
+  transition: .25s ease;
+  }
 }
 
-.card-product img {
-  height: 100%;
-  width: 120px;
+.up-gigs-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+.ug-card-img-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.ug-card-img {
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #F4F798;
+  border-radius: 8px;
+  // width: 10vw;
+  width: 180px;
+  height: 140px;
   object-fit: cover;
+  object-position: top;
 }
 
-.card-product h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
+.ug-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 15px;
+  color: #F4F798;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  line-height: 25px;
 }
 
-.card-product p {
-  font-size: 12px;
-  line-height: 1.4;
-  opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
+.cancel-btn, .edit-btn {
+  position: absolute;
+  right: 20px;
 }
 
-.card-product .card-product-infos {
-  padding: 16px;
+.edit-btn {
+  right: 20px;
+  bottom: 10px;
 }
