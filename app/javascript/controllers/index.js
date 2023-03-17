@@ -10,5 +10,8 @@ application.register("checkbox", CheckboxController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import ShowhideController from "./showhide_controller"
+application.register("showhide", ShowhideController)
+
 import TypedJsController from "./typed_js_controller"
 application.register("typed-js", TypedJsController)
