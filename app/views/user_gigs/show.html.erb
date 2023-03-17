@@ -1,10 +1,12 @@
 <div class="container">
   <div class="user-gig-page">
-    <div class="menu-bar">
-      <p><%= link_to "Past gigs", past_gigs_user_gigs_path, class: "text-decoration-none"%><span>|</span>
-        <%= link_to "Upcoming gigs", upcoming_gigs_user_gigs_path, class: "text-decoration-none"%><span>|</span>
-        <%= link_to "Find a gig", gigs_path, class: "text-decoration-none"%></p>
-    </div>
+  <div class="gigs-buttons">
+    <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
+          <div class="vl-s"></div>
+    <h2 class="ug"><%= link_to "Upcoming Gigs", upcoming_gigs_user_gigs_path, class: "link-ug-btn" %></h2>
+          <div class="vl-s"></div>
+    <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
+  </div>
 
     <%# Comments %>
     <div class="user-gig-page-main">
@@ -17,7 +19,7 @@
             <div class="user-gig-page-main-left-map">
               <%# MAP</div> %>
           <% else %>
-            <div class="d-flex justify-content-between" style="width: 124%;">
+            <div class="artist-headline d-flex justify-content-between", style="width: 124%;">
               <h2><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %> </h2>
               <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), class: "primary-button" %>
             </div>
