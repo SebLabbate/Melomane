@@ -1,170 +1,178 @@
-<div class="user-gig-page">
-  <div class="menu-bar">
-    <p><%= link_to "Past gigs", past_gigs_user_gigs_path, class: "text-decoration-none"%><span>|</span>
-      <%= link_to "Upcoming gigs", upcoming_gigs_user_gigs_path, class: "text-decoration-none"%><span>|</span>
-      <%= link_to "Find a gig", gigs_path, class: "text-decoration-none"%></p>
-  </div>
+<div class="container">
+  <div class="user-gig-page">
+    <div class="menu-bar">
+      <p><%= link_to "Past gigs", past_gigs_user_gigs_path, class: "text-decoration-none"%><span>|</span>
+        <%= link_to "Upcoming gigs", upcoming_gigs_user_gigs_path, class: "text-decoration-none"%><span>|</span>
+        <%= link_to "Find a gig", gigs_path, class: "text-decoration-none"%></p>
+    </div>
 
-  <%# Comments %>
-  <div class="user-gig-page-main">
-    <div class="user-gig-page-main-left">
-      <div class="user-gig-page-main-left-about">
-        <% if @user_gig.gig.date > Date.current %>
-          <p><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %> - <strong> YOU ARE GOING! </strong>  </p>
-          <p> <%= @user_gig.gig.date.strftime("%e %b %Y") %> </p>
-          <p> <strong> <%= @user_gig.gig.genre %> </strong> - <%= @artist_sum %> </p>
-          <div class="user-gig-page-main-left-map">
-            MAP</div>
-        <% else %>
-          <div class="d-flex justify-content-between">
-            <h2><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %> </h2>
-            <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), class: "primary-button" %>
-          </div>
-          <p> <%= @user_gig.gig.date.strftime("%e %b %Y") %> </p>
-            <div class="user-gig-page-main-left-user-info">
-              <% @user_gig.comments.each do |comment| %>
-                <div class="mb-2">
-                  <% if comment.rating != nil %>
-                    <% comment.rating.times do %>
-                      <i class="fas fa-star star-yellow"></i></span>
+    <%# Comments %>
+    <div class="user-gig-page-main">
+      <div class="user-gig-page-main-left">
+        <div class="user-gig-page-main-left-about">
+          <% if @user_gig.gig.date > Date.current %>
+            <p><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %> - <strong> YOU ARE GOING! </strong>  </p>
+            <p> <%= @user_gig.gig.date.strftime("%e %b %Y") %> </p>
+            <p> <strong> <%= @user_gig.gig.genre %> </strong> - <%= @artist_sum %> </p>
+            <div class="user-gig-page-main-left-map">
+              <%# MAP</div> %>
+          <% else %>
+            <div class="d-flex justify-content-between" style="width: 124%;">
+              <h2><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %> </h2>
+              <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), class: "primary-button" %>
+            </div>
+            <p> <%= @user_gig.gig.date.strftime("%e %b %Y") %> </p>
+              <div class="user-gig-page-main-left-user-info">
+                <% @user_gig.comments.each do |comment| %>
+                  <div class="mb-2">
+                    <% if comment.rating != nil %>
+                      <% comment.rating.times do %>
+                        <i class="fas fa-star star-yellow"></i></span>
+                      <% end %>
                     <% end %>
-                  <% end %>
-                </div>
-                <p><%= comment.content %></p>
-              <% end %>
-            </div>
-        <% end %>
-      </div>
-    </div>
-
-    <%# Music %>
-    <div class="user-gig-page-main-right">
-      <div class="container user-gig-page-main-right-spotify">
-        <h2> Top 5 <%= @user_gig.gig.artist%> songs </h2>
-        <div class="" style="width: 18rem;">
-          <ul class="player list-group list-group-flush"style="width: 120%;">
-            <li class="list-group-item"><%= @spotify_top_songs[0].name %> <audio controls> <source src="<%= @audio_array[0]%>" type="audio/mpeg"> </audio></li>
-            <li class="list-group-item"><%= @spotify_top_songs[1].name %>  <audio controls> <source src="<%= @audio_array[1]%>" type="audio/mpeg"> </audio></li>
-            <li class="list-group-item"><%= @spotify_top_songs[2].name %>  <audio controls> <source src="<%= @audio_array[2]%>" type="audio/mpeg"> </audio></li>
-            <li class="list-group-item"><%= @spotify_top_songs[3].name %>  <audio controls> <source src="<%= @audio_array[3]%>" type="audio/mpeg"> </audio></li>
-            <li class="list-group-item"><%= @spotify_top_songs[4].name %>  <audio controls> <source src="<%= @audio_array[4]%>" type="audio/mpeg"> </audio></li>
-          </ul>
-        </div>
-      </div>
-          <%# <div class="user-gig-page-main-right-carousel">
-                  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                          <div class="carousel-inner">
-                            <div class="carousel-item active">
-                              <% if @user_gig.gig.wiki_photo_url != nil %>
-                              <%# <img src="<%= (@user_gig.gig.wiki_photo_url) %>
-                              <%# " class="show-carousel-img" alt="..."> %>
-                              <%# <% else %>
-                                <%# <img src="<%= (@pexels_array_c[0]) %>
-                                <%# "class="show-carousel-img" alt="..."> %>
-                              <%# <% end %>
-                            <%# </div> %>
-                            <%# <div class="carousel-item"> %>
-                              <%# <img src="<%= (@spotify_image) %>
-                              <%# " class="show-carousel-img" alt="..."> %>
-                            <%# </div> %>
-                            <%# <div class="carousel-item"> %>
-                              <%# <img src="<%= (@spotify_image_b) %>
-                              <%# " class="show-carousel-img" alt="..."> %>
-                            <%# </div> %>
-                          <%# </div> %>
-                        <%# <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev"> %>
-                          <%# <span class="carousel-control-prev-icon" aria-hidden="true"></span> %>
-                          <%# <span class="visually-hidden">Previous</span> %>
-                        <%# </button> %>
-                        <%# <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next"> %>
-                          <%# <span class="carousel-control-next-icon" aria-hidden="true"></span> %>
-                          <%# <span class="visually-hidden">Next</span> %>
-                        <%# </button> %>
-                  <%# </div> %>
-          <%# </div> %>
-          <%# </div> %>
-    </div>
-    <%# Photos %>
-    <div class="container d-flex justify-content-between">
-      <div class="user-gig-page-main-left-carousel">
-        <div id="carouselExampleControlsb" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="<%= (@pexels_array_e[0]) %>" class="show-carousel-left-img" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="<%= (@pexels_array_b[0]) %>" class="show-carousel-left-img" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="<%= (@pexels_array_d[0]) %>" class="show-carousel-left-img" alt="...">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+                  </div>
+                  <p><%= comment.content %></p>
+                <% end %>
+              </div>
+          <% end %>
         </div>
       </div>
 
-      <div class="user-gig-page-main-left-carousel">
-        <div id="carouselExampleControlsb" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="<%= (@pexels_array_e[0]) %>" class="show-carousel-left-img" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="<%= (@pexels_array_b[0]) %>" class="show-carousel-left-img" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="<%= (@pexels_array_d[0]) %>" class="show-carousel-left-img" alt="...">
+      <%# Music %>
+      <div class="user-gig-page-main-right">
+        <div class="user-gig-page-main-right-spotify">
+          <div class="player-headline d-flex justify-content-center">
+            <h2> Listen now </h2> <%= image_tag "logo.png", id:"player-logo"%>
+              <%# <%= @user_gig.gig.artist %>
+          </div>
+          <div class="player-card">
+            <div class="container justify-content-center" style="width: 72%;">
+              <ul>
+                <div><p> <i class="fa-solid fa-circle"></i> <%= @spotify_top_songs[0].name %> <audio controls> <source class="audio-player", src="<%= @audio_array[0]%>" type="audio/mpeg"> </audio></p></div>
+                <div><p> <i class="fa-solid fa-circle"></i> <%= @spotify_top_songs[1].name %> <audio controls> <source src="<%= @audio_array[1]%>" type="audio/mpeg"> </audio></p></div>
+                <div><p> <i class="fa-solid fa-circle"></i> <%= @spotify_top_songs[2].name %> <audio controls> <source src="<%= @audio_array[2]%>" type="audio/mpeg"> </audio></p></div>
+                <%# <li class="list-group-item"><%= @spotify_top_songs[3].name %>
+                <%# <audio controls> <source src="<%= @audio_array[3]%>
+                <%# " type="audio/mpeg"> </audio></li> %>
+                <%# <li class="list-group-item"><%= @spotify_top_songs[4].name %>
+                <%# <audio controls> <source src="<%= @audio_array[4]%>
+                <%# " type="audio/mpeg"> </audio></li> %>
+              </ul>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
         </div>
+            <%# <div class="user-gig-page-main-right-carousel">
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <% if @user_gig.gig.wiki_photo_url != nil %>
+                                <%# <img src="<%= (@user_gig.gig.wiki_photo_url) %>
+                                <%# " class="show-carousel-img" alt="..."> %>
+                                <%# <% else %>
+                                  <%# <img src="<%= (@pexels_array_c[0]) %>
+                                  <%# "class="show-carousel-img" alt="..."> %>
+                                <%# <% end %>
+                              <%# </div> %>
+                              <%# <div class="carousel-item"> %>
+                                <%# <img src="<%= (@spotify_image) %>
+                                <%# " class="show-carousel-img" alt="..."> %>
+                              <%# </div> %>
+                              <%# <div class="carousel-item"> %>
+                                <%# <img src="<%= (@spotify_image_b) %>
+                                <%# " class="show-carousel-img" alt="..."> %>
+                              <%# </div> %>
+                            <%# </div> %>
+                          <%# <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev"> %>
+                            <%# <span class="carousel-control-prev-icon" aria-hidden="true"></span> %>
+                            <%# <span class="visually-hidden">Previous</span> %>
+                          <%# </button> %>
+                          <%# <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next"> %>
+                            <%# <span class="carousel-control-next-icon" aria-hidden="true"></span> %>
+                            <%# <span class="visually-hidden">Next</span> %>
+                          <%# </button> %>
+                    <%# </div> %>
+            <%# </div> %>
+            <%# </div> %>
       </div>
-
-      <div class="user-gig-page-main-left-carousel">
-        <div id="carouselExampleControlsb" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="<%= (@pexels_array_e[0]) %>" class="show-carousel-left-img" alt="...">
+      <%# Photos %>
+      <div class="container d-flex justify-content-between">
+        <div class="user-gig-page-main-left-carousel">
+          <div id="carouselExampleControlsb" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="<%= (@pexels_array_e[0]) %>" class="show-carousel-left-img" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="<%= (@pexels_array_b[0]) %>" class="show-carousel-left-img" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="<%= (@pexels_array_d[0]) %>" class="show-carousel-left-img" alt="...">
+              </div>
             </div>
-            <div class="carousel-item">
-              <img src="<%= (@pexels_array_b[0]) %>" class="show-carousel-left-img" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="<%= (@pexels_array_d[0]) %>" class="show-carousel-left-img" alt="...">
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+        </div>
+
+        <div class="user-gig-page-main-left-carousel">
+          <div id="carouselExampleControlsb" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="<%= (@pexels_array_e[0]) %>" class="show-carousel-left-img" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="<%= (@pexels_array_b[0]) %>" class="show-carousel-left-img" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="<%= (@pexels_array_d[0]) %>" class="show-carousel-left-img" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="user-gig-page-main-left-carousel">
+          <div id="carouselExampleControlsb" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="<%= (@pexels_array_e[0]) %>" class="show-carousel-left-img" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="<%= (@pexels_array_b[0]) %>" class="show-carousel-left-img" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="<%= (@pexels_array_d[0]) %>" class="show-carousel-left-img" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-
-
-</div>
-
-<div class="container d-flex justify-content-between mb-4">
-  <%= link_to "Edit gig", edit_user_gig_path(@user_gig), class: "primary-button-inverse"%>
-  <%= link_to "Remove", user_gig_path(@user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "warning-button"%>
+  <div class="container d-flex justify-content-between mb-4">
+    <%= link_to "Edit gig", edit_user_gig_path(@user_gig), class: "primary-button-inverse"%>
+    <%= link_to "Remove", user_gig_path(@user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "warning-button"%>
+  </div>
 </div>

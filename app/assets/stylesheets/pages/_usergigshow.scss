@@ -57,7 +57,6 @@
 .user-gig-page-main-left {
   height:520px;
   width:40%;
-  margin-left: 100px;
   float:left;
   color: white;
     i {
@@ -77,7 +76,7 @@
 .user-gig-page-main-right {
   // height:520px;
   width: 30%;
-  margin-right: 100px;
+  margin-right: 0px;
   float:right;
   margin-bottom:20px;
   color: white;
@@ -95,13 +94,33 @@
   }
 }
 
-.player {
-  border-radius: 24px;
-    .list-group-item{
-      background-color: #F4F798;
-      color: black;
+
+#player-logo {
+  height: 50px;
+}
+
+.player-headline {
+  gap: 30px;
+}
+
+.player-card {
+  display: block;
+  margin-top: 30px;
+  width: 133%;
+  border: 2px solid white;
+  height: 300px;
+  border-radius: 17px;
+    ul {
+      margin-top: 24px;
     }
-  }
+    i {
+      color: #F4F798;
+    }
+}
+
+.audio-player {
+  height: 30px;
+}
 .user-gig-page-main-right-carousel{
   height:200px;
   width:100%;

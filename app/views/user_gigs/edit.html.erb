@@ -4,7 +4,6 @@
     <%= simple_form_for (@user_gig) do |f|%>
       <div class="form-inputs">
         <%= f.simple_fields_for :gig do |g|%>
-          <%= g.input :name %>
           <%= g.input :artist %>
           <%= g.input :venue %>
           <%= g.input :genre %>
