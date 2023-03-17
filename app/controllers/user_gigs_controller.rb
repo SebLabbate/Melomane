@@ -172,7 +172,7 @@ class UserGigsController < ApplicationController
     artists = RSpotify::Artist.search(name)
     adele = artists.first
     top_songs = adele.top_tracks(:US)
-    top_five = top_songs[0..5]
+    top_five = top_songs[0..3]
     return top_five
   end
 
