@@ -13,8 +13,8 @@
         <div class="past-gigs row">
           <% @past_gigs.each do |past_gig| %>
             <div class="all-past-gigs col">
-              <%= link_to user_gig_path(past_gig) do %>
-                <div class="past-gigs-card">
+              <div class="past-gigs-card">
+                <%= link_to user_gig_path(past_gig) do %>
                   <% if past_gig.gig.wiki_photo_url != nil %>
                     <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
                     <% else %>
@@ -24,10 +24,9 @@
                     <div class="artist"><span><i class="fa-solid fa-music"></i> <%= link_to "#{past_gig.gig.artist}", user_gig_path(past_gig) %></span></div>
                     <div class="vanue"><span><i class="fa-solid fa-location-dot"></i> <%= link_to "#{past_gig.gig.venue.titleize}", user_gig_path(past_gig) %></span></div>
                     <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{past_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(past_gig) %></span></div>
-                    <!-- <div class="genre"><span><i class="fa-solid fa-guitar"></i> <%= link_to "#{past_gig.gig.genre.titleize}", user_gig_path(past_gig) %></span></div> -->
                   </div>
-                </div>
-              <% end %>
+              </div>
+                <% end %>
             </div>
           <% end %>
         </div>
@@ -40,8 +39,8 @@
         <div class="upcoming-gigs row">
           <% @upcoming_gigs.each do |upcoming_gig| %>
             <div class="all-upcoming-gigs col">
-              <%= link_to user_gig_path(upcoming_gig) do %>
-                <div class="upcoming-gigs-card">
+              <div class="upcoming-gigs-card">
+                <%= link_to user_gig_path(upcoming_gig) do %>
                   <% if upcoming_gig.gig.wiki_photo_url != nil %>
                     <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
                     <% else %>
@@ -53,8 +52,8 @@
                     <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{upcoming_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(upcoming_gig) %></span></div>
                     <!-- <div class="genre"><span><i class="fa-solid fa-guitar"></i> <%= link_to "#{upcoming_gig.gig.genre.titleize}", user_gig_path(upcoming_gig) %></span></div> -->
                   </div>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
             </div>
           <% end %>
         </div>
@@ -62,8 +61,10 @@
   </div>
 </div>
 
-    <!-- <div class="pt-2">
+    <!--
+    <div class="pt-2">
       <%= link_to(dashboard_new_path, class: "primary-button") do %>
       Add a new gig!
       <% end %>
-    </div> -->
+    </div>
+    -->
