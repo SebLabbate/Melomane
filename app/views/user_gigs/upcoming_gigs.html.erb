@@ -16,7 +16,7 @@
               <% if user_gig.gig.wiki_photo_url != nil %>
                 <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.wiki_photo_url %>" class="ug-card-img"></div>
                 <% else %>
-                <div class="ug-card-img-wrap"><img src="<%= @pexels_array[0] %>" class="ug-card-img"></div>
+                <div class="ug-card-img-wrap"><img src="" class="ug-card-img"></div>
                 <% end %>
               <div class="ug-card-content">
                 <div class="artist"><span><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></span></div>
