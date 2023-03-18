@@ -29,9 +29,9 @@
 }
 
 .user-gig-page-suggested {
-  height:500px;
-  margin-left: 100px;
-  margin-right: 100px;
+  // height:500px;
+  // margin-left: 100px;
+  // margin-right: 100px;
   width: 100%;
   position:relative;
   display:flex;
@@ -41,6 +41,7 @@
 }
 
 .user-gig-page-suggested-title{
+  position: relative;
   display: flex;
   height:25px;
   width:1000px;
