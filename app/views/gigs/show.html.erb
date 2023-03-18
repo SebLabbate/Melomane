@@ -32,7 +32,7 @@
                               <% if @gig.wiki_photo_url != nil %>
                                <img src="<%= (@gig.wiki_photo_url) %>" class="show-carousel-img" alt="...">
                                <% else %>
-                                <img src="<%= (@pexels_array_c[0]) %>" class="show-carousel-img" alt="...">
+                                <img src="" class="show-carousel-img" alt="...">
                               <% end %>
                             </div>
                             <div class="carousel-item">
@@ -61,7 +61,7 @@
               <% if @genre_image_a != nil %>
              <img src="<%= (@genre_image_a)%>" class="user-gig-suggested-image" alt="...">
               <% else %>
-              <img src="<%= (@pexels_array_c[0]) %>" class="user-gig-suggested-image" alt="...">
+              <img src="" class="user-gig-suggested-image" alt="...">
               <% end %>
               <% end %>
                     <% if @other_gigs.length > 0 %>
@@ -107,7 +107,7 @@
               <% if @genre_image_c != nil %>
              <img src="<%= (@genre_image_c)%>" class="user-gig-suggested-image" alt="...">
               <% else %>
-              <img src="<%= (@pexels_array_b[0]) %>" class="user-gig-suggested-image" alt="...">
+              <img src="" class="user-gig-suggested-image" alt="...">
               <% end %>
              <% end %>
                     <% if @other_gigs.length > 2 %>

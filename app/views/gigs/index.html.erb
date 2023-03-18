@@ -27,7 +27,7 @@
             <% if gig.wiki_photo_url != nil %>
             <img src="<%= gig.wiki_photo_url %>" class="card-img-top" alt="...">
             <% else %>
-            <img src="<%= @pexels_array[0] %>" class="card-img-top" alt="...">
+            <img src="" class="card-img-top" alt="...">
             <% end %>
             <div class="card-body">
               <% if @user_gigs.find { |item| item.gig_id == gig.id } != nil %>
