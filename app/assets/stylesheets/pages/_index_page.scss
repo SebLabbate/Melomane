@@ -1,12 +1,99 @@
 .card-img-top {
   height: 50%;
   object-fit: cover;
+  object-position: 75% 25%;
+  border-radius: 14px;
+  border: 2px solid #F4F798;
 }
 
 .card-body{
-  height:50%;
+  height:40%;
   a {
     text-decoration: none;
     color:black;
   }
+  padding-top: 15px;
+}
+
+.gig-index-card{
+  border-style: solid;
+  width:320px;
+  height:300px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  box-shadow: 0px 0px 8px #7e7e7e;
+  border-radius: 14px;
+  padding-top: 10px;
+  &:hover {
+    box-shadow: 0px 0px 20px #7e7e7e;
+    transition: .25s ease;
+    }
+}
+
+.card-title{
+  a {
+    color:white;
+}
+}
+
+.card-text{
+  a {
+    color:white;
+    font-size: 15px;
+}
+}
+
+.gig-card-button{
+ align-items: center;
+ border-radius: 14px;
+ border-color:#F4F798;
+ border-style: solid;
+ background-color:#F4F798;
+ font-weight: bold;
+ font-family: "Open Sans";
+ padding: 5px;
+ font-size: 15px;
+}
+
+.gig-card-button:hover {
+ font-size: 17px;
+ transition: all .3s ease;
+}
+
+.gig-index-search{
+  width:300px;
+  display: flex;
+  text-align: center;
+  margin: auto;
+  .form-control{
+    background-color:  #121212;
+    color: white;
+    border-top-left-radius: 14px;
+    border-color:white;
+    border-bottom-left-radius: 14px;
+    border-right: none;
+    border-width: 1px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .search-btn{
+    background-color:  #121212;
+    color: #F4F798;
+    border-top-color: white;
+    border-right-color: white;
+    border-left-style: solid;
+    border-left-color: white;
+    border-bottom-style: solid;
+    border-bottom-color:white;
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+    border-color: white;
+    border-width: 1px;
+  }
+
+}
+
+.search-box{
+  width:100%;
+  height:70px;
 }
