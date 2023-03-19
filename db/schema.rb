@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_195440) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_19_191000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_195440) do
     t.datetime "date"
     t.boolean "private", default: false
     t.string "wiki_photo_url"
+    t.string "photo_url_two"
+    t.string "photo_url_three"
+    t.string "photo_url_four"
+    t.string "photo_url_five"
     t.index ["user_id"], name: "index_gigs_on_user_id"
   end
 
