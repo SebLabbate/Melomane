@@ -1,6 +1,10 @@
 class CommentsController < ApplicationController
   before_action :set_user_gig, only: %i[new create]
 
+  def index
+    @comments = Comments.all.with_attached_photos
+  end
+
   def new
     @comment = Comment.new
     authorize @comment
@@ -24,6 +28,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:content, :rating)
+    params.require(:comment).permit(:content, :rating, photos: [])
   end
 end

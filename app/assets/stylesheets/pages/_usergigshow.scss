@@ -69,6 +69,16 @@
     }
 }
 
+.artist-photo {
+
+  img {
+    border-radius: 8px;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+  }
+}
+
 .artist-headline {
   margin-top: 28px;
     span {
@@ -116,23 +126,33 @@
 }
 
 .player-card {
-  display: block;
+  // display: block;
+  display: flex;
+  align-items: center;
   margin-top: 30px;
-  width: 133%;
-  border: 2px solid white;
+  // width: 133%;
+  border: 2px solid #FFFFFF;
   height: 300px;
   border-radius: 17px;
+  padding-left: 22px;
     ul {
-      margin-top: 24px;
+      margin-right: 13px;
+      margin-left: -20px;
     }
     i {
       color: #F4F798;
     }
-}
+    .player-container {
+      text-align: inherit;
+      display: inline-flex;
+      justify-content: center;
+    }
+  }
 
-.audio-player {
-  height: 30px;
-}
+  #player {
+    height: 30px;
+  }
+
 .user-gig-page-main-right-carousel{
   height:200px;
   width:100%;

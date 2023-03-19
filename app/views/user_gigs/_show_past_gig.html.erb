@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="user-gig-page">
+    <div class="gigs-buttons">
+      <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
+            <div class="vl-s"></div>
+      <h2 class="ug"><%= link_to "Upcoming Gigs", upcoming_gigs_user_gigs_path, class: "link-ug-btn" %></h2>
+            <div class="vl-s"></div>
+      <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
+    </div>
+
+    <%# Memories %>
+    <div class="user-gig-page-main">
+      <div class="user-gig-page-main-left">
+        <div class="user-gig-page-main-left-about">
+            <div class="artist-headline d-flex justify-content-between", style="width: 124%;">
+              <h2><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %> </h2>
+              <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), class: "primary-button" %>
+            </div>
+            <p> <%= @user_gig.gig.date.strftime("%e %b %Y") %> </p>
+              <div class="user-gig-page-main-left-user-info">
+                <div class="artist-photo">
+                  <% if @user_gig.gig.wiki_photo_url != nil %>
+                    <img src="<%= (@user_gig.gig.wiki_photo_url) %>">
+                  <% else %>
+                    <img src="<%= (@pexels_array_c[0])%>">
+                  <% end %>
+                </div>
+
+                  <div class="mt-2">
+                  <% @user_gig.comments.each do |comment| %>
+                    <div class="mb-2">
+                      <% if comment.rating != nil %>
+                        <% comment.rating.times do %>
+                          <i class="fas fa-star star-yellow"></i></span>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <p><%= comment.content %></p>
+                    <%# <% if comment.photos.attached? %>
+                    <%# <%= @comment.photos.each do |photo| %>
+                      <%# <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+                    <%# <% end %>
+                  <% end %>
+                  </div>
+              </div>
+        </div>
+      </div>
+
+      <%# Music %>
+      <div class="user-gig-page-main-right">
+        <div class="user-gig-page-main-right-spotify">
+          <div class="player-headline d-flex justify-content-center">
+            <h2> Listen now </h2> <%= image_tag "logo.png", id:"player-logo"%>
+          </div>
+          <div class="player-card">
+            <div class="player-container">
+              <ul>
+                <div><p> <i class="fa-solid fa-circle"></i> <%= @spotify_top_songs[0].name %> <audio id="player" controls> <source src="<%= @audio_array[0]%>" type="audio/mpeg"> </audio></p></div>
+                <div><p> <i class="fa-solid fa-circle"></i> <%= @spotify_top_songs[1].name %> <audio id="player" controls> <source src="<%= @audio_array[1]%>" type="audio/mpeg"> </audio></p></div>
+                <div><p> <i class="fa-solid fa-circle"></i> <%= @spotify_top_songs[2].name %> <audio id="player" controls> <source src="<%= @audio_array[2]%>" type="audio/mpeg"> </audio></p></div>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="container d-flex justify-content-between mb-4">
+    <%= link_to "Edit gig", edit_user_gig_path(@user_gig), class: "primary-button-inverse"%>
+    <%= link_to "Remove", user_gig_path(@user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "warning-button"%>
+  </div>
+</div>
