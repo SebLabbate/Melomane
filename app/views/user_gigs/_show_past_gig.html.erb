@@ -32,7 +32,7 @@
                     <% end %>
                 </div>
 
-                  <div class="mt-2">
+                <div class="mt-2">
                   <% @user_gig.comments.each do |comment| %>
                     <div class="mb-2">
                       <% if comment.rating != nil %>
@@ -41,16 +41,16 @@
                         <% end %>
                       <% end %>
                     </div>
-                    <p><%= comment.content %></p>
-                    <%# <% if comment.photos.attached? %>
-                    <%# <%= @comment.photos.each do |photo| %>
-                      <%# <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-                    <%# <% end %>
+                    <div>
+                      <p><%= comment.content %></p>
+                    </div>
                   <% end %>
-                  </div>
+                </div>
               </div>
         </div>
       </div>
+
+
 
       <%# Music %>
       <div class="user-gig-page-main-right">
@@ -70,8 +70,21 @@
         </div>
       </div>
     </div>
-
   </div>
+
+  <%# Memories album %>
+  <div class="memories-album">
+    <% @user_gig.comments.each do |comment| %>
+      <% if comment.photos.attached? %>
+        <% comment.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+          <%# <%= link_to 'Remove', user_gig_comment_path(comment), method: :delete, data: { confirm: 'Are you sure?'}, class: "text-decoration-none" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+
   <div class="container d-flex justify-content-between mb-4">
     <%= link_to "Edit gig", edit_user_gig_path(@user_gig), class: "primary-button-inverse"%>
     <%= link_to "Remove", user_gig_path(@user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "warning-button"%>

@@ -1,8 +1,11 @@
 class CommentsController < ApplicationController
-  before_action :set_user_gig, only: %i[new create]
+  before_action :set_user_gig, only: %i[new show create destroy_attachment]
 
   def index
     @comments = Comments.all.with_attached_photos
+  end
+
+  def show
   end
 
   def new
@@ -19,6 +22,11 @@ class CommentsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy_attachment
+    attachment = ActiveStorage::Attachment.find(params[:photo_id])
+    attachment.purge
   end
 
   private

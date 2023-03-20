@@ -94,6 +94,18 @@
     }
 }
 
+.memories-album {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+  margin-bottom: 50px;
+  margin-top: -142px;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+}
+
 .user-gig-page-main-right {
   // height:520px;
   width: 30%;
@@ -114,7 +126,6 @@
     padding-bottom: 20px;
   }
 }
-
 
 #player-logo {
   height: 50px;
