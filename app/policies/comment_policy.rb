@@ -13,4 +13,12 @@ class CommentPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def show?
+    return record.user_id == user.id
+  end
+
+  def destroy?
+    return record.user_id == user.id
+  end
 end
