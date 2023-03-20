@@ -23,6 +23,8 @@
     <div class="row mt-4 mb-4">
       <% @gigs.each do |gig| %>
         <% unless gig.private %>
+          <% if @user_gigs.find { |item| item.gig_id == gig.id } == nil%>
+             <% if gig.date > Date.current %>
           <div class="gig-index-card" style="">
             <% if gig.wiki_photo_url != nil %>
             <img src="<%= gig.wiki_photo_url %>" class="card-img-top" alt="...">
@@ -36,30 +38,16 @@
             <img src="<%= gig.photo_url_five %>" class="card-img-top" alt="...">
             <% end %>
             <div class="card-body">
-              <% if @user_gigs.find { |item| item.gig_id == gig.id } != nil %>
-              <% user_gig = @user_gigs.find { |item| item.gig_id == gig.id} %>
-               <h5 class="card-title"><%= link_to "#{gig.artist}", user_gig_path(user_gig) %></h5>
-              <p class="card-text"> <%= link_to "#{gig.venue.split(',')[0]}", user_gig_path(user_gig) %> &#x2022;
-              <%= link_to "#{gig.date.strftime("%d/%m/%Y")}", user_gig_path(user_gig) %></p>
-              <% if gig.date < Date.current %>
-               <%= link_to "You went!", user_gig_path(user_gig) , class: "gig-card-button" %>
-                <% else %>
-                <%= link_to "You are going!", user_gig_path(user_gig) , class: "gig-card-button" %>
-                <% end %>
-              <%else %>
               <h5 class="card-title"><%= link_to "#{gig.artist}", gig_path(gig) %></h5>
               <p class="card-text"> <%= link_to "#{gig.venue.split(',')[0]}", gig_path(gig) %>  &#x2022;
                <%= link_to "#{gig.date.strftime("%d/%m/%Y")}", gig_path(gig) %></p>
-              <% if gig.date < Date.current %>
-              <%= link_to "Add to past gigs", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "gig-card-button" %>
-              <% else %>
               <%= link_to "Add to upcoming gigs", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "gig-card-button" %>
-              <% end %>
-              <% end %>
             </div>
           </div>
         <% end %>
       <% end %>
+      <% end %>
+       <% end %>
     </div>
   </div>
 </div>
