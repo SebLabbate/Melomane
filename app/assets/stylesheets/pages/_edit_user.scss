@@ -1,0 +1,23 @@
+.cancel-btn-e {
+  position: initial;
+  right: 20px;
+  background-color: #F4F798;
+  border: none;
+  border-radius: 4px;
+  color: #121212;
+  padding: 0 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Open Sans";
+  margin: 2px 0;
+  cursor: pointer;
+
+  &:hover {
+    margin: 10px;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+    color: #121212;
+  }
+}

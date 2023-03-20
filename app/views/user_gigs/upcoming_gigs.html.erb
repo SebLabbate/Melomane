@@ -7,7 +7,7 @@
 </div>
 
 <div class="up-gigs-container">
-  <div class="upcoming-gigs">
+  <div class="upcoming-gigs-p">
     <h2 class="ug">Your upcoming gigs</h2>
     <% @user_gigs.each do |user_gig| %>
         <% if user_gig.user_id == current_user.id && user_gig.gig.date > Date.current %>
@@ -19,9 +19,9 @@
                 <div class="ug-card-img-wrap"><img src="" class="ug-card-img"></div>
                 <% end %>
               <div class="ug-card-content">
-                <div class="artist"><span><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></span></div>
-                <div class="vanue"><span><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", user_gig_path(user_gig) %></span></div>
-                <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(user_gig) %></span></div>
+                <p class="artist"><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></p>
+                <p class="vanue"><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", user_gig_path(user_gig) %></p>
+                <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(user_gig) %></p>
               </div>
 
               <div class="cancel">
