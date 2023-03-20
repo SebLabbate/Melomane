@@ -67,17 +67,6 @@ artists = [
   "Post Malone"
 ]
 
-genre = [
-  "Rock n Roll",
-  "Heavy Metal",
-  "Soul",
-  "Funk",
-  "Hip-hop",
-  "Pop",
-  "Electronic Dance",
-  "Rap"
-]
-
 User.create!(
   user_name: "Admin",
   password: "password",

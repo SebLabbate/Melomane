@@ -21,9 +21,15 @@
                 <div class="artist-photo">
                   <% if @user_gig.gig.wiki_photo_url != nil %>
                     <img src="<%= (@user_gig.gig.wiki_photo_url) %>">
-                  <% else %>
-                    <img src="<%= (@pexels_array_c[0])%>">
-                  <% end %>
+                  <% elsif @user_gig.gig.photo_url_two != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_two) %>">
+                   <% elsif @user_gig.gig.photo_url_three != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_three) %>">
+                    <% elsif @user_gig.gig.photo_url_four != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_four) %>">
+                    <% elsif @user_gig.gig.photo_url_five != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_five) %>">
+                    <% end %>
                 </div>
 
                   <div class="mt-2">
@@ -55,9 +61,9 @@
           <div class="player-card">
             <div class="player-container">
               <ul>
-                <div><p> <i class="fa-solid fa-circle"></i> <%= @spotify_top_songs[0].name %> <audio id="player" controls> <source src="<%= @audio_array[0]%>" type="audio/mpeg"> </audio></p></div>
-                <div><p> <i class="fa-solid fa-circle"></i> <%= @spotify_top_songs[1].name %> <audio id="player" controls> <source src="<%= @audio_array[1]%>" type="audio/mpeg"> </audio></p></div>
-                <div><p> <i class="fa-solid fa-circle"></i> <%= @spotify_top_songs[2].name %> <audio id="player" controls> <source src="<%= @audio_array[2]%>" type="audio/mpeg"> </audio></p></div>
+                <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_one %> <audio id="player" controls> <source src="<%= @user_gig.gig.song_one_audio%>" type="audio/mpeg"> </audio></p></div>
+                <div><p> <i class="fa-solid fa-circle"></i> <%=@user_gig.gig.song_two %> <audio id="player" controls> <source src="<%=  @user_gig.gig.song_two_audio%>" type="audio/mpeg"> </audio></p></div>
+                <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_three %> <audio id="player" controls> <source src="<%=  @user_gig.gig.song_three_audio%>" type="audio/mpeg"> </audio></p></div>
               </ul>
             </div>
           </div>

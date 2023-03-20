@@ -15,8 +15,14 @@
             <div class="up-gigs-card">
               <% if user_gig.gig.wiki_photo_url != nil %>
                 <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.wiki_photo_url %>" class="ug-card-img"></div>
-                <% else %>
-                <div class="ug-card-img-wrap"><img src="" class="ug-card-img"></div>
+                <% elsif user_gig.gig.photo_url_two %>
+                <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.photo_url_two %>" class="ug-card-img"></div>
+                   <% elsif user_gig.gig.photo_url_three %>
+                <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.photo_url_three %>" class="ug-card-img"></div>
+                   <% elsif user_gig.gig.photo_url_four %>
+                <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.photo_url_four %>" class="ug-card-img"></div>
+                   <% elsif user_gig.gig.photo_url_five %>
+                <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.photo_url_five%>" class="ug-card-img"></div>
                 <% end %>
               <div class="ug-card-content">
                 <div class="artist"><span><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></span></div>

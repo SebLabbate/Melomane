@@ -26,8 +26,14 @@
           <div class="gig-index-card" style="">
             <% if gig.wiki_photo_url != nil %>
             <img src="<%= gig.wiki_photo_url %>" class="card-img-top" alt="...">
-            <% else %>
-            <img src="" class="card-img-top" alt="...">
+            <% elsif gig.photo_url_two != nil %>
+            <img src="<%= gig.photo_url_two %>" class="card-img-top" alt="...">
+            <% elsif gig.photo_url_three != nil %>
+            <img src="<%= gig.photo_url_three %>" class="card-img-top" alt="...">
+             <% elsif gig.photo_url_four != nil %>
+            <img src="<%= gig.photo_url_four %>" class="card-img-top" alt="...">
+             <% elsif gig.photo_url_five != nil %>
+            <img src="<%= gig.photo_url_five %>" class="card-img-top" alt="...">
             <% end %>
             <div class="card-body">
               <% if @user_gigs.find { |item| item.gig_id == gig.id } != nil %>

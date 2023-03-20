@@ -30,8 +30,14 @@
             <%= link_to user_gig_path(user_gig) do %>
                 <% if user_gig.gig.wiki_photo_url != nil %>
                   <div class="pg-card-img-wrap"><img src="<%= user_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
-                <% else %>
-                  <div class="pg-card-img-wrap"><img src="" class="pg-card-img"></div>
+                <% elsif user_gig.gig.photo_url_two != nil %>
+                 <div class="pg-card-img-wrap"><img src="<%= user_gig.gig.photo_url_two %>" class="pg-card-img"></div>
+                   <% elsif user_gig.gig.photo_url_three != nil %>
+                 <div class="pg-card-img-wrap"><img src="<%= user_gig.gig.photo_url_three %>" class="pg-card-img"></div>
+                    <% elsif user_gig.gig.photo_url_four != nil %>
+                 <div class="pg-card-img-wrap"><img src="<%= user_gig.gig.photo_url_four%>" class="pg-card-img"></div>
+                    <% elsif user_gig.gig.photo_url_five != nil %>
+                 <div class="pg-card-img-wrap"><img src="<%= user_gig.gig.photo_url_five %>" class="pg-card-img"></div>
                 <% end %>
                 <div class="pg-card-content">
                   <div class="artist"><span><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></span></div>
