@@ -30,28 +30,12 @@ class UserGigsController < ApplicationController
     @gigs = Gig.all
     @user_gigs = policy_scope(UserGig).all
     authorize @user_gigs
-    @other_gigs = find_other_genres_two(@user_gigs)
-    if @other_gigs.length == 1
-      @similar_gigs = @other_gigs[0]
-    elsif @other_gigs.length == 2
-      @similar_gigs = @other_gigs[0..1]
-    else
-      @similar_gigs = @other_gigs[0..2]
-    end
   end
 
   def upcoming_gigs
     @gigs = Gig.all
     @user_gigs = policy_scope(UserGig).all
     authorize @user_gigs
-    @other_gigs = find_other_genres_two(@user_gigs)
-    if @other_gigs.length == 1
-      @similar_gigs = @other_gigs[0]
-    elsif @other_gigs.length == 2
-      @similar_gigs = @other_gigs[0..1]
-    else
-      @similar_gigs = @other_gigs[0..2]
-    end
   end
 
   def toggle

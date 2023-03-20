@@ -89,3 +89,4 @@ gem 'rspotify'
 gem 'spotify-ruby'
 gem 'react-rails'
 gem "cloudinary"
+gem "geocoder"
