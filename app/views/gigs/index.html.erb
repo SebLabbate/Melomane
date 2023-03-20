@@ -23,7 +23,7 @@
     <div class="row mt-4 mb-4">
       <% @gigs.each do |gig| %>
         <% unless gig.private %>
-          <% if @user_gigs.find { |item| item.gig_id == gig.id } == nil%>
+          <% if @user_gigs.find { |item| item.gig_id == gig.id && item.user_id == current_user.id} == nil %>
              <% if gig.date > Date.current %>
           <div class="gig-index-card" style="">
             <% if gig.wiki_photo_url != nil %>

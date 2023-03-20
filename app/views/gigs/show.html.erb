@@ -12,6 +12,7 @@
           <% else %>
            <p> <%= link_to "Are you going to this gig?", gig_user_gigs_path(@gig), data: {turbo_method: :post}, class: "btn btn-primary" %> </p>
           <% end %>
+          <div id='map' style='width: 400px; height:300px;'></div>
        MAP
         </div>
       </div>
