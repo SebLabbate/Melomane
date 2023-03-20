@@ -95,12 +95,13 @@
 .edit, .cancel {
   a {
     color: #121212;
+    &:hover {
+      color: #121212;
+    }
   }
 }
 
-.edit {
-  a:hover {
-    color: #F7C729;
-    font-weight: bold;
-  }
+.upcoming-gigs-p {
+  display: grid;
+  grid-template-columns: 1fr;
 }

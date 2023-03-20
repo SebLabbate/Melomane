@@ -23,7 +23,7 @@
 .gigs-container {
   display: flex;
   justify-content: space-around;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .past-gigs-card, .upcoming-gigs-card {
@@ -31,7 +31,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 18px;
-  margin: 10px 0;
+  margin: 25px;
   padding: 10px;
   // width: 30vw;
   // height: 10vw;
@@ -52,13 +52,13 @@ a:hover {
 }
 
 .vl {
-  display: none;
+  display: flex;
   border-left: 1px solid #F4F798;
-  opacity: 50%;
-  height: 500px;
-  position: absolute;
-  left: 49%;
-  top: 240px;
+  opacity: 20%;
+  // height: 500px;
+  // position: absolute;
+  // left: 49%;
+  // top: 240px;
 }
 
 h2.pg, h2.ug, h2.gg {
@@ -74,20 +74,18 @@ h2.pg, h2.ug, h2.gg {
   float: right;
 }
 
-.past-gigs {
-  float: left;
-  margin: 0 20px;
+.past-gigs, .upcoming-gigs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  // float: left;
+  // margin: 0 20px;
+
 }
 
-.upcoming-gigs {
-  float: right;
-  margin: 0 20px;
-}
-
-.pg-card-img-wrap {
-  display: flex;
-  justify-content: center;
-}
+// .pg-card-img-wrap {
+//   display: flex;
+//   justify-content: center;
+// }
 
 .pg-card-img {
   background-size: cover;
@@ -107,6 +105,24 @@ h2.pg, h2.ug, h2.gg {
   margin: 4%;
   color: #F4F798;
   font-size: 14px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   line-height: 25px;
+}
+
+p {
+  opacity: 90%;
+}
+
+p.artist {
+  font-size: 16px;
+  margin: 0;
+}
+
+p.vanue, p.date {
+  font-size: 14px;
+  margin: 0;
+}
+
+i {
+  margin-right: 5px;
 }
