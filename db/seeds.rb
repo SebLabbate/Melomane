@@ -79,7 +79,7 @@ User.create!(
   email: "a@a.a"
 )
 
-80.times do
+40.times do
   Gig.create!(
     user_id: User.first.id,
     name: Faker::Emotion.noun,

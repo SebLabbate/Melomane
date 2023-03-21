@@ -14,7 +14,7 @@ class Gig < ApplicationRecord
 
   validates :name, :artist, :date, :venue, presence: true
   before_create :parse_wiki_image, :spotify_genre, :spotify_images_artist, :spotify_images_albums, :pexel_photos
-  before_create :pexel_photos_two, :parse_wiki_info, :spotify_top_five
+  before_create :parse_wiki_info, :spotify_top_five
 
   def parse_wiki_image
     page = Wikipedia.find(artist)
