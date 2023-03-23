@@ -19,6 +19,7 @@ export default class extends Controller {
   }
 
   toggleParent(e) {
+    // e.preventDefault()
     const id = e.target.dataset.id
     const csrfToken = document.querySelector("[name='csrf-token']").content
     if (this.childTargets.map(x => x.checked).includes(false)) {
@@ -35,12 +36,13 @@ export default class extends Controller {
         'Content-Type': 'application/json',
         'X-CSRF-Token': csrfToken
       },
-      body: JSON.stringify({ attended: e.target.checked }) })
-      .then(response => response.json())
+      body: JSON.stringify({ "attended": e.target.checked })
+    })
+      .then(response => response.text())
       .then(data => {
         alert(data.message)
       })
-    console.log("Test 123");
+    console.log(e.target.checked);
     }
   }
 
