@@ -44,7 +44,7 @@
 }
 
 .gig-card-button{
- align-items: center;
+ align-items: end;
  border-radius: 14px;
  border-color:#F4F798;
  border-style: solid;
@@ -53,6 +53,7 @@
  font-family: "Open Sans";
  padding: 5px;
  font-size: 15px;
+ 
 }
 
 .gig-card-button:hover {
@@ -61,10 +62,13 @@
 }
 
 .gig-index-search{
-  width:300px;
   display: flex;
   text-align: center;
   margin: auto;
+  justify-content: center;
+  .form-width {
+    width: 357px;
+  }
   .form-control{
     background-color:  #121212;
     color: white;
@@ -90,10 +94,11 @@
     border-color: white;
     border-width: 1px;
   }
-
+  #query {
+    flex-grow: 1;
+  }
 }
 
 .search-box{
-  width:100%;
   height:70px;
 }
