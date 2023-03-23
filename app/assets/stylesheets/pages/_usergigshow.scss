@@ -106,6 +106,24 @@
     }
 }
 
+.album-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.album-container img {
+  width: 600px;
+  height: 400px;
+}
+
+.album-container .attachment-remove-button {
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+}
+
 .user-gig-page-main-right {
   // height:520px;
   width: 30%;
@@ -146,6 +164,7 @@
   height: 300px;
   border-radius: 17px;
   padding-left: 22px;
+  padding-right: 18px;
     ul {
       margin-right: 13px;
       margin-left: -20px;
@@ -153,6 +172,13 @@
     i {
       color: #F4F798;
     }
+
+    p {
+      margin: 30px 0;
+
+    }
+
+
     .player-container {
       text-align: inherit;
       display: inline-flex;

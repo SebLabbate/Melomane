@@ -74,14 +74,19 @@
 
   <%# Memories album %>
   <div class="memories-album">
-    <% @user_gig.comments.each do |comment| %>
-      <% if comment.photos.attached? %>
-        <% comment.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-          <%# <%= link_to 'Remove', user_gig_comment_path(comment), method: :delete, data: { confirm: 'Are you sure?'}, class: "text-decoration-none" %>
+    <div>
+      <% @user_gig.comments.each do |comment| %>
+        <% if comment.photos.attached? %>
+          <% comment.photos.each do |photo| %>
+            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+            <%# <%= button_to 'Remove', destroy_attachment_user_gig_comment_path(comment, attachment_id: photo.id), data: {turbo_method: :delete, turbo_confirm: "are you sure?" }, class: "text-decoration-none" %> %>
+            <%= form_tag destroy_attachment_user_gig_comment_path(@user_gig, comment, attachment_id: photo.id ), method: :delete, data: {turbo_confirm: 'Are you sure?'} do %>
+              <%= submit_tag 'Remove', class: "text-decoration-none" %>
+            <% end %>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 
 

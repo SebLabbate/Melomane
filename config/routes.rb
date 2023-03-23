@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   post "/gigs", to: "gigs#create"
   # get "/attend", to: "user_gigs#attend", as: "user_gig_attend"
   post "user_gigs/:id/toggle", to: "user_gigs#toggle"
-  delete "destroy_attachment/:photo_id", to: "comments#destroy_attachment"
 
   # resources :gigs, only: %i[index show] do
   resources :gigs do
@@ -23,7 +22,9 @@ Rails.application.routes.draw do
       get :upcoming_gigs
     end
     # resources :comments, only: %i[new create]
-    resources :comments
+    resources :comments do
+      delete :destroy_attachment, on: :member
+    end
   end
 
   # only: %i[index show update]
