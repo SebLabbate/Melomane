@@ -1,0 +1,12 @@
+.center-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button-center {
+  display: grid;
+  grid-template-rows: 1fr;
+  justify-content: center;
+}
