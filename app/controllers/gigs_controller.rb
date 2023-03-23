@@ -25,8 +25,10 @@ class GigsController < ApplicationController
       @similar_gigs = @other_gigs[0]
     elsif @other_gigs.length == 2
       @similar_gigs = @other_gigs[0..1]
-    else
+    elsif @other_gigs.length > 2
       @similar_gigs = @other_gigs[0..2]
+    else
+      @similar_gigs = nil
     end
   end
 
