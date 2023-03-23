@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get "/dashboard/new", to: "gigs#new"
   post "/gigs", to: "gigs#create"
   # get "/attend", to: "user_gigs#attend", as: "user_gig_attend"
-  post "user_gigs/:id/toggle", to: "user_gigs#toggle"
+
+  post "user_gigs/:id/toggle", to: "user_gigs#toggle", as: "user_gig_toggle"
+  delete "destroy_attachment/:photo_id", to: "comments#destroy_attachment"
 
   # resources :gigs, only: %i[index show] do
   resources :gigs do

@@ -12,26 +12,24 @@
           <h2 class="pg">Gigs you have been to</h2>
         <div class="past-gigs ">
           <% @past_gigs.each do |past_gig| %>
-            <%# <div class="all-past-gigs col"> %>
-              <div class="past-gigs-card">
-                <%= link_to user_gig_path(past_gig) do %>
-                  <% if past_gig.gig.wiki_photo_url != nil %>
-                    <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
-                    <% elsif past_gig.gig.photo_url_two != nil %>
-                    <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.photo_url_two %>" class="pg-card-img"></div>
-                    <% elsif past_gig.gig.photo_url_three != nil %>
-                    <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.photo_url_three %>" class="pg-card-img"></div>
-                    <% elsif past_gig.gig.photo_url_four != nil %>
-                    <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.photo_url_four %>" class="pg-card-img"></div>
-                    <% end %>
-                  <div class="pg-card-content">
-                    <p class="artist"><i class="fa-solid fa-music"></i> <%= link_to "#{past_gig.gig.artist}", user_gig_path(past_gig) %></p>
-                    <p class="vanue"><i class="fa-solid fa-location-dot"></i> <%= link_to "#{past_gig.gig.venue.titleize}", user_gig_path(past_gig) %></p>
-                    <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{past_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(past_gig) %></p>
-                  </div>
-              </div>
-                <% end %>
-            <%# </div> %>
+            <div class="past-gigs-card">
+              <%= link_to user_gig_path(past_gig) do %>
+                <% if past_gig.gig.wiki_photo_url != nil %>
+                  <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
+                  <% elsif past_gig.gig.photo_url_two != nil %>
+                  <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.photo_url_two %>" class="pg-card-img"></div>
+                  <% elsif past_gig.gig.photo_url_three != nil %>
+                  <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.photo_url_three %>" class="pg-card-img"></div>
+                  <% elsif past_gig.gig.photo_url_four != nil %>
+                  <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.photo_url_four %>" class="pg-card-img"></div>
+                  <% end %>
+                <div class="pg-card-content">
+                  <p class="artist"><i class="fa-solid fa-music"></i> <%= link_to "#{past_gig.gig.artist}", user_gig_path(past_gig) %></p>
+                  <p class="vanue"><i class="fa-solid fa-location-dot"></i> <%= link_to "#{past_gig.gig.venue.titleize}", user_gig_path(past_gig) %></p>
+                  <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{past_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(past_gig) %></p>
+                </div>
+            </div>
+              <% end %>
           <% end %>
         </div>
       </div>
@@ -42,27 +40,24 @@
           <h2 class="ug">Your upcoming gigs</h2>
         <div class="upcoming-gigs ">
           <% @upcoming_gigs.each do |upcoming_gig| %>
-            <%# <div class="all-upcoming-gigs col"> %>
-              <div class="upcoming-gigs-card">
-                <%= link_to user_gig_path(upcoming_gig) do %>
-                    <% if upcoming_gig.gig.wiki_photo_url != nil %>
-                    <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
-                    <% elsif upcoming_gig.gig.photo_url_two != nil %>
-                    <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.photo_url_two %>" class="pg-card-img"></div>
-                    <% elsif upcoming_gig.gig.photo_url_three != nil %>
-                    <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.photo_url_three %>" class="pg-card-img"></div>
-                    <% elsif upcoming_gig.gig.photo_url_four != nil %>
-                    <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.photo_url_four %>" class="pg-card-img"></div>
-                    <% end %>
-                  <div class="pg-card-content">
-                    <p class="artist"><i class="fa-solid fa-music"></i> <%= link_to "#{upcoming_gig.gig.artist.titleize}",  user_gig_path(upcoming_gig) %></p>
-                    <p class="vanue"><i class="fa-solid fa-location-dot"></i> <%= link_to "#{upcoming_gig.gig.venue.titleize}", user_gig_path(upcoming_gig) %></p>
-                    <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{upcoming_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(upcoming_gig) %></p>
-                    <!-- <div class="genre"><span><i class="fa-solid fa-guitar"></i> <%= link_to "#{upcoming_gig.gig.genre.titleize}", user_gig_path(upcoming_gig) %></span></div> -->
-                  </div>
-                <% end %>
-              </div>
-            <%# </div> %>
+            <div class="upcoming-gigs-card">
+              <%= link_to user_gig_path(upcoming_gig) do %>
+                  <% if upcoming_gig.gig.wiki_photo_url != nil %>
+                  <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
+                  <% elsif upcoming_gig.gig.photo_url_two != nil %>
+                  <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.photo_url_two %>" class="pg-card-img"></div>
+                  <% elsif upcoming_gig.gig.photo_url_three != nil %>
+                  <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.photo_url_three %>" class="pg-card-img"></div>
+                  <% elsif upcoming_gig.gig.photo_url_four != nil %>
+                  <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.photo_url_four %>" class="pg-card-img"></div>
+                  <% end %>
+                <div class="pg-card-content">
+                  <p class="artist"><i class="fa-solid fa-music"></i> <%= link_to "#{upcoming_gig.gig.artist.titleize}",  user_gig_path(upcoming_gig) %></p>
+                  <p class="vanue"><i class="fa-solid fa-location-dot"></i> <%= link_to "#{upcoming_gig.gig.venue.titleize}", user_gig_path(upcoming_gig) %></p>
+                  <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{upcoming_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(upcoming_gig) %></p>
+                </div>
+              <% end %>
+            </div>
           <% end %>
         </div>
       </div>

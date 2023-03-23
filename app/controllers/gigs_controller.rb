@@ -72,7 +72,6 @@ class GigsController < ApplicationController
 
   private
 
-
   def find_other_genres
     new_array = []
     @gigs.each do |item|

@@ -1,7 +1,7 @@
 <div class="gigs-buttons">
-  <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
-        <div class="vl-s"></div>
   <h2 class="ug"><%= link_to "Dashboard", dashboard_path, class: "link-ug-btn" %></h2>
+        <div class="vl-s"></div>
+  <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
         <div class="vl-s"></div>
   <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
 </div>
@@ -15,7 +15,7 @@
   <div class="upcoming-gigs-p">
     <h2 class="ug">Your upcoming gigs</h2>
     <% @user_gigs.each do |user_gig| %>
-        <% if user_gig.user_id == current_user.id && user_gig.gig.date > Date.current %>
+        <% if user_gig.user_id == current_user.id && user_gig.gig.date > DateTime.current %>
           <%= link_to user_gig_path(user_gig) do %>
             <div class="up-gigs-card">
               <% if user_gig.gig.wiki_photo_url != nil %>

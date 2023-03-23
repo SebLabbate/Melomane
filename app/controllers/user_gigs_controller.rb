@@ -40,13 +40,12 @@ class UserGigsController < ApplicationController
 
   def toggle
     @user_gig = UserGig.find(params[:id])
-    @user_gig.update(attended: params[:attended])
     respond_to do |format|
-      if @user_gig.update user_gig_params
-        format.html { redirect_to user_gigs_path, notice: 'Gig was attended' }
-        format.json { render @user_gig.json }
+      if @user_gig.update!(attended: params[:attended])
+        format.html { redirect_to past_gigs_user_gigs_path, notice: 'Gig was attended' }
+        format.json { render @user_gig } # { render :attended, location: @user_gig }
       else
-        format.html { render :new }
+        format.html { render :new, notice: "error" }
         format.json { render json: @user_gig.errors, status: :unprocessable_entity }
       end
     end
