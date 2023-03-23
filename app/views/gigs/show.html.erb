@@ -73,6 +73,7 @@
   </div>
   <div class="user-gig-page-suggested-title"> <p> Other <%= @gig.genre%> gigs you might like </p> </div>
   <div class="user-gig-page-suggested">
+    <% unless @other_gigs.length == 1 %>
      <% @similar_gigs.each do |gig| %>
      <div class="user-gig-suggested-a">
               <% if gig.wiki_photo_url != nil %>
@@ -92,6 +93,7 @@
              <h6> <%= link_to "#{gig.genre }", gig_path(gig) %> </h6>
      </div>
      <% end %>
+    <% end %>
   </div>
 
 </div>

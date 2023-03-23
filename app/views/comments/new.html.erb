@@ -4,7 +4,7 @@
       <%= simple_form_for [@user_gig, @comment] do |f|%>
         <%= f.input :content, label: 'Comment' %>
         <%= f.input :rating %>
-        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        <%= f.input :files, as: :file, input_html: { multiple: true } %>
         <%= f.submit "Upload memories", class: "btn primary-btn" %>
       <% end %>
     </div>

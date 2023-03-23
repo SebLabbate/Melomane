@@ -6,6 +6,11 @@
   <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
 </div>
 
+  <div class="d-flex create-container-upcoming">
+    <p id="create-gig">Couldn't find a gig?</p>
+    <%= link_to "Create gig", new_gig_path, class: "primary-button-inverse-small" %>
+  </div>
+
 <div class="up-gigs-container">
   <div class="upcoming-gigs-p">
     <h2 class="ug">Your upcoming gigs</h2>

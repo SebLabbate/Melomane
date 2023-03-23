@@ -7,18 +7,28 @@
     <h2 class="ug"><%= link_to "Upcoming Gigs", upcoming_gigs_user_gigs_path, class: "link-ug-btn" %></h2>
   </div>
 
-  <div class="search-box">
-     <div class="gig-index-search">
-       <%= form_with url: gigs_path, method: :get, class: "d-flex my-3" do %>
-         <%= text_field_tag :query,
-           params[:query],
-           class: "form-control",
-           placeholder: "Find a gig"
-         %>
-         <%= submit_tag "Search", class: "search-btn"%>
-       <% end %>
-     </div>
+  <div class="search-container">
+    <div></div>
+    <div class="search-box">
+      <div class="gig-index-search">
+        <%= form_with url: gigs_path, method: :get, class: "d-flex my-3 form-width" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find a gig"
+          %>
+          <%= submit_tag "Search", class: "search-btn"%>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="d-flex create-container">
+      <p id="create-gig">Can't find a gig?</p>
+      <%= link_to "Create gig", new_gig_path, class: "primary-button-inverse-small" %>
+    </div>
   </div>
+
+<div class="container">
   <div class="d-flex justify-content-center align-items-center">
     <div class="row mt-4 mb-4">
       <% @gigs.each do |gig| %>
@@ -37,11 +47,11 @@
              <% elsif gig.photo_url_five != nil %>
             <img src="<%= gig.photo_url_five %>" class="card-img-top" alt="...">
             <% end %>
-            <div class="card-body">
+            <div class="card-body d-flex flex-column gap-1">
               <h5 class="card-title"><%= link_to "#{gig.artist}", gig_path(gig) %></h5>
               <p class="card-text"> <%= link_to "#{gig.venue.split(',')[0]}", gig_path(gig) %>  &#x2022;
                <%= link_to "#{gig.date.strftime("%d/%m/%Y")}", gig_path(gig) %></p>
-              <%= link_to "Add to upcoming gigs", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "gig-card-button" %>
+               <%= link_to "Add to upcoming gigs", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "gig-card-button text-center" %>
             </div>
           </div>
         <% end %>

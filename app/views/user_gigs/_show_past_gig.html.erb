@@ -75,10 +75,16 @@
   <%# Memories album %>
   <div class="memories-album">
     <% @user_gig.comments.each do |comment| %>
-      <% if comment.photos.attached? %>
-        <% comment.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-          <%# <%= link_to 'Remove', user_gig_comment_path(comment), method: :delete, data: { confirm: 'Are you sure?'}, class: "text-decoration-none" %>
+      <% if comment.files.attached? %>
+        <% comment.files.each do |file| %>
+          <% if file.image? %>
+            <%= cl_image_tag file.key, height: 300, width: 400, crop: :fill %>
+          <% else file.video? %>
+            <%= cl_video_tag(url_for(file.key), width: "480", controls: "")%>
+          <% end %>
+          <%= form_tag destroy_attachment_user_gig_comment_path(@user_gig, comment, attachment_id: file.id ), method: :delete, data: {turbo_confirm: 'Are you sure?'} do %>
+            <%= submit_tag 'Remove', class: "text-decoration-none" %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
