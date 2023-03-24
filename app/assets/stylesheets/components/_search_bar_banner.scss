@@ -17,3 +17,15 @@
   gap: 19px;
   margin-right: 30px;
 }
+
+@media screen and (max-width: 900px) {
+  #create-gig {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #create-gig-btn {
+    margin-left: 5px;
+  }
+}
