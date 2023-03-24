@@ -23,7 +23,7 @@
 
   <div class="d-flex create-container">
     <p id="create-gig">Can't find a gig?</p>
-    <%= link_to "Create gig", new_gig_path, class: "primary-button-inverse-small" %>
+    <%= link_to "Create gig", new_gig_path, class: "primary-button-inverse-small", id: "create-gig-btn" %>
   </div>
 </div>
 
@@ -33,7 +33,7 @@
           <% unless gig.private %>
             <% if @user_gigs.find { |item| item.gig_id == gig.id && item.user_id == current_user.id} == nil %>
             <% if gig.date > Date.current %>
-          <div class="col-4 p-2">
+          <div class="col-lg-4 col-md-6 col-sm-12 p-2">
             <div class="gig-index-card">
               <% if gig.wiki_photo_url != nil %>
                 <img src="<%= gig.wiki_photo_url %>" class="card-img-top" alt="...">
