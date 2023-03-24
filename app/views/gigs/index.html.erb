@@ -1,63 +1,62 @@
-<div class="container">
-  <div class="gigs-buttons">
-    <h2 class="gg"><%= link_to "Dashboard", dashboard_path, class: "link-gg-btn" %></h2>
-          <div class="vl-s"></div>
-    <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
-          <div class="vl-s"></div>
-    <h2 class="ug"><%= link_to "Upcoming Gigs", upcoming_gigs_user_gigs_path, class: "link-ug-btn" %></h2>
-  </div>
+<div class="gigs-buttons">
+  <h2 class="gg"><%= link_to "Dashboard", dashboard_path, class: "link-gg-btn" %></h2>
+        <div class="vl-s"></div>
+  <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
+        <div class="vl-s"></div>
+  <h2 class="ug"><%= link_to "Upcoming Gigs", upcoming_gigs_user_gigs_path, class: "link-ug-btn" %></h2>
+</div>
 
-  <div class="search-container">
-    <div></div>
-    <div class="search-box">
-      <div class="gig-index-search">
-        <%= form_with url: gigs_path, method: :get, class: "d-flex my-3 form-width" do %>
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Find a gig"
-          %>
-          <%= submit_tag "Search", class: "search-btn"%>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="d-flex create-container">
-      <p id="create-gig">Can't find a gig?</p>
-      <%= link_to "Create gig", new_gig_path, class: "primary-button-inverse-small" %>
+<div class="search-container">
+  <div></div>
+  <div class="search-box">
+    <div class="gig-index-search">
+      <%= form_with url: gigs_path, method: :get, class: "d-flex my-3 form-width" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find a gig"
+        %>
+        <%= submit_tag "Search", class: "search-btn"%>
+      <% end %>
     </div>
   </div>
 
+  <div class="d-flex create-container">
+    <p id="create-gig">Can't find a gig?</p>
+    <%= link_to "Create gig", new_gig_path, class: "primary-button-inverse-small" %>
+  </div>
+</div>
+
 <div class="container">
-  <div class="d-flex justify-content-center align-items-center">
-    <div class="row mt-4 mb-4">
-      <% @gigs.each do |gig| %>
-        <% unless gig.private %>
-          <% if @user_gigs.find { |item| item.gig_id == gig.id && item.user_id == current_user.id} == nil %>
-             <% if gig.date > Date.current %>
-          <div class="gig-index-card" style="">
-            <% if gig.wiki_photo_url != nil %>
-            <img src="<%= gig.wiki_photo_url %>" class="card-img-top" alt="...">
-            <% elsif gig.photo_url_two != nil %>
-            <img src="<%= gig.photo_url_two %>" class="card-img-top" alt="...">
-            <% elsif gig.photo_url_three != nil %>
-            <img src="<%= gig.photo_url_three %>" class="card-img-top" alt="...">
-             <% elsif gig.photo_url_four != nil %>
-            <img src="<%= gig.photo_url_four %>" class="card-img-top" alt="...">
-             <% elsif gig.photo_url_five != nil %>
-            <img src="<%= gig.photo_url_five %>" class="card-img-top" alt="...">
-            <% end %>
-            <div class="card-body d-flex flex-column gap-1">
-              <h5 class="card-title"><%= link_to "#{gig.artist}", gig_path(gig) %></h5>
-              <p class="card-text"> <%= link_to "#{gig.venue.split(',')[0]}", gig_path(gig) %>  &#x2022;
-               <%= link_to "#{gig.date.strftime("%d/%m/%Y")}", gig_path(gig) %></p>
-               <%= link_to "Add to upcoming gigs", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "gig-card-button text-center" %>
+  <div class="row mt-4 mb-4 justify-content-center">
+        <% @gigs.each do |gig| %>
+          <% unless gig.private %>
+            <% if @user_gigs.find { |item| item.gig_id == gig.id && item.user_id == current_user.id} == nil %>
+            <% if gig.date > Date.current %>
+          <div class="col-4 p-2">
+            <div class="gig-index-card">
+              <% if gig.wiki_photo_url != nil %>
+                <img src="<%= gig.wiki_photo_url %>" class="card-img-top" alt="...">
+              <% elsif gig.photo_url_two != nil %>
+                <img src="<%= gig.photo_url_two %>" class="card-img-top" alt="...">
+              <% elsif gig.photo_url_three != nil %>
+                <img src="<%= gig.photo_url_three %>" class="card-img-top" alt="...">
+              <% elsif gig.photo_url_four != nil %>
+                <img src="<%= gig.photo_url_four %>" class="card-img-top" alt="...">
+              <% elsif gig.photo_url_five != nil %>
+                <img src="<%= gig.photo_url_five %>" class="card-img-top" alt="...">
+              <% end %>
+              <div class="card-body d-flex flex-column gap-1">
+                <h5 class="card-title"><%= link_to "#{gig.artist}", gig_path(gig) %></h5>
+                <p class="card-text"> <%= link_to "#{gig.venue.split(',')[0]}", gig_path(gig) %>  &#x2022;
+                <%= link_to "#{gig.date.strftime("%d/%m/%Y")}", gig_path(gig) %></p>
+                <%= link_to "Add to upcoming gigs", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "gig-card-button text-center", style: "margin-top: 3px;" %>
+              </div>
             </div>
           </div>
+            <% end %>
+            <% end %>
+          <% end %>
         <% end %>
-      <% end %>
-      <% end %>
-       <% end %>
-    </div>
   </div>
 </div>
