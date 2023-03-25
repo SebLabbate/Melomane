@@ -20,10 +20,6 @@
             <div class="up-gigs-card">
               <% if user_gig.gig.wiki_photo_url != nil %>
                 <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.wiki_photo_url %>" class="ug-card-img"></div>
-                <% elsif user_gig.gig.photo_url_two %>
-                <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.photo_url_two %>" class="ug-card-img"></div>
-                   <% elsif user_gig.gig.photo_url_three %>
-                <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.photo_url_three %>" class="ug-card-img"></div>
                    <% elsif user_gig.gig.photo_url_four %>
                 <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.photo_url_four %>" class="ug-card-img"></div>
                    <% elsif user_gig.gig.photo_url_five %>
@@ -49,4 +45,14 @@
         <% end %>
     <% end %>
   </div>
+
+  <div data-controller="map"
+      id='map'
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+      data-map-markers-value="<%= @markers.to_json %>"
+      class='mapboxgl-map'>
+  </div>
+
+
+
 </div>

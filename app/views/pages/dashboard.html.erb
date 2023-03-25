@@ -16,10 +16,6 @@
               <%= link_to user_gig_path(past_gig) do %>
                 <% if past_gig.gig.wiki_photo_url != nil %>
                   <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
-                  <% elsif past_gig.gig.photo_url_two != nil %>
-                  <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.photo_url_two %>" class="pg-card-img"></div>
-                  <% elsif past_gig.gig.photo_url_three != nil %>
-                  <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.photo_url_three %>" class="pg-card-img"></div>
                   <% elsif past_gig.gig.photo_url_four != nil %>
                   <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.photo_url_four %>" class="pg-card-img"></div>
                   <% end %>
@@ -44,10 +40,6 @@
               <%= link_to user_gig_path(upcoming_gig) do %>
                   <% if upcoming_gig.gig.wiki_photo_url != nil %>
                   <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
-                  <% elsif upcoming_gig.gig.photo_url_two != nil %>
-                  <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.photo_url_two %>" class="pg-card-img"></div>
-                  <% elsif upcoming_gig.gig.photo_url_three != nil %>
-                  <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.photo_url_three %>" class="pg-card-img"></div>
                   <% elsif upcoming_gig.gig.photo_url_four != nil %>
                   <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.photo_url_four %>" class="pg-card-img"></div>
                   <% end %>

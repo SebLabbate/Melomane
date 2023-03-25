@@ -1,7 +1,7 @@
 .cancel-btn-e {
   position: initial;
   right: 20px;
-  background-color: #F4F798;
+  background-color: #CF6679;
   border: none;
   border-radius: 4px;
   color: #121212;
@@ -9,15 +9,42 @@
   text-align: center;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: bold;
   font-family: "Open Sans";
   margin: 2px 0;
   cursor: pointer;
 
   &:hover {
-    margin: 10px;
+    background-color: #a32139;
     transition: all .4s ease;
-    -webkit-transition: all .4s ease;
-    color: #121212;
   }
+}
+
+.btn-inverse-small {
+  background-color: #121212;
+  border: 2px solid #F4F798;
+  border-radius: 4px;
+  color: #F4F798;
+  padding: 4px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "Open Sans";
+  margin: 4px 2px;
+  cursor: pointer;
+
+  &:hover {
+    border: 2px solid #F7C729;
+    color: #F7C729;
+    transition: all .4s ease;
+  }
+}
+
+.buttons-wrap {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
 }

@@ -19,10 +19,6 @@
             <div class="artist-photo">
               <% if @user_gig.gig.wiki_photo_url != nil %>
                     <img src="<%= (@user_gig.gig.wiki_photo_url) %>">
-                  <% elsif @user_gig.gig.photo_url_two != nil %>
-                    <img src="<%= (@user_gig.gig.photo_url_two) %>">
-                   <% elsif @user_gig.gig.photo_url_three != nil %>
-                    <img src="<%= (@user_gig.gig.photo_url_three) %>">
                     <% elsif @user_gig.gig.photo_url_four != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_four) %>">
                     <% elsif @user_gig.gig.photo_url_five != nil %>
@@ -30,7 +26,13 @@
                <% end %>
             </div>
             <div class="mt-2">
-              <p> <strong> <span><%= @user_gig.gig.genre.capitalize %></span> </strong> - <%= @user_gig.gig.artist_info %> </p>
+                 <% if @user_gig.gig.genre != nil %>
+                <% if @user_gig.gig.wiki_photo_url == nil %>
+              <p> <strong> <span><%= @user_gig.gig.genre.capitalize %></span> </strong></p>
+                <% else %>
+                <p> <strong> <span><%= @user_gig.gig.genre.capitalize %></span> </strong> - <%= @user_gig.gig.artist_info %> </p>
+                 <% end %>
+                 <% end %>
             <%# <div class="user-gig-page-main-left-map"> %>
             <%# MAP</div> %>
             </div>
@@ -173,27 +175,29 @@
     <h4> Suggested <span><%= @user_gig.gig.genre %></span> gigs </h4>
   </div>
     <div class="user-gig-page-suggested">
-      <% unless @other_gigs.length == 1 || @other_gigs.length == 0 %>
-        <% @similar_gigs.each do |gig| %>
-        <div class="user-gig-suggested-a">
-                  <% if gig.wiki_photo_url != nil %>
-                <img src="<%= gig.wiki_photo_url %>" class="user-gig-suggested-image" alt="...">
-                  <% elsif gig.photo_url_two != nil %>
-                  <img src="<%=gig.photo_url_two %>" class="user-gig-suggested-image" alt="...">
-                  <% elsif gig.photo_url_three != nil %>
-                  <img src="<%= gig.photo_url_three %>" class="user-gig-suggested-image" alt="...">
-                  <% elsif gig.photo_url_four != nil %>
-                  <img src="<%= gig.photo_url_four %>" class="user-gig-suggested-image" alt="...">
-                  <% elsif gig.photo_url_five != nil %>
-                  <img src="<%= gig.photo_url_five %>" class="user-gig-suggested-image" alt="...">
-                  <% end %>
-                      <h4>  <%= link_to "#{gig.artist }",  gig_path(gig) %> </h4>
-                <h6><%= link_to "#{gig.venue  }", gig_path(gig) %> </h6>
-                <h6> <%= link_to "#{gig.date.strftime("%e %b %Y")  }", gig_path(gig) %> </h6>
-                <h6> <%= link_to "#{gig.genre }", gig_path(gig) %> </h6>
-        </div>
-        <% end %>
-     <% end %>
+
+    <% unless @other_gigs.length == 1 || @other_gigs.length == 0 %>
+      <% @similar_gigs.each do |gig| %>
+      <div class="user-gig-suggested-a">
+                <% if gig.wiki_photo_url != nil %>
+              <img src="<%= gig.wiki_photo_url %>" class="user-gig-suggested-image" alt="...">
+                <% elsif gig.photo_url_two != nil %>
+                <img src="<%=gig.photo_url_two %>" class="user-gig-suggested-image" alt="...">
+                <% elsif gig.photo_url_three != nil %>
+                <img src="<%= gig.photo_url_three %>" class="user-gig-suggested-image" alt="...">
+                <% elsif gig.photo_url_four != nil %>
+                <img src="<%= gig.photo_url_four %>" class="user-gig-suggested-image" alt="...">
+                <% elsif gig.photo_url_five != nil %>
+                <img src="<%= gig.photo_url_five %>" class="user-gig-suggested-image" alt="...">
+                <% end %>
+                    <h4>  <%= link_to "#{gig.artist }",  gig_path(gig) %> </h4>
+              <h6><%= link_to "#{gig.venue  }", gig_path(gig) %> </h6>
+              <h6> <%= link_to "#{gig.date.strftime("%e %b %Y")  }", gig_path(gig) %> </h6>
+              <h6> <%= link_to "#{gig.genre }", gig_path(gig) %> </h6>
+      </div>
+      <% end %>
+    <% end %>
+
   </div>
   <div class="container d-flex justify-content-between mb-4">
     <%= link_to "Edit gig", edit_user_gig_path(@user_gig), class: "primary-button-inverse"%>

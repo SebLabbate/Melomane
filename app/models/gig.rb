@@ -30,7 +30,11 @@ class Gig < ApplicationRecord
     RSpotify::authenticate('13a5a78c35794c128471c373008efb01', '1cfa0c2e5bc04728b9e9e56731e0db20')
     artists = RSpotify::Artist.search(artist)
     artist = artists.first
-    genre = artist.genres
+    if artist.genres != nil
+      genre = artist.genres
+    else
+      self.genre = nil
+    end
     artist_genre = genre.sort_by { |item| item.length }
     first_artist_genre = artist_genre[0]
     if first_artist_genre != nil
