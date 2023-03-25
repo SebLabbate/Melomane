@@ -90,3 +90,4 @@ gem 'spotify-ruby'
 gem 'react-rails'
 gem "cloudinary"
 gem "geocoder"
+gem 'ticketmaster'

@@ -4,7 +4,11 @@
         <div class="user-gig-page-main-left-about">
          <p> <%= @gig.artist %> @ <%= @gig.venue %></p>
          <p> <%= @gig.date.strftime("%e %b %Y") %> </p>
-         <p> <strong> <%= @gig.genre %> </strong> - <%= @gig.artist_info %> </p>
+         <% if @gig.wiki_photo_url == nil %>
+         <p> <strong> <%= @gig.genre %> </strong> </p>
+          <% else %>
+          <p> <strong> <%= @gig.genre %> </strong> - <%= @gig.artist_info %> </p>
+          <% end %>
         </div>
         <div class="user-gig-page-main-left-map">
         <% if @gig.date < Date.current%>
@@ -78,10 +82,6 @@
      <div class="user-gig-suggested-a">
               <% if gig.wiki_photo_url != nil %>
              <img src="<%= gig.wiki_photo_url %>" class="user-gig-suggested-image" alt="...">
-              <% elsif gig.photo_url_two != nil %>
-              <img src="<%=gig.photo_url_two %>" class="user-gig-suggested-image" alt="...">
-              <% elsif gig.photo_url_three != nil %>
-              <img src="<%= gig.photo_url_three %>" class="user-gig-suggested-image" alt="...">
               <% elsif gig.photo_url_four != nil %>
               <img src="<%= gig.photo_url_four %>" class="user-gig-suggested-image" alt="...">
               <% elsif gig.photo_url_five != nil %>

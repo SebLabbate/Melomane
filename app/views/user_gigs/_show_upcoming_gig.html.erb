@@ -19,10 +19,6 @@
             <div class="artist-photo">
               <% if @user_gig.gig.wiki_photo_url != nil %>
                     <img src="<%= (@user_gig.gig.wiki_photo_url) %>">
-                  <% elsif @user_gig.gig.photo_url_two != nil %>
-                    <img src="<%= (@user_gig.gig.photo_url_two) %>">
-                   <% elsif @user_gig.gig.photo_url_three != nil %>
-                    <img src="<%= (@user_gig.gig.photo_url_three) %>">
                     <% elsif @user_gig.gig.photo_url_four != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_four) %>">
                     <% elsif @user_gig.gig.photo_url_five != nil %>
@@ -173,6 +169,7 @@
     <h4> Suggested <span><%= @user_gig.gig.genre %></span> gigs </h4>
   </div>
     <div class="user-gig-page-suggested">
+
     <% unless @other_gigs.length == 1 || @other_gigs.length == 0 %>
       <% @similar_gigs.each do |gig| %>
       <div class="user-gig-suggested-a">
@@ -194,6 +191,7 @@
       </div>
       <% end %>
     <% end %>
+
   </div>
   <div class="container d-flex justify-content-between mb-4">
     <%= link_to "Edit gig", edit_user_gig_path(@user_gig), class: "primary-button-inverse"%>

@@ -1,5 +1,5 @@
 .user-gig-page {
-  height:1000px;
+  height: 665px;
   color: white;
   padding-top: 30px;
   color: white;
@@ -21,7 +21,7 @@
 }
 
 .user-gig_page-main {
-  height:500px;
+  height: 500px;
   width: 100%;
   margin-left: 100px;
   margin-right: 100px;
@@ -70,7 +70,6 @@
 }
 
 .artist-photo {
-
   img {
     border-radius: 8px;
     height: 200px;
@@ -94,34 +93,33 @@
     }
 }
 
-.memories-album {
+.album-container {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+.album {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
-  margin-bottom: 50px;
-  margin-top: -142px;
-    img {
-      max-width: 100%;
-      height: auto;
-    }
+  padding: 16px;
+  flex-grow: 1;
+  flex-wrap: wrap;
 }
-
-.album-container {
+.album img {
   position: relative;
-  width: 100%;
-  max-width: 400px;
 }
 
-.album-container img {
-  width: 600px;
-  height: 400px;
-}
-
-.album-container .attachment-remove-button {
+.attachment-remove-button {
   position: absolute;
-  top: 50%;
-  left: 70%;
+  top: 0%;
+  left: 0%;
   transform: translate(-50%, -50%);
+  background-color: #121212;
+}
+
+.remove-button-position {
+
 }
 
 .user-gig-page-main-right {
@@ -281,4 +279,40 @@
   width:300px;
   height:200px;
   float:right;
+}
+
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

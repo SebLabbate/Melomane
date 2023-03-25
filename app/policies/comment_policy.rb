@@ -19,7 +19,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    return record.user_id == user.id
+    return record.user_gig.user_id == user.id
   end
 
   def destroy_attachment?
