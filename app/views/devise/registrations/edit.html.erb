@@ -30,10 +30,12 @@
       </div>
     <% end %>
 
+    <div class="buttons-wrap">
     <div>
       <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "cancel-btn-e" %>
     </div>
 
-    <%= link_to "Back", :back, class: "forgotten-password"%>
+    <%= link_to "Back", :back, class: "btn-inverse-small" %>
+    </div>
   </div>
 </div>

@@ -1,0 +1,30 @@
+.mapboxgl-map {
+width: 50%;
+height: 400px;
+border-radius: 18px;
+box-shadow: 0px 0px 18px #7e7e7e;
+margin: 60px 30px 0 30px;
+  &:hover {
+    box-shadow: 0px 0px 22px #7e7e7e;
+    transition: .25s ease-in-out;
+  }
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 12px !important;
+}
+
+p#map {
+  color: #121212;
+  font-size: 16px;
+}
+
+a.mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib-inner {
+  display: none !important;
+}

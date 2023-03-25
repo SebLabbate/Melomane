@@ -33,24 +33,31 @@ class UserGigsController < ApplicationController
   end
 
   def upcoming_gigs
-    @gigs = Gig.all
     @user_gigs = policy_scope(UserGig).all
     authorize @user_gigs
+    @user_gigs = @user_gigs.select { |user_gig| user_gig.gig.date > DateTime.current }
+    @markers = @user_gigs.map do |user_gig|
+      {
+        lat: user_gig.gig.latitude,
+        lng: user_gig.gig.longitude,
+        info_window_html: render_to_string(partial: "popup", locals: {user_gig: user_gig})
+      }
+    end
   end
 
-  def toggle
-    @user_gig = UserGig.find(params[:id])
-    respond_to do |format|
-      if @user_gig.update!(attended: params[:attended])
-        format.html { redirect_to past_gigs_user_gigs_path, notice: 'Gig was attended' }
-        format.json { render @user_gig } # { render :attended, location: @user_gig }
-      else
-        format.html { render :new, notice: "error" }
-        format.json { render json: @user_gig.errors, status: :unprocessable_entity }
-      end
-    end
-    authorize @user_gig
-  end
+  # def toggle
+  #   @user_gig = UserGig.find(params[:id])
+  #   respond_to do |format|
+  #     if @user_gig.update!(attended: params[:attended])
+  #       format.html { redirect_to past_gigs_user_gigs_path, notice: 'Gig was attended' }
+  #       format.json { render @user_gig } # { render :attended, location: @user_gig }
+  #     else
+  #       format.html { render :new, notice: "error" }
+  #       format.json { render json: @user_gig.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  #   authorize @user_gig
+  # end
 
   def create
     @user_gig = UserGig.new
