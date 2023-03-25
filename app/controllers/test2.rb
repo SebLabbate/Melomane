@@ -14,4 +14,5 @@ request = Net::HTTP::Get.new(url)
 response = http.request(request)
 events = response.read_body
 gigs = JSON.parse(events)
-puts gigs[:_embedded]
+events_hash = gigs["_embedded"]
+puts events_hash[0..2]
