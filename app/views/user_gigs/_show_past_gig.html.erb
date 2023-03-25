@@ -21,10 +21,6 @@
               <div class="artist-photo">
                 <% if @user_gig.gig.wiki_photo_url != nil %>
                   <img src="<%= (@user_gig.gig.wiki_photo_url) %>">
-                <% elsif @user_gig.gig.photo_url_two != nil %>
-                  <img src="<%= (@user_gig.gig.photo_url_two) %>">
-                  <% elsif @user_gig.gig.photo_url_three != nil %>
-                  <img src="<%= (@user_gig.gig.photo_url_three) %>">
                   <% elsif @user_gig.gig.photo_url_four != nil %>
                   <img src="<%= (@user_gig.gig.photo_url_four) %>">
                   <% elsif @user_gig.gig.photo_url_five != nil %>
