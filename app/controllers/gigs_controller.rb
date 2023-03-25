@@ -30,6 +30,7 @@ class GigsController < ApplicationController
     else
       @similar_gigs = nil
     end
+    set_markers
   end
 
   def new
@@ -71,6 +72,14 @@ class GigsController < ApplicationController
   end
 
   private
+
+  def set_markers
+    @markers =
+      [{
+        lat: @gig.latitude,
+        lng: @gig.longitude
+      }]
+  end
 
   def find_other_genres
     new_array = []
