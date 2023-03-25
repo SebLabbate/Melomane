@@ -35,23 +35,25 @@
             <% if gig.date > Date.current %>
           <div class="col-lg-4 col-md-6 col-sm-12 p-2">
             <div class="gig-index-card">
-              <% if gig.wiki_photo_url != nil %>
-                <img src="<%= gig.wiki_photo_url %>" class="card-img-top" alt="...">
-              <% elsif gig.photo_url_two != nil %>
-                <img src="<%= gig.photo_url_two %>" class="card-img-top" alt="...">
-              <% elsif gig.photo_url_three != nil %>
-                <img src="<%= gig.photo_url_three %>" class="card-img-top" alt="...">
-              <% elsif gig.photo_url_four != nil %>
-                <img src="<%= gig.photo_url_four %>" class="card-img-top" alt="...">
-              <% elsif gig.photo_url_five != nil %>
-                <img src="<%= gig.photo_url_five %>" class="card-img-top" alt="...">
+              <%= link_to gig_path(gig) do %>
+                <% if gig.wiki_photo_url != nil %>
+                  <img src="<%= gig.wiki_photo_url %>" class="card-img-top" alt="...">
+                <% elsif gig.photo_url_two != nil %>
+                  <img src="<%= gig.photo_url_two %>" class="card-img-top" alt="...">
+                <% elsif gig.photo_url_three != nil %>
+                  <img src="<%= gig.photo_url_three %>" class="card-img-top" alt="...">
+                <% elsif gig.photo_url_four != nil %>
+                  <img src="<%= gig.photo_url_four %>" class="card-img-top" alt="...">
+                <% elsif gig.photo_url_five != nil %>
+                  <img src="<%= gig.photo_url_five %>" class="card-img-top" alt="...">
+                <% end %>
+                <div class="card-body d-flex flex-column gap-1">
+                  <h5 class="card-title"><%= link_to "#{gig.artist}", gig_path(gig) %></h5>
+                  <p class="card-text"> <%= link_to "#{gig.venue.split(',')[0]}", gig_path(gig) %>  &#x2022;
+                  <%= link_to "#{gig.date.strftime("%d/%m/%Y")}", gig_path(gig) %></p>
+                  <%= link_to "Add to upcoming gigs", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "gig-card-button text-center", style: "margin-top: 3px;" %>
+                </div>
               <% end %>
-              <div class="card-body d-flex flex-column gap-1">
-                <h5 class="card-title"><%= link_to "#{gig.artist}", gig_path(gig) %></h5>
-                <p class="card-text"> <%= link_to "#{gig.venue.split(',')[0]}", gig_path(gig) %>  &#x2022;
-                <%= link_to "#{gig.date.strftime("%d/%m/%Y")}", gig_path(gig) %></p>
-                <%= link_to "Add to upcoming gigs", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "gig-card-button text-center", style: "margin-top: 3px;" %>
-              </div>
             </div>
           </div>
             <% end %>
