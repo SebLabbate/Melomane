@@ -60,13 +60,19 @@
 }
 
 .user-gig-page-main-left {
-  height:520px;
+  // height:520px;
   width:40%;
   float:left;
   color: white;
     i {
       color: #F4F798;
     }
+}
+
+.show-map {
+  display: flex;
+  justify-content: center;
+  align-content: center !important;
 }
 
 .artist-photo {
