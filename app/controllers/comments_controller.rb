@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_user_gig, only: %i[ new show create destroy_attachment]
-  before_action :set_comment, only: :destroy_attachment
+  before_action :set_user_gig, only: %i[ new show create destroy destroy_attachment]
+  before_action :set_comment, only: %i[show destroy destroy_attachment]
 
   def index
     @comments = Comments.all.with_attached_photos
@@ -24,6 +24,17 @@ class CommentsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  # Destroy comment & rating
+  # def destroy
+  #   @comment.content = nil
+  #   authorize @comment
+  #   # respond_to do |format|
+  #   #   format.html { redirect_to user_gig_path(@comment.user_gig), notice: "Comment deleted" }
+  #   #   format.json { head :no_content }
+  #   # end
+  # end
+
 
   def destroy_attachment
     attachment = ActiveStorage::Attachment.find(params[:attachment_id])
