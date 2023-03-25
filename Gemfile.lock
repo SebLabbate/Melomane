@@ -59,9 +59,17 @@ GEM
       globalid (>= 0.3.6)
     activemodel (7.0.4.2)
       activesupport (= 7.0.4.2)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (7.0.4.2)
       activemodel (= 7.0.4.2)
       activesupport (= 7.0.4.2)
+    activeresource (6.0.0)
+      activemodel (>= 6.0)
+      activemodel-serializers-xml (~> 1.0)
+      activesupport (>= 6.0)
     activestorage (7.0.4.2)
       actionpack (= 7.0.4.2)
       activejob (= 7.0.4.2)
@@ -295,6 +303,10 @@ GEM
       railties (>= 6.0.0)
     stringio (3.0.5)
     thor (1.2.1)
+    ticketmaster (0.5.0)
+      activeresource (>= 2.3.2)
+      activesupport (>= 2.3.2)
+      hashie
     tilt (2.1.0)
     time (0.2.1)
       date
@@ -363,6 +375,7 @@ DEPENDENCIES
   spotify-ruby
   sprockets-rails
   stimulus-rails
+  ticketmaster
   turbo-rails
   tzinfo-data
   web-console
