@@ -275,7 +275,7 @@
 }
 
 
-.user-gig-suggested-a{
+.user-gig-suggested{
   border-style: solid;
   width: 78%;
   height: 270px;
@@ -288,42 +288,6 @@
     box-shadow: 0px 0px 20px #7e7e7e;
     transition: .25s ease;
     }
- }
-
-
-.user-gig-suggested-b{
-  display: flex;
-  width:400px;
-  height:200px;
-  //border-style: solid;
-  //border-color:blue;
-  a {
-    text-decoration: none;
-    font-size: 18px;
-    color:white;
-  }
-  margin-left: 10px;
- }
-
-.user-gig-suggested-c{
-  display: flex;
-  width:400px;
-  height:200px;
- // border-style: solid;
-  //border-color:blue;
-  a {
-    text-decoration: none;
-    font-size: 18px;
-    color:white;
-  }
-  margin-left: 10px;
-}
-
-.user-gig-suggested-d{
-  display: flex;
-  width:300px;
-  height:100px;
-  color: white;
  }
 
 
