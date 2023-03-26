@@ -178,7 +178,7 @@
 
     <% unless @other_gigs.length == 1 || @other_gigs.length == 0 %>
       <% @similar_gigs.each do |gig| %>
-      <div class="user-gig-suggested-a">
+        <div class="user-gig-suggested-a">
                 <% if gig.wiki_photo_url != nil %>
               <img src="<%= gig.wiki_photo_url %>" class="user-gig-suggested-image" alt="...">
                 <% elsif gig.photo_url_two != nil %>
@@ -194,7 +194,7 @@
               <h6><%= link_to "#{gig.venue  }", gig_path(gig) %> </h6>
               <h6> <%= link_to "#{gig.date.strftime("%e %b %Y")  }", gig_path(gig) %> </h6>
               <h6> <%= link_to "#{gig.genre }", gig_path(gig) %> </h6>
-      </div>
+        </div>
       <% end %>
     <% end %>
 

@@ -1,5 +1,4 @@
 .up-gigs-card {
-  // border: 1px solid #F4F798;
   display: flex;
   flex-direction: row;
   border-radius: 18px;
@@ -104,4 +103,15 @@
 .upcoming-gigs-p {
   display: grid;
   grid-template-columns: 1fr;
+}
+
+.message {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.primary-button-inverse {
+  margin-top: 12px;
+  padding: 8px 28px;
+  font-size: 18px;
 }
