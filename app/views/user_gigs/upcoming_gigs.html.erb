@@ -42,7 +42,7 @@
                 </div>
                 <div class="edit">
                   <% if user_gig.gig.user_id == current_user.id%>
-                    <%= link_to "Edit", edit_user_gig_path(user_gig), class: "edit-btn" %>
+                    <%= link_to "Edit gig", edit_user_gig_path(user_gig), data: {turbo_frame: "modal"}, class: "edit-btn"%>
                   <% end %>
                 </div>
 
