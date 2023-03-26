@@ -52,3 +52,43 @@
   color: #F4F798;
   margin: 10px;
 }
+.form-edit {
+  padding: 20px;
+  border: 0.1rem solid white;
+  border-radius: 20px;
+  height: auto;
+  width: 46%;
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+  color: white;
+  opacity: 87%;
+}
+.btn {
+  width: 100%;
+  background-color: #F4F798;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: black;
+}
+.btn:hover {
+  background-color: #F7C729;
+}
+}
+
+.col-form-label {
+  color: white;
+}
+
+.form-check {
+  color: white;
+  width: 66%;
+}
+
+.radio_buttons {
+  display: flex;
+}

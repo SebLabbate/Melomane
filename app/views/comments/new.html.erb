@@ -2,8 +2,8 @@
   <h2 class="pt-5">Add a memory</h2>
     <div class="form-signup">
       <%= simple_form_for [@user_gig, @comment] do |f|%>
-        <%= f.input :content, label: 'Comment' %>
-        <%= f.input :rating %>
+        <%= f.input :content, as: :text, input_html: {rows: 5, cols: 10},  label: 'Comment' %>
+        <%= f.input :rating, as: :radio_buttons, :collection => 1..5 %>
         <%= f.input :files, as: :file, input_html: { multiple: true } %>
         <%= f.submit "Upload memories", class: "btn primary-btn" %>
       <% end %>
