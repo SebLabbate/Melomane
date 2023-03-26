@@ -81,7 +81,7 @@ class UserGigsController < ApplicationController
     @user_gig.user = current_user
     respond_to do |format|
       if @user_gig.update user_gig_params
-        format.html { redirect_to upcoming_gigs_user_gigs_path, notice: "Your gig edited" }
+        format.html { redirect_to user_gig_path(@user_gig), notice: "Your gig edited" }
         format.json { render :new, status: :edited, location: @user_gig }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -94,7 +94,7 @@ class UserGigsController < ApplicationController
     authorize @user_gig
     @user_gig.destroy
     respond_to do |format|
-      format.html { redirect_to user_gig_path, notice: "Gig removed" }
+      format.html { redirect_to dashboard_path, notice: "Gig removed" }
       format.json { head :no_content }
     end
   end
@@ -106,7 +106,7 @@ class UserGigsController < ApplicationController
   end
 
   def user_gig_params
-    params.require(:user_gig).permit(:comment, :attended, :user_id, gig_attributes: [:id, :name, :artist])
+    params.require(:user_gig).permit(:comment, :attended, :user_id, gig_attributes: [:id, :artist, :venue, :genre, :date])
   end
 
   def find_other_genres
