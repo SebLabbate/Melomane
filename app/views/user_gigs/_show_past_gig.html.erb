@@ -16,7 +16,7 @@
             <h2><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %> </h2>
             <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), data: {turbo_frame: "modal"}, class: "primary-button" %>
           </div>
-          <p> <%= @user_gig.gig.date.strftime("%e %b %Y") %> </p>
+           <p><span><%= @user_gig.gig.genre.capitalize %></span> <%= @user_gig.gig.date.strftime("%e %b %Y") %></p>
             <div class="user-gig-page-main-left-user-info">
               <div class="artist-photo">
                 <% if @user_gig.gig.wiki_photo_url != nil %>
@@ -75,7 +75,7 @@
     <div class="row mt-4 mb-4 justify-content-center">
       <% @user_gig.comments.each do |comment| %>
         <% if comment.files.attached?%>
-          <div class="col-xl-4 col-lg-6 col-md-6 col-sm-8 p-2">
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 p-2">
             <% comment.files.each do |file| %>
               <div class="album-cards">
                 <% if file.image? %>
