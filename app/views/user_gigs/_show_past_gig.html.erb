@@ -14,7 +14,7 @@
         <div class="user-gig-page-main-left-about">
           <div class="artist-headline d-flex justify-content-between", style="width: 124%;">
             <h2><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %> </h2>
-            <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), class: "primary-button" %>
+            <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), data: {turbo_frame: "modal"}, class: "primary-button" %>
           </div>
           <p> <%= @user_gig.gig.date.strftime("%e %b %Y") %> </p>
             <div class="user-gig-page-main-left-user-info">
@@ -99,7 +99,7 @@
   </div>
 
   <div class="container d-flex justify-content-between mb-4">
-    <%= link_to "Edit gig", edit_user_gig_path(@user_gig), class: "primary-button-inverse"%>
+    <%= link_to "Edit gig", edit_user_gig_path(@user_gig), data: {turbo_frame: "modal"}, class: "primary-button-inverse"%>
     <%= link_to "Remove", user_gig_path(@user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "warning-button"%>
   </div>
 </div>
