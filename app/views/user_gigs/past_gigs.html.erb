@@ -26,7 +26,7 @@
 
     <div class="past-gigs">
       <% @user_gigs.each do |user_gig| %>
-        <% if user_gig.user_id == current_user.id && user_gig.gig.date < DateTime.current %>
+        <% if user_gig.user_id == current_user.id && user_gig.gig.date != nil && user_gig.gig.date < DateTime.current %>
             <div class="past-gigs-card">
           <%= link_to user_gig_path(user_gig) do %>
               <% if user_gig.gig.wiki_photo_url != nil %>

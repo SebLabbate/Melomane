@@ -58,9 +58,15 @@
           <div class="player-card">
             <div class="player-container">
               <ul>
-                <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_one %> <audio id="player" controls> <source src="<%= @user_gig.gig.song_one_audio%>" type="audio/mpeg"> </audio></p></div>
-                <div><p> <i class="fa-solid fa-circle"></i> <%=@user_gig.gig.song_two %> <audio id="player" controls> <source src="<%=  @user_gig.gig.song_two_audio%>" type="audio/mpeg"> </audio></p></div>
-                <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_three %> <audio id="player" controls> <source src="<%=  @user_gig.gig.song_three_audio%>" type="audio/mpeg"> </audio></p></div>
+              <% if @audio_one != nil %>
+                <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_one %> <audio id="player" controls> <source src="<%= @audio_one %>" type="audio/mpeg"> </audio></p></div>
+               <% end %>
+               <% if @audio_two != nil %>
+                <div><p> <i class="fa-solid fa-circle"></i> <%=@user_gig.gig.song_two %> <audio id="player" controls> <source src="<%=  @audio_two %>" type="audio/mpeg"> </audio></p></div>
+                <% end %>
+               <% if @audio_three != nil %>
+                <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_three %> <audio id="player" controls> <source src="<%=  @audio_three %>" type="audio/mpeg"> </audio></p></div>
+                <% end %>
               </ul>
             </div>
           </div>

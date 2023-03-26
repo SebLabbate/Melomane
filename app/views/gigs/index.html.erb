@@ -29,34 +29,38 @@
 
 <div class="container">
   <div class="row mt-4 mb-4 justify-content-center">
-        <% @gigs.each do |gig| %>
-          <% unless gig.private %>
-            <% if @user_gigs.find { |item| item.gig_id == gig.id && item.user_id == current_user.id} == nil %>
-            <% if gig.date > Date.current %>
+       <% if @events_array != nil %>
+        <% @events_array[0..2].each do |event| %>
+                      <% @artist_string = event["name"] %>
+              <% @event_venue = event["_embedded"]["venues"][0]["name"] %>
+                <% event_string = event["dates"]["start"]["dateTime"] %>
+                <% @new_gig = Gig.new(user_id: 1, name: "#{@artist_string}#{@event_string}", artist: @search_params, venue: @event_venue, date: @event_date_string)%>
+                <% @new_gig.save %>
           <div class="col-lg-4 col-md-6 col-sm-12 p-2">
             <div class="gig-index-card">
-              <% if gig.wiki_photo_url != nil %>
-                <img src="<%= gig.wiki_photo_url %>" class="card-img-top" alt="...">
-              <% elsif gig.photo_url_two != nil %>
-                <img src="<%= gig.photo_url_two %>" class="card-img-top" alt="...">
-              <% elsif gig.photo_url_three != nil %>
-                <img src="<%= gig.photo_url_three %>" class="card-img-top" alt="...">
-              <% elsif gig.photo_url_four != nil %>
-                <img src="<%= gig.photo_url_four %>" class="card-img-top" alt="...">
-              <% elsif gig.photo_url_five != nil %>
-                <img src="<%= gig.photo_url_five %>" class="card-img-top" alt="...">
+                       <% if @new_gig.wiki_photo_url != nil %>
+                <img src="<%= @new_gig.wiki_photo_url %>" class="card-img-top" alt="...">
+              <% elsif @new_gig.photo_url_two != nil %>
+                <img src="<%= @new_gig.photo_url_two %>" class="card-img-top" alt="...">
+              <% elsif @new_gig.photo_url_three != nil %>
+                <img src="<%= @new_gig.photo_url_three %>" class="card-img-top" alt="...">
+              <% elsif @new_gig.photo_url_four != nil %>
+                <img src="<%= @new_gig.photo_url_four %>" class="card-img-top" alt="...">
+              <% elsif @new_gig.photo_url_five != nil %>
+                <img src="<%= @new_gig.photo_url_five %>" class="card-img-top" alt="...">
               <% end %>
               <div class="card-body d-flex flex-column gap-1">
-                <h5 class="card-title"><%= link_to "#{gig.artist}", gig_path(gig) %></h5>
-                <p class="card-text"> <%= link_to "#{gig.venue.split(',')[0]}", gig_path(gig) %>  &#x2022;
-                <%= link_to "#{gig.date.strftime("%d/%m/%Y")}", gig_path(gig) %></p>
-                <%= link_to "Add to upcoming gigs", gig_user_gigs_path(gig), data: {turbo_method: :post}, class: "gig-card-button text-center", style: "margin-top: 3px;" %>
+                <h5 class="card-title"><%= link_to "#{@artist_string}", gig_path(@new_gig.id) %></h5>
+               <p class="card-text"> <%= link_to "#{@event_venue}", gig_path(@new_gig.id) %>  &#x2022;
+                 <% @event_date_string = event_string.split('T')[0] unless event_string == nil %>
+                 <%= link_to "#{@event_date_string}", gig_path(@new_gig.id) %> </p>
+                  <%= link_to "Add to upcoming gigs", gig_user_gigs_path(@new_gig.id), data: {turbo_method: :post}, class: "gig-card-button text-center", style: "margin-top: 3px;" %>
               </div>
             </div>
           </div>
             <% end %>
+            <% else %>
+          <p>  We couldnt find any events by this search critera </p>
             <% end %>
-          <% end %>
-        <% end %>
   </div>
 </div>
