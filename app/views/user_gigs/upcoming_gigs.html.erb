@@ -12,47 +12,51 @@
   </div>
 
 <div class="up-gigs-container">
-  <div class="upcoming-gigs-p">
-    <h2 class="ug">Your upcoming gigs</h2>
-    <% @user_gigs.each do |user_gig| %>
-        <% if user_gig.user_id == current_user.id && user_gig.gig.date > DateTime.current %>
-          <%= link_to user_gig_path(user_gig) do %>
-            <div class="up-gigs-card">
-              <% if user_gig.gig.wiki_photo_url != nil %>
-                <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.wiki_photo_url %>" class="ug-card-img"></div>
-                   <% elsif user_gig.gig.photo_url_four %>
-                <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.photo_url_four %>" class="ug-card-img"></div>
-                   <% elsif user_gig.gig.photo_url_five %>
-                <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.photo_url_five%>" class="ug-card-img"></div>
-                <% end %>
-              <div class="ug-card-content">
-                <p class="artist"><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></p>
-                <p class="vanue"><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", user_gig_path(user_gig) %></p>
-                <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(user_gig) %></p>
-              </div>
+  <% if @user_gigs.empty? %>
+    <div class="message">
+      <h2 class="msg">Does your melodie ran out of notes ?</h2>
+      <%= link_to "Find a Gig", gigs_path, class: "primary-button-inverse" %>
+    </div>
+    <% else %>
+    <div class="upcoming-gigs-p">
+      <h2 class="ug">Your upcoming gigs</h2>
+      <% @user_gigs.each do |user_gig| %>
+          <% if user_gig.user_id == current_user.id && user_gig.gig.date > DateTime.current %>
+            <%= link_to user_gig_path(user_gig) do %>
+              <div class="up-gigs-card">
+                <% if user_gig.gig.wiki_photo_url != nil %>
+                  <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.wiki_photo_url %>" class="ug-card-img"></div>
+                    <% elsif user_gig.gig.photo_url_four %>
+                  <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.photo_url_four %>" class="ug-card-img"></div>
+                    <% elsif user_gig.gig.photo_url_five %>
+                  <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.photo_url_five%>" class="ug-card-img"></div>
+                  <% end %>
+                <div class="ug-card-content">
+                  <p class="artist"><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></p>
+                  <p class="vanue"><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", user_gig_path(user_gig) %></p>
+                  <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(user_gig) %></p>
+                </div>
 
-              <div class="cancel">
-                <%= link_to "Cancel", user_gig_path(user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "cancel-btn" %>
-              </div>
-              <div class="edit">
-                <% if user_gig.gig.user_id == current_user.id%>
-                  <%= link_to "Edit", edit_user_gig_path(user_gig), class: "edit-btn" %>
-                <% end %>
-              </div>
+                <div class="cancel">
+                  <%= link_to "Cancel", user_gig_path(user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "cancel-btn" %>
+                </div>
+                <div class="edit">
+                  <% if user_gig.gig.user_id == current_user.id%>
+                    <%= link_to "Edit", edit_user_gig_path(user_gig), class: "edit-btn" %>
+                  <% end %>
+                </div>
 
-            </div>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
 
-  <div data-controller="map"
-      id='map'
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-      data-map-markers-value="<%= @markers.to_json %>"
-      class='mapboxgl-map'>
-  </div>
-
-
-
+    <div class='mapboxgl-map'
+        data-controller="map"
+        id='map'
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+        data-map-markers-value="<%= @markers.to_json %>">
+    </div>
+  <% end %>
 </div>
