@@ -1,20 +1,22 @@
-<div class="center-container">
-  <h2 class="m-3">Edit your gig</h2>
-  <div class="form-edit mb-3">
-    <%= simple_form_for (@user_gig) do |f|%>
-      <div class="form-inputs">
-        <%= f.simple_fields_for :gig do |g|%>
-          <%= g.input :artist %>
-          <%= g.input :venue %>
-          <%= g.input :genre %>
-          <%= g.input :date %>
-        <% end %>
-
-      <div class="form-actions">
-        <div class="form-actions-buttons">
-          <%= f.button :submit, "Update" %>
+<%= turbo_frame_tag "modal" do %>
+  <div class="modal-form">
+    <div class="edit-modal-center-container">
+      <h2 class="pt-5 modal-header">Edit your gig</h2>
+      <%= simple_form_for (@user_gig), data: {turbo_frame: "_top"} do |f|%>
+        <div class="form-inputs">
+          <%= f.simple_fields_for :gig do |g|%>
+            <%= g.input :artist %>
+            <%= g.input :venue %>
+            <%= g.input :genre %>
+            <%= g.input :date  %>
+          <% end %>
         </div>
-      </div>
-    <% end %>
+        <div class="form-actions">
+          <div class="form-actions-buttons">
+            <%= f.button :submit, "Update" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
