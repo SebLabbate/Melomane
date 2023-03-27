@@ -11,12 +11,12 @@ class GigsController < ApplicationController
     @search_params = params[:query].downcase unless params[:query] == nil
     @gigs = policy_scope(Gig).all
     @user_gigs = UserGig.all
-    @search_params = nil if @search_params == ""
     if @search_params != nil
        @events_array = find_events_array_by_name(@search_params)
     else
       @events_array = nil
     end
+
   end
 
   def show

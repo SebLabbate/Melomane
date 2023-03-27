@@ -13,7 +13,7 @@ class Gig < ApplicationRecord
   has_many_attached :photos
 
 
-  validates :artist, :date, :venue, presence: true
+  #validates :artist, :date, :venue, presence: true
 
   before_create :parse_wiki_image, :spotify_genre, :spotify_images_artist, :spotify_images_albums, :pexel_photos
   before_create :parse_wiki_info, :spotify_top_five

@@ -35,7 +35,7 @@
               <% @event_venue = event["_embedded"]["venues"][0]["name"] %>
                 <% event_string = event["dates"]["start"]["dateTime"] %>
                 <% @new_gig = Gig.new(user_id: 1, name: "#{@artist_string}#{@event_string}", artist: @search_params, venue: @event_venue, date: @event_date_string)%>
-                <% @new_gig.save %>
+                <% @new_gig.save! %>
           <div class="col-lg-4 col-md-6 col-sm-12 p-2">
             <div class="gig-index-card">
                        <% if @new_gig.wiki_photo_url != nil %>
@@ -60,7 +60,6 @@
           </div>
             <% end %>
             <% else %>
-          <p>  We couldnt find any events by this search critera </p>
             <% end %>
   </div>
 </div>
