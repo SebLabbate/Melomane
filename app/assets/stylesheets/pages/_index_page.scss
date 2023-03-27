@@ -24,6 +24,9 @@
   box-shadow: 0px 0px 8px #7e7e7e;
   border-radius: 14px;
   padding: 10px 10px 0 10px;
+  h5{
+    color:white;
+  }
   &:hover {
     box-shadow: 0px 0px 20px #7e7e7e;
     transition: .25s ease;
@@ -34,12 +37,18 @@
   a {
     color:white;
 }
+  h5{
+    color:white;
+  }
 }
 
 .card-text{
   a {
     color:white;
     font-size: 15px;
+}
+h5{
+  color:white;
 }
 }
 
