@@ -277,7 +277,7 @@
 }
 
 
-.user-gig-suggested{
+.user-gig-suggested {
   border-style: solid;
   width: 78%;
   height: 270px;
@@ -333,4 +333,22 @@
   width:300px;
   height:200px;
   float:right;
+}
+
+.carousel-border {
+  // border: 2px solid #FFFFFF;
+  border-radius: 17px;
+  height: 250px;
+  width: 350px;
+  z-index: 1;
+}
+
+.carousel-img {
+  height: 247px;
+  width: 348px;
+  border-radius: 17px;
+  border: 2px solid #FFFFFF;
+  margin-top: 6px;
+  object-fit: cover;
+  object-position: 75% 25%;
 }
