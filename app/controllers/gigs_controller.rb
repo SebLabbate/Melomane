@@ -9,6 +9,7 @@ class GigsController < ApplicationController
 
   def index
     @search_params = params[:query].downcase unless params[:query] == nil
+    @search_params_two = params[:querycity].downcase unless params[:querycity] == nil
     @gigs = policy_scope(Gig).all
     @user_gigs = UserGig.all
     if @search_params != nil
@@ -16,7 +17,11 @@ class GigsController < ApplicationController
     else
       @events_array = nil
     end
-
+    if @search_params_two != nil
+      @events_array_two = find_events_array_by_city(@search_params_two)
+    else
+     @events_array_two = nil
+    end
   end
 
   def show
@@ -142,7 +147,25 @@ class GigsController < ApplicationController
   end
 
   def find_events_array_by_name(name)
-    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&keyword=#{name}")
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&keyword=#{name}&classificationName=music")
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(url)
+    response = http.request(request)
+    events = response.read_body
+    gigs = JSON.parse(events)
+    if gigs["_embedded"] != nil
+      events_hash = gigs["_embedded"]
+      events_hash_two = events_hash["events"]
+    else
+      events_hash_two = nil
+    end
+    return events_hash_two
+  end
+
+  def find_events_array_by_city(city)
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=#{city}&classificationName=music")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -194,19 +217,27 @@ class GigsController < ApplicationController
   end
 
   def split_artist_first_name(name)
-    split_name = name.split(" ")
-    if split_name.length == 2
-      first_name = split_name[0].downcase
+    if name != nil
+      split_name = name.split(" ")
+      if split_name.length == 2
+        first_name = split_name[0].downcase
+      else
+        first_name = name.downcase
+      end
     else
-      first_name = name.downcase
+      first_name = nil
     end
     return first_name
   end
 
   def split_artist_last_name(name)
-    split_name = name.split(" ")
-    if split_name.length == 2
-      last_name = split_name[1].downcase
+    if name != nil
+      split_name = name.split(" ")
+      if split_name.length == 2
+        last_name = split_name[1].downcase
+      else
+        last_name = nil
+      end
     else
       last_name = nil
     end
