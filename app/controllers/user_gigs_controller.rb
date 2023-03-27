@@ -30,9 +30,40 @@ class UserGigsController < ApplicationController
   end
 
   def past_gigs
-    @gigs = Gig.all
+    # raise
+    @genre = params[:genre]
+    @venue = params[:venue]
+    @artist = params[:artist]
+
+    @genre_gig = []
+    @venue_gig = []
+    @artist_gig = []
     @user_gigs = policy_scope(UserGig).all
     authorize @user_gigs
+
+    if @genre
+      @genre_gig = policy_scope(UserGig.joins(:gig)).where("gigs.genre = '#{@genre}'")
+    end
+
+    if @venue
+      @venue_gig = policy_scope(UserGig.joins(:gig)).where("gigs.venue = '#{@venue}'")
+    end
+
+    if @artist
+      @artist_gig = policy_scope(UserGig.joins(:gig)).where("gigs.artist = '#{@artist}'")
+    end
+
+    if @genre || @venue || @artist
+      @user_gigs = @genre_gig + @venue_gig + @artist_gig
+      @user_gigs = @user_gigs.uniq
+    end
+
+    # if @genre
+    #   @user_gigs = policy_scope(UserGig.joins(:gig)).where("gigs.genre = '#{@genre}' AND gigs.venue = '#{@venue}'")
+    #   # raise
+    # else
+    #   @user_gigs = policy_scope(UserGig.joins(:gig)).all
+    # end
   end
 
   def upcoming_gigs

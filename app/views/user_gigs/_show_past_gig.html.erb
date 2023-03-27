@@ -16,7 +16,8 @@
             <h2><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %> </h2>
             <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), data: {turbo_frame: "modal"}, class: "primary-button" %>
           </div>
-           <p><span><%= @user_gig.gig.genre.capitalize %></span> <%= @user_gig.gig.date.strftime("%e %b %Y") %></p>
+
+           <p><span><%= @user_gig.gig.genre.capitalize %></span> <%= @user_gig.gig.date.strftime("%e %b %Y") unless @user_gig.gig.date == nil %></p>
             <div class="">
               <div class="past-artist-photo">
                 <% if @user_gig.gig.wiki_photo_url != nil %>
