@@ -17,3 +17,24 @@
 .pt-2 {
   margin-left: 20px;
 }
+
+
+.form-container {
+  border: 2px solid #F4F798;
+  border-radius: 14px;
+  padding: 8px;
+}
+
+
+.form_artist, .form_venue, .form_genre, #submit {
+  padding: 6px;
+  border-radius: 6px;
+  border: 2px solid #F4F798;
+  background-color: #121212;
+  color: #F4F798;
+  margin: 0 5px;
+}
+
+#submit {
+  width: 50px;
+}

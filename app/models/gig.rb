@@ -10,6 +10,7 @@ class Gig < ApplicationRecord
   after_validation :geocode, if:
    :will_save_change_to_venue?
   belongs_to :user
+  has_many :user_gigs
   has_many_attached :photos
 
 
