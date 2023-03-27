@@ -14,9 +14,9 @@
         <div class="user-gig-page-main-left-about">
           <div class="artist-headline d-flex justify-content-between", style="width: 124%;">
             <h2><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %> </h2>
-            <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), class: "primary-button" %>
+            <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), data: {turbo_frame: "modal"}, class: "primary-button" %>
           </div>
-          <p> <%= @user_gig.gig.date.strftime("%e %b %Y") %> </p>
+           <p><span><%= @user_gig.gig.genre.capitalize %></span> <%= @user_gig.gig.date.strftime("%e %b %Y") %></p>
             <div class="user-gig-page-main-left-user-info">
               <div class="artist-photo">
                 <% if @user_gig.gig.wiki_photo_url != nil %>
@@ -76,29 +76,36 @@
   </div>
 
   <%# Memories album %>
+  <h2 class="memories-title">Relive your memories</h2>
   <div class="album-container">
-    <div class="album">
+    <div class="row mt-4 mb-4 justify-content-center">
       <% @user_gig.comments.each do |comment| %>
-        <% if comment.files.attached? %>
-          <% comment.files.each do |file| %>
-            <% if file.image? %>
-              <%= cl_image_tag file.key, height: 300, width: 400, crop: :fill %>
-            <% else file.video? %>
-              <%= cl_video_tag(url_for(file.key),  height: "300", width: "400", controls: "")%>
+        <% if comment.files.attached?%>
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 p-2">
+            <% comment.files.each do |file| %>
+              <div class="album-cards">
+                <% if file.image? %>
+                  <%= cl_image_tag file.key, height: 300, width: 400, crop: :fill, class:"album-img" %>
+                <% else file.video? %>
+                  <%= cl_video_tag(url_for(file.key),  height: "300", width: "400", controls: "", class:"album-img") %>
+                <% end %>
+                <div class="album-card-body d-flex flex-column gap-1">
+                  <%= form_tag destroy_attachment_user_gig_comment_path(@user_gig, comment, attachment_id: file.id ), method: :delete, data: {turbo_confirm: 'Are you sure?'}, class:"d-flex justify-content-end" do %>
+                    <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                      <i class="fa-solid fa-trash-can fa-lg"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
             <% end %>
-            <div class="remove-button-position d-flex">
-              <%= form_tag destroy_attachment_user_gig_comment_path(@user_gig, comment, attachment_id: file.id ), method: :delete, data: {turbo_confirm: 'Are you sure?'}, class: "remove-button-custom" do %>
-                <%= submit_tag 'Delete', class: "attachment-remove-btn text-decoration-none" %>
-              <% end %>
-            </div>
-          <% end %>
+          </div>
         <% end %>
       <% end %>
     </div>
   </div>
 
   <div class="container d-flex justify-content-between mb-4">
-    <%= link_to "Edit gig", edit_user_gig_path(@user_gig), class: "primary-button-inverse"%>
+    <%= link_to "Edit gig", edit_user_gig_path(@user_gig), data: {turbo_frame: "modal"}, class: "primary-button-inverse"%>
     <%= link_to "Remove", user_gig_path(@user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "warning-button"%>
   </div>
 </div>

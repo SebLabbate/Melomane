@@ -1,26 +1,32 @@
-<div class="user-gig-page">
+<div class="container">
+  <div class="gigs-buttons">
+    <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
+          <div class="vl-s"></div>
+    <h2 class="ug"><%= link_to "Upcoming Gigs", upcoming_gigs_user_gigs_path, class: "link-ug-btn" %></h2>
+          <div class="vl-s"></div>
+    <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
+  </div>
+
+  <%# Info %>
   <div class="user-gig-page-main">
-      <div class="user-gig-page-main-left">
-        <div class="user-gig-page-main-left-about">
-         <p> <%= @gig.artist %> @ <%= @gig.venue %></p>
-         <p> <%= @gig.date.strftime("%e %b %Y") if @gig.date != nil %> </p>
-         <% if @gig.wiki_photo_url == nil %>
-         <p> <strong> <%= @gig.genre %> </strong> </p>
-          <% else %>
-          <p> <strong> <%= @gig.genre %> </strong> - <%= @gig.artist_info %> </p>
-          <% end %>
+    <div class="user-gig-page-main-left">
+      <div class="user-gig-page-main-left-about">
+        <div class="artist-headline d-flex justify-content-between", style="width: 124%;">
+          <h2> <%= @gig.artist %> <span> @ </span> <%= @gig.venue %></h2>
         </div>
-        <div class="user-gig-page-main-left-map">
-        <% if @gig.date != nil && @gig.date < Date.current%>
-          <p> This gig has already happened,<%= link_to "did you go?", gig_user_gigs_path(@gig), data: {turbo_method: :post}, class: "btn btn-primary" %> </p>
-          <% else %>
-           <p> <%= link_to "Are you going to this gig?", gig_user_gigs_path(@gig), data: {turbo_method: :post}, class: "btn btn-primary" %> </p>
-          <% end %>
-          <div id='map' style='width: 400px; height:300px;'></div>
-       MAP
-        </div>
+          <p> <%= @gig.date.strftime("%e %b %Y") %> </p>
+          <!-- <p> <strong> <%= @gig.genre %> </strong> - <%= @gig.artist_info %> </p> -->
       </div>
 
+      <%# Map %>
+      <div class="show-map">
+        <div style="width: 100%; height: 250px; "
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+      </div>
+    </div>
+<%# Music %>
       <div class="user-gig-page-main-right">
         <div class="user-gig-page-main-right-spotify">
          <p>Listen to <%= @gig.artist%> </p>
@@ -33,53 +39,11 @@
            <% if @audio_three != nil %>
            <p> <%= @gig.song_three %>  <audio controls> <source src="<%= @audio_three %>" type="audio/mpeg"> </audio></p>
           <% end%>
+      
+
         </div>
-           <div class="user-gig-page-main-right-carousel">
-                   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                          <div class="carousel-inner">
-                            <div class="carousel-item active">
-                              <% if @gig.wiki_photo_url != nil %>
-                               <img src="<%= (@gig.wiki_photo_url) %>" class="show-carousel-img" alt="...">
-                               <% elsif @gig.photo_url_two != nil %>
-                                <img src="<%= (@gig.photo_url_two) %>" class="show-carousel-img" alt="...">
-                                <% elsif @gig.photo_url_three != nil %>
-                                <img src="<%= (@gig.photo_url_three) %>" class="show-carousel-img" alt="...">
-                                <% elsif @gig.photo_url_four != nil %>
-                                <img src="<%= (@gig.photo_url_four) %>" class="show-carousel-img" alt="...">
-                                <% elsif @gig.photo_url_five != nil %>
-                                <img src="<%= (@gig.photo_url_five) %>" class="show-carousel-img" alt="...">
-                              <% end %>
-                            </div>
-                            <div class="carousel-item">
-                                <% if @gig.photo_url_two != nil %>
-                                <img src="<%= (@gig.photo_url_two) %>" class="show-carousel-img" alt="...">
-                                <% elsif @gig.photo_url_three != nil %>
-                                <img src="<%= (@gig.photo_url_three) %>" class="show-carousel-img" alt="...">
-                                <% elsif @gig.photo_url_four != nil %>
-                                <img src="<%= (@gig.photo_url_four) %>" class="show-carousel-img" alt="...">
-                              <% end %>
-                            </div>
-                            <div class="carousel-item">
-                                <% if @gig.photo_url_three != nil %>
-                                <img src="<%= (@gig.photo_url_three) %>" class="show-carousel-img" alt="...">
-                                <% elsif @gig.photo_url_four != nil %>
-                                <img src="<%= (@gig.photo_url_four) %>" class="show-carousel-img" alt="...">
-                                <% elsif @gig.photo_url_five != nil %>
-                                <img src="<%= (@gig.photo_url_five) %>" class="show-carousel-img" alt="...">
-                                <% end %>
-                            </div>
-                          </div>
-                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                           <span class="visually-hidden">Previous</span>
-                         </button>
-                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                           <span class="visually-hidden">Next</span>
-                         </button>
-                   </div>
-           </div>
       </div>
+    </div>
   </div>
   <div class="user-gig-page-suggested-title"> <p> Other <%= @gig.genre%> gigs you might like </p> </div>
   <div class="user-gig-page-suggested">

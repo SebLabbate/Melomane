@@ -36,6 +36,7 @@ class GigsController < ApplicationController
     @audio_one = return_audio(@gig.song_one)
     @audio_two = return_audio(@gig.song_two)
     @audio_three = return_audio(@gig.song_three)
+    set_markers
   end
 
   def new
@@ -100,6 +101,14 @@ class GigsController < ApplicationController
   end
 
   private
+
+  def set_markers
+    @markers =
+      [{
+        lat: @gig.latitude,
+        lng: @gig.longitude
+      }]
+  end
 
   def find_other_genres
     new_array = []
