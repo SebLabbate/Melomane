@@ -94,7 +94,7 @@ h3 {
   color: #FFFFFF;
   opacity: 87%;
   font-weight: bold;
-  letter-spacing: 7.5%;
+  letter-spacing: 0.5px;
 }
 
 h4 {
@@ -103,15 +103,18 @@ h4 {
   color: #FFFFFF;
   opacity: 87%;
   font-weight: "regular";
-  letter-spacing: 7.5%;
+  letter-spacing: 0.7px;
 }
 
 p {
   font-family: "Open Sans";
   font-size: 18px;
   color: #FFFFFF;
-  // opacity: 60%;
+  opacity: 80%;
   font-weight: "regular";
-  letter-spacing: 8.5%;
+  letter-spacing: 1px;
   margin: 0;
+  .first-word {
+    opacity: 100% !important;
+  }
 }
