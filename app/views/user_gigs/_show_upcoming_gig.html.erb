@@ -15,7 +15,7 @@
           <div class="artist-headline d-flex justify-content-between", style="width: 124%;">
             <h2><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %></h2>
           </div>
-          <p><%= @user_gig.gig.date.strftime("%e %b %Y| %H:%M") %> </p>
+          <p><%= @user_gig.gig.date.strftime("%e %b %Y| %H:%M") unless @user_gig.gig.date == nil %> </p>
             <div class="artist-photo">
               <% if @user_gig.gig.wiki_photo_url != nil %>
                 <img src="<%= (@user_gig.gig.wiki_photo_url) %>">

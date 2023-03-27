@@ -14,7 +14,7 @@
         <div class="artist-headline d-flex justify-content-between", style="width: 124%;">
           <h2> <%= @gig.artist %> <span> @ </span> <%= @gig.venue %></h2>
         </div>
-          <p> <%= @gig.date.strftime("%e %b %Y") %> </p>
+          <p> <%= @gig.date.strftime("%e %b %Y") unless @gig.date == nil %> </p>
           <!-- <p> <strong> <%= @gig.genre %> </strong> - <%= @gig.artist_info %> </p> -->
       </div>
 
@@ -39,7 +39,7 @@
            <% if @audio_three != nil %>
            <p> <%= @gig.song_three %>  <audio controls> <source src="<%= @audio_three %>" type="audio/mpeg"> </audio></p>
           <% end%>
-      
+
 
         </div>
       </div>
