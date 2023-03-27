@@ -28,7 +28,20 @@
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
       </div>
     </div>
-
+<%# Music %>
+      <div class="user-gig-page-main-right">
+        <div class="user-gig-page-main-right-spotify">
+         <p>Listen to <%= @gig.artist%> </p>
+         <% if @audio_one != nil %>
+          <p> <%= @gig.song_one %> <audio controls> <source src="<%= @audio_one %>" type="audio/mpeg"> </audio> </p>
+          <% end%>
+           <% if @audio_two != nil %>
+           <p> <%= @gig.song_two %>  <audio controls> <source src="<%= @audio_two %>" type="audio/mpeg"> </audio></p>
+           <% end%>
+           <% if @audio_three != nil %>
+           <p> <%= @gig.song_three %>  <audio controls> <source src="<%= @audio_three %>" type="audio/mpeg"> </audio></p>
+          <% end%>
+      
       <%# Music %>
     <div class="gig-page-main-right">
 
@@ -103,4 +116,25 @@
 
     </div>
   </div>
+  <div class="user-gig-page-suggested-title"> <p> Other <%= @gig.genre%> gigs you might like </p> </div>
+  <div class="user-gig-page-suggested">
+    <% unless @other_gigs.length == 1 || @other_gigs.length == 0 %>
+     <% @similar_gigs.each do |gig| %>
+     <div class="user-gig-suggested-a">
+              <% if gig.wiki_photo_url != nil %>
+             <img src="<%= gig.wiki_photo_url %>" class="user-gig-suggested-image" alt="...">
+              <% elsif gig.photo_url_four != nil %>
+              <img src="<%= gig.photo_url_four %>" class="user-gig-suggested-image" alt="...">
+              <% elsif gig.photo_url_five != nil %>
+              <img src="<%= gig.photo_url_five %>" class="user-gig-suggested-image" alt="...">
+              <% end %>
+                   <h4>  <%= link_to "#{gig.artist }",  gig_path(gig) %> </h4>
+             <h6><%= link_to "#{gig.venue  }", gig_path(gig) %> </h6>
+             <h6> <%= link_to "#{gig.date.strftime("%e %b %Y")  }", gig_path(gig) %> </h6>
+             <h6> <%= link_to "#{gig.genre }", gig_path(gig) %> </h6>
+     </div>
+     <% end %>
+    <% end %>
+  </div>
+
 </div>

@@ -28,3 +28,10 @@ p#map {
 a.mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib-inner, .mapboxgl-ctrl {
   display: none !important;
 }
+
+path {
+  fill: #F7C729;
+  &:hover {
+    fill: #cba423;
+  }
+}
