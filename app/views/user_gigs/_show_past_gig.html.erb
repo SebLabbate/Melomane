@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="user-gig-page">
+  <div class="past-user-gig-page">
     <div class="gigs-buttons">
       <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
             <div class="vl-s"></div>
@@ -9,16 +9,16 @@
     </div>
 
     <%# Memories %>
-    <div class="user-gig-page-main">
-      <div class="user-gig-page-main-left">
-        <div class="user-gig-page-main-left-about">
-          <div class="artist-headline d-flex justify-content-between", style="width: 124%;">
+    <div class="past-user-gig-page-main">
+      <div class="past-user-gig-page-main-left">
+        <div class="past-user-gig-page-main-left-about">
+          <div class="past-artist-headline d-flex justify-content-between", style="width: 124%;">
             <h2><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %> </h2>
             <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), data: {turbo_frame: "modal"}, class: "primary-button" %>
           </div>
            <p><span><%= @user_gig.gig.genre.capitalize %></span> <%= @user_gig.gig.date.strftime("%e %b %Y") %></p>
-            <div class="user-gig-page-main-left-user-info">
-              <div class="artist-photo">
+            <div class="">
+              <div class="past-artist-photo">
                 <% if @user_gig.gig.wiki_photo_url != nil %>
                   <img src="<%= (@user_gig.gig.wiki_photo_url) %>">
                   <% elsif @user_gig.gig.photo_url_four != nil %>
@@ -50,13 +50,13 @@
 
 
       <%# Music %>
-      <div class="user-gig-page-main-right">
-        <div class="user-gig-page-main-right-spotify">
-          <div class="player-headline d-flex justify-content-center">
+      <div class="past-user-gig-page-main-right">
+        <div class="past-user-gig-page-main-right-spotify">
+          <div class="past-player-headline d-flex justify-content-center">
             <h2> Listen now </h2> <%= image_tag "logo.png", id:"player-logo"%>
           </div>
-          <div class="player-card">
-            <div class="player-container">
+          <div class="past-player-card">
+            <div class="past-player-container">
               <ul>
               <% if @audio_one != nil %>
                 <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_one %> <audio id="player" controls> <source src="<%= @audio_one %>" type="audio/mpeg"> </audio></p></div>
@@ -81,7 +81,7 @@
     <div class="row mt-4 mb-4 justify-content-center">
       <% @user_gig.comments.each do |comment| %>
         <% if comment.files.attached?%>
-          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 p-2">
+          <div class="col-xl-10 col-lg-6 col-md-6 col-sm-8 p-2">
             <% comment.files.each do |file| %>
               <div class="album-cards">
                 <% if file.image? %>
