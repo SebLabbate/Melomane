@@ -40,6 +40,7 @@
       </div>
 
       <%# Music player %>
+
       <div class="user-gig-page-main-right">
         <div class="user-gig-page-main-right-spotify">
           <div class="player-headline d-flex justify-content-center">
@@ -49,137 +50,87 @@
             <div class="player-container">
               <ul>
               <% if @audio_one != nil %>
-                <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_one %> <audio id="player" controls> <source src="<%= @audio_one %>" type="audio/mpeg"> </audio></p></div>
-               <% end %>
-               <% if @audio_two != nil %>
+                <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_one %> <audio id="player" controls> <source src="<%= @audio_one%>" type="audio/mpeg"></audio></p></div>
+              <% end %>
+              <% if @audio_two != nil %>
                 <div><p> <i class="fa-solid fa-circle"></i> <%=@user_gig.gig.song_two %> <audio id="player" controls> <source src="<%=  @audio_two %>" type="audio/mpeg"> </audio></p></div>
-                <% end %>
-               <% if @audio_three != nil %>
+              <% end %>
+              <% if @audio_three != nil %>
                 <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_three %> <audio id="player" controls> <source src="<%=  @audio_three %>" type="audio/mpeg"> </audio></p></div>
-                <% end %>
+              <% end %>
               </ul>
             </div>
           </div>
         </div>
-
-            <%# <div class="user-gig-page-main-right-carousel">
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                <% if @user_gig.gig.wiki_photo_url != nil %>
-                                <%# <img src="<%= (@user_gig.gig.wiki_photo_url) %>
-                                <%# " class="show-carousel-img" alt="..."> %>
-                                <%# <% else %>
-                                  <%# <img src="<%= (@pexels_array_c[0]) %>
-                                  <%# "class="show-carousel-img" alt="..."> %>
-                                <%# <% end %>
-                              <%# </div> %>
-                              <%# <div class="carousel-item"> %>
-                                <%# <img src="<%= (@spotify_image) %>
-                                <%# " class="show-carousel-img" alt="..."> %>
-                              <%# </div> %>
-                              <%# <div class="carousel-item"> %>
-                                <%# <img src="<%= (@spotify_image_b) %>
-                                <%# " class="show-carousel-img" alt="..."> %>
-                              <%# </div> %>
-                            <%# </div> %>
-                          <%# <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev"> %>
-                            <%# <span class="carousel-control-prev-icon" aria-hidden="true"></span> %>
-                            <%# <span class="visually-hidden">Previous</span> %>
-                          <%# </button> %>
-                          <%# <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next"> %>
-                            <%# <span class="carousel-control-next-icon" aria-hidden="true"></span> %>
-                            <%# <span class="visually-hidden">Next</span> %>
-                          <%# </button> %>
-                    <%# </div> %>
-            <%# </div> %>
-            <%# </div> %>
       </div>
-      <%# Photos %>
 
-
-
-
-      <%# <%# <div class="container d-flex justify-content-between"> %>
-        <div class="user-gig-page-main-left-carousel">
-          <div id="carouselExampleControlsb" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="" class="show-carousel-left-img" alt="...">
+      <%# Photos carousel %>
+      <div class="gig-page-main-right">
+        <div class="">
+          <h3 class="mt-4"> Pics of <%= @user_gig.gig.artist %> </h3>
+          <div class="carousel-border mt-1 d-flex align-items-center">
+            <div id="carouselExampleIndicators" class="carousel slide">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
               </div>
-              <div class="carousel-item">
-                <img src="" class="show-carousel-left-img" alt="...">
+              <div class="carousel-inner w-100 h-100">
+                <div class="carousel-item active">
+                  <% if @user_gig.gig.wiki_photo_url != nil %>
+                    <img src="<%= (@user_gig.gig.wiki_photo_url) %>" class="d-block carousel-img">
+                  <% elsif @gig.photo_url_two != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_two) %>" class="d-block carousel-img">
+                  <% elsif @gig.photo_url_three != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_three) %>" class="d-block carousel-img">
+                  <% elsif @gig.photo_url_four != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_four) %>" class="d-block carousel-img">
+                  <% elsif @gig.photo_url_five != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_five) %>" class="d-block carousel-img">
+                  <% end %>
+                </div>
+                <div class="carousel-item">
+                  <% if @user_gig.gig.photo_url_two != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_two) %>" class="d-block carousel-img">
+                  <% elsif @gig.photo_url_three != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_three) %>" class="d-block carousel-img">
+                  <% elsif @gig.photo_url_four != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_four) %>" class="d-block carousel-img">
+                  <% end %>
+                </div>
+                <div class="carousel-item">
+                  <% if @user_gig.gig.photo_url_three != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_three) %>" class="d-block carousel-img">
+                  <% elsif @gig.photo_url_four != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_four) %>" class="d-block carousel-img">
+                  <% elsif @gig.photo_url_five != nil %>
+                    <img src="<%= (@user_gig.gig.photo_url_five) %>" class="d-block carousel-img">
+                  <% end %>
+                </div>
               </div>
-              <div class="carousel-item">
-                <img src="" class="show-carousel-left-img" alt="...">
-              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="user-gig-page-main-left-carousel">
-          <div id="carouselExampleControlsb" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="" class="show-carousel-left-img" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="" class="show-carousel-left-img" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="" class="show-carousel-left-img" alt="...">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="user-gig-page-main-left-carousel">
-          <div id="carouselExampleControlsb" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="" class="show-carousel-left-img" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="" class="show-carousel-left-img" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="" class="show-carousel-left-img" alt="...">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsb" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+
+
+
   <%# Other gigs suggestions %>
   <div class="user-gig-page-suggested-title justify-content-center">
     <h4> Suggested <span><%= @user_gig.gig.genre.capitalize %></span> gigs </h4>
   </div>
+
   <div class="container">
     <div class="row mt-4 mb-4 justify-content-center">
       <% unless @other_gigs.length == 1 || @other_gigs.length == 0 %>
