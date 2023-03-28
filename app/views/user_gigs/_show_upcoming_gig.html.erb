@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="user-gig-page">
+  <div class="upcoming-user-gig-page">
     <div class="gigs-buttons">
       <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
             <div class="vl-s"></div>
@@ -8,15 +8,16 @@
       <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
     </div>
 
-    <%# Artist info %>
-    <div class="user-gig-page-main">
-      <div class="user-gig-page-main-left">
-        <div class="user-gig-page-main-left-about">
-          <div class="artist-headline d-flex justify-content-between", style="width: 124%;">
+    <div class="upcoming-user-gig-page-main">
+      <%# Artist info %>
+      <div class="upcoming-user-gig-page-main-left">
+        <div class="upcoming-user-gig-page-main-left-about">
+          <div class="upcoming-artist-headline d-flex justify-content-between", style="width: 124%;">
             <h2><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %></h2>
           </div>
+
           <p><%= @user_gig.gig.date.strftime("%e %b %Y| %H:%M") unless @user_gig.gig.date == nil %> </p>
-            <div class="artist-photo">
+            <div class="upcoming-artist-photo">
               <% if @user_gig.gig.wiki_photo_url != nil %>
                 <img src="<%= (@user_gig.gig.wiki_photo_url) %>">
               <% elsif @user_gig.gig.photo_url_four != nil %>
@@ -26,7 +27,7 @@
               <% end %>
             </div>
 
-            <div class="artist-info mt-2">
+            <div class="upcoming-artist-info mt-2">
               <% if @user_gig.gig.genre != nil %>
                 <% if @user_gig.gig.wiki_photo_url == nil %>
                   <p> <strong> <span><%= @user_gig.gig.genre.capitalize %></span> </strong></p>
@@ -39,35 +40,10 @@
         </div>
       </div>
 
-      <%# Music player %>
-
-      <div class="user-gig-page-main-right">
-        <div class="user-gig-page-main-right-spotify">
-          <div class="player-headline d-flex justify-content-center">
-            <h2> Listen now </h2> <%= image_tag "logo.png", id:"player-logo"%>
-          </div>
-          <div class="player-card">
-            <div class="player-container">
-              <ul>
-              <% if @audio_one != nil %>
-                <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_one %> <audio id="player" controls> <source src="<%= @audio_one%>" type="audio/mpeg"></audio></p></div>
-              <% end %>
-              <% if @audio_two != nil %>
-                <div><p> <i class="fa-solid fa-circle"></i> <%=@user_gig.gig.song_two %> <audio id="player" controls> <source src="<%=  @audio_two %>" type="audio/mpeg"> </audio></p></div>
-              <% end %>
-              <% if @audio_three != nil %>
-                <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_three %> <audio id="player" controls> <source src="<%=  @audio_three %>" type="audio/mpeg"> </audio></p></div>
-              <% end %>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <%# Photos carousel %>
-      <div class="gig-page-main-right">
-        <div class="">
-          <h3 class="mt-4"> Pics of <%= @user_gig.gig.artist %> </h3>
+      <div class="upcoming-user-gig-carousel-page-main-right">
+        <div class="carousel-pics">
+          <%# <h2 class="carousel-title mt-4"> Pics <span>of</span> <%= @user_gig.gig.artist %>
           <div class="carousel-border mt-1 d-flex align-items-center">
             <div id="carouselExampleIndicators" class="carousel slide">
               <div class="carousel-indicators">
@@ -77,11 +53,7 @@
               </div>
               <div class="carousel-inner w-100 h-100">
                 <div class="carousel-item active">
-                  <% if @user_gig.gig.wiki_photo_url != nil %>
-                    <img src="<%= (@user_gig.gig.wiki_photo_url) %>" class="d-block carousel-img">
-                  <% elsif @user_gig.gig.photo_url_two != nil %>
-                    <img src="<%= (@user_gig.gig.photo_url_two) %>" class="d-block carousel-img">
-                  <% elsif @user_gig.gig.photo_url_three != nil %>
+                   <% if @user_gig.gig.photo_url_three != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_three) %>" class="d-block carousel-img">
                   <% elsif @user_gig.gig.photo_url_four != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_four) %>" class="d-block carousel-img">
@@ -90,20 +62,20 @@
                   <% end %>
                 </div>
                 <div class="carousel-item">
-                  <% if @user_gig.gig.photo_url_two != nil %>
-                    <img src="<%= (@user_gig.gig.photo_url_two) %>" class="d-block carousel-img">
-                  <% elsif @gig.photo_url_three != nil %>
+                  <% if @user_gig.gig.wiki_photo_url != nil %>
+                    <img src="<%= (@user_gig.gig.wiki_photo_url) %>" class="d-block carousel-img">
+                  <% elsif @user_gig.gig.photo_url_three != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_three) %>" class="d-block carousel-img">
-                  <% elsif @gig.photo_url_four != nil %>
+                  <% elsif @user_gig.gig.photo_url_four != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_four) %>" class="d-block carousel-img">
                   <% end %>
                 </div>
                 <div class="carousel-item">
                   <% if @user_gig.gig.photo_url_three != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_three) %>" class="d-block carousel-img">
-                  <% elsif @gig.photo_url_four != nil %>
+                  <% elsif @user_gig.gig.photo_url_four != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_four) %>" class="d-block carousel-img">
-                  <% elsif @gig.photo_url_five != nil %>
+                  <% elsif @user_gig.gig.photo_url_five != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_five) %>" class="d-block carousel-img">
                   <% end %>
                 </div>
@@ -119,15 +91,39 @@
             </div>
           </div>
         </div>
+
+
+        <%# Music player %>
+        <div class="upcoming-gig-page-main-right">
+          <div class="upcoming-user-gig-page-main-right-spotify">
+            <div class="upcoming-player-headline d-flex justify-content-center">
+              <h2> Listen now </h2> <%= image_tag "logo.png", id:"player-logo"%>
+            </div>
+            <div class="upcoming-player-card">
+              <div class="upcoming-player-container">
+                <ul>
+                <% if @audio_one != nil %>
+                  <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_one %> <audio id="player" controls> <source src="<%= @audio_one%>" type="audio/mpeg"></audio></p></div>
+                <% end %>
+                <% if @audio_two != nil %>
+                  <div><p> <i class="fa-solid fa-circle"></i> <%=@user_gig.gig.song_two %> <audio id="player" controls> <source src="<%=  @audio_two %>" type="audio/mpeg"> </audio></p></div>
+                <% end %>
+                <% if @audio_three != nil %>
+                  <div><p> <i class="fa-solid fa-circle"></i> <%= @user_gig.gig.song_three %> <audio id="player" controls> <source src="<%=  @audio_three %>" type="audio/mpeg"> </audio></p></div>
+                <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 
 
-
-
   <%# Other gigs suggestions %>
-  <div class="user-gig-page-suggested-title justify-content-center">
+  <div class="upcoming-user-gig-page-suggested-title justify-content-center">
     <h4> Suggested <span><%= @user_gig.gig.genre.capitalize %></span> gigs </h4>
   </div>
 
@@ -136,20 +132,20 @@
       <% unless @other_gigs.length == 1 || @other_gigs.length == 0 %>
         <% @similar_gigs.each do |gig| %>
           <div class="col-lg-4 col-md-6 col-sm-12 p-2">
-            <div class="user-gig-suggested">
-              <% if gig.wiki_photo_url != nil %>
-                <img src="<%= gig.wiki_photo_url %>" class="suggested-artist-image" alt="...">
-              <% elsif gig.photo_url_two != nil %>
-                <img src="<%=gig.photo_url_two %>" class="suggested-artist-image" alt="...">
+            <div class="upcoming-user-gig-suggested">
+              <% if gig.photo_url_two != nil %>
+                <img src="<%= gig.photo_url_two %>" class="upcoming-suggested-artist-image" alt="...">
               <% elsif gig.photo_url_three != nil %>
-                <img src="<%= gig.photo_url_three %>" class="suggested-artist-image" alt="...">
+                <img src="<%=gig.photo_url_three %>" class="upcoming-suggested-artist-image" alt="...">
               <% elsif gig.photo_url_four != nil %>
-                <img src="<%= gig.photo_url_four %>" class="suggested-artist-image" alt="...">
+                <img src="<%= gig.photo_url_four %>" class="upcoming-suggested-artist-image" alt="...">
               <% elsif gig.photo_url_five != nil %>
-                <img src="<%= gig.photo_url_five %>" class="suggested-artist-image" alt="...">
+                <img src="<%= gig.photo_url_five %>" class="upcoming-suggested-artist-image" alt="...">
+              <% elsif gig.photo_url_five != nil %>
+                <img src="<%= gig.photo_url_five %>" class="upcoming-suggested-artist-image" alt="...">
               <% end %>
-              <div class="suggested-artist-details d-flex flex-column gap-1">
-                <h5 class="card-title"><%= link_to "#{gig.artist}", gig_path(gig) %></h3>
+              <div class="upcoming-suggested-artist-details d-flex flex-column gap-1">
+                <h5 class="card-title"><%= link_to "#{gig.artist.capitalize}", gig_path(gig) %></h3>
                 <p>
                 <%= link_to "#{gig.venue}", gig_path(gig), class: "span-venue-marker" %>
                 <%= link_to "#{gig.date.strftime("%e %b %Y")}", gig_path(gig), class: "card-text" %></p>
@@ -161,8 +157,6 @@
       <% end %>
     </div>
   </div>
-
-
 
 
   <div class="container d-flex justify-content-between mb-4">

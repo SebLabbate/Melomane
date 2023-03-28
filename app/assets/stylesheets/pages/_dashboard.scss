@@ -51,6 +51,10 @@ a:hover {
   }
 }
 
+.past-gigs-card {
+  margin: 25px 75px;
+}
+
 .vl {
   display: flex;
   border-left: 1px solid #F4F798;
@@ -75,7 +79,7 @@ h2.pg, h2.ug, h2.gg {
 }
 
 .past-gigs, .upcoming-gigs {
-  display: grid;
+  display: inline-grid;
   grid-template-columns: 1fr 1fr;
   // float: left;
   // margin: 0 20px;
