@@ -7,7 +7,9 @@
             <div class="vl-s"></div>
       <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
     </div>
-
+     <% unless @user_gig.gig.tickets == nil %>
+       <a href="<% @user_gig.gig.tickets %>" target="_blank" class= "primary-button-inverse-medium d-inline-flex justify-content-end", id= "create-gig-btn"> buy tickets </a>
+     <% end %>
     <div class="upcoming-user-gig-page-main">
       <%# Artist info %>
       <div class="upcoming-user-gig-page-main-left">
