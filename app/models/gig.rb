@@ -189,7 +189,6 @@ class Gig < ApplicationRecord
     return events_hash_two
   end
 
-
   def find_event_image(event)
     artist_image = event["images"][1]["url"]
     return artist_image
@@ -200,6 +199,7 @@ class Gig < ApplicationRecord
     event_date = event["dates"]["start"]["dateTime"]
     date = event_date
     self.date = date
+    raise
   end
 
   def find_event_venue
