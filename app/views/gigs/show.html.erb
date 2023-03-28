@@ -6,7 +6,9 @@
           <div class="vl-s"></div>
     <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
   </div>
-
+  <% unless @gig.tickets == nil %>
+     <a href="<%= @gig.tickets %>" target="_blank" class= "primary-button-inverse-medium d-inline-flex justify-content-end", id= "create-gig-btn"> buy tickets </a>
+  <% end %>
   <%# Info %>
   <%= link_to "Save!", gig_user_gigs_path(@gig), data: {turbo_method: :post}, class: "primary-button-inverse-medium d-inline-flex justify-content-end", id: "create-gig-btn" %>
   <div class="user-gig-page-main">
@@ -97,6 +99,7 @@
           </div>
         </div>
       </div>
+
 
       <div class="user-gig-page-main-right-spotify">
         <div class="player-headline d-flex justify-content-start">
