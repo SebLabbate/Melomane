@@ -7,6 +7,9 @@
             <div class="vl-s"></div>
       <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
     </div>
+  <% unless @gig.tickets == nil %>
+   <a href="<%= @gig.tickets %>" target="_blank" class= "primary-button-inverse-medium d-inline-flex justify-content-end", id= "create-gig-btn"> buy tickets </a>
+  <% end %>
 
     <%# Info %>
     <%= link_to "Save!", gig_user_gigs_path(@gig), data: {turbo_method: :post}, class: "primary-button-inverse-medium d-inline-flex justify-content-end", id: "create-gig-btn" %>
@@ -30,7 +33,7 @@
               data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
           </div>
         <% else %>
-                  <div class="mb-10">
+        <div class="mb-10">
           <h3 class="mt-4"></h3>
           <div class="carousel-border mt-1 d-flex align-items-center">
             <div id="carouselExampleIndicators" class="carousel slide">
@@ -38,6 +41,7 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+
               </div>
               <div class="carousel-inner w-100 h-100">
                 <div class="carousel-item active">
@@ -85,7 +89,6 @@
         </div>
         <% end %>
       </div>
-
 
       <div class="user-gig-page-main-right">
 

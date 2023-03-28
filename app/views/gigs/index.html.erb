@@ -14,7 +14,17 @@
         <%= text_field_tag :query,
           params[:query],
           class: "form-control",
-          placeholder: "Find a gig"
+          placeholder: "artist"
+        %>
+        <%= text_field_tag :querygenre,
+          params[:querygenre],
+          class: "form-control",
+          placeholder: "genre"
+        %>
+        <%= text_field_tag :querycity,
+          params[:querycity],
+          class: "form-control",
+          placeholder: "city"
         %>
         <%= submit_tag "Search", class: "search-btn"%>
       <% end %>
@@ -29,12 +39,22 @@
 
 <div class="container">
   <div class="row mt-4 mb-4 justify-content-center">
-       <% if @events_array != nil %>
-        <% @events_array[0..2].each do |event| %>
+       <%# to search by artist name %>
+        <% if @events_array != nil %>
+        <% @events_array[0..5].each do |event| %>
                       <% @artist_string = event["name"] %>
-              <% @event_venue = event["_embedded"]["venues"][0]["name"] %>
+              <% @event_venue = "#{event["_embedded"]["venues"][0]["name"]} - #{event["_embedded"]["venues"][0]["city"]["name"]}" %>
                 <% event_string = event["dates"]["start"]["dateTime"] %>
-                <% @new_gig = Gig.new(user_id: 1, name: "#{@artist_string}#{@event_string}", artist: @search_params, venue: @event_venue, date: @event_date_string)%>
+                <% @event_date_string = event_string.split('T')[0] unless event_string == nil %>
+                <% @latitude = event["_embedded"]["venues"][0]["location"]["latitude"] unless event["_embedded"]["venues"][0]["location"] == nil%>
+                <% @longitude = event["_embedded"]["venues"][0]["location"]["longitude"] unless event["_embedded"]["venues"][0]["location"] == nil%>
+                <% if @search_params != nil && @search_params != ""%>
+                <% @gig_tickets = event["url"] %>
+                 <% @artist_name = @search_params %>
+                 <% else%>
+                  <% @artist_name = event["_embedded"]["attractions"][0]["name"] %>
+                  <% end %>
+                <% @new_gig = Gig.new(user_id: 1, name: "#{@artist_string}#{@event_string}", artist: @artist_name, venue: @event_venue, date: @event_date_string, longitude: @longitude, latitude: @latitude, tickets: @gig_tickets)%>
                 <% @new_gig.save! %>
           <div class="col-lg-4 col-md-6 col-sm-12 p-2">
             <div class="gig-index-card">
@@ -52,14 +72,12 @@
               <div class="card-body d-flex flex-column gap-1">
                 <h5 class="card-title"><%= link_to "#{@artist_string}", gig_path(@new_gig.id) %></h5>
                <p class="card-text"> <%= link_to "#{@event_venue}", gig_path(@new_gig.id) %>  &#x2022;
-                 <% @event_date_string = event_string.split('T')[0] unless event_string == nil %>
                  <%= link_to "#{@event_date_string}", gig_path(@new_gig.id) %> </p>
                   <%= link_to "Add to upcoming gigs", gig_user_gigs_path(@new_gig.id), data: {turbo_method: :post}, class: "gig-card-button text-center", style: "margin-top: 3px;" %>
               </div>
             </div>
           </div>
-            <% end %>
-            <% else %>
+          <% end %>
             <% end %>
   </div>
 </div>
