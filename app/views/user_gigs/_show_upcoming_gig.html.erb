@@ -53,33 +53,29 @@
               </div>
               <div class="carousel-inner w-100 h-100">
                 <div class="carousel-item active">
-                  <% if @user_gig.gig.photo_url_two != nil %>
-                    <img src="<%= (@user_gig.gig.photo_url_two) %>" class="d-block carousel-img">
-                  <% elsif @gig.photo_url_two != nil %>
+                   <% if @user_gig.gig.photo_url_three != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_three) %>" class="d-block carousel-img">
-                  <% elsif @gig.photo_url_three != nil %>
-                    <img src="<%= (@user_gig.gig.photo_url_three) %>" class="d-block carousel-img">
-                  <% elsif @gig.photo_url_four != nil %>
+                  <% elsif @user_gig.gig.photo_url_four != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_four) %>" class="d-block carousel-img">
-                  <% elsif @gig.photo_url_five != nil %>
+                  <% elsif @user_gig.gig.photo_url_five != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_five) %>" class="d-block carousel-img">
                   <% end %>
                 </div>
                 <div class="carousel-item">
                   <% if @user_gig.gig.wiki_photo_url != nil %>
                     <img src="<%= (@user_gig.gig.wiki_photo_url) %>" class="d-block carousel-img">
-                  <% elsif @gig.photo_url_three != nil %>
+                  <% elsif @user_gig.gig.photo_url_three != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_three) %>" class="d-block carousel-img">
-                  <% elsif @gig.photo_url_four != nil %>
+                  <% elsif @user_gig.gig.photo_url_four != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_four) %>" class="d-block carousel-img">
                   <% end %>
                 </div>
                 <div class="carousel-item">
                   <% if @user_gig.gig.photo_url_three != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_three) %>" class="d-block carousel-img">
-                  <% elsif @gig.photo_url_four != nil %>
+                  <% elsif @user_gig.gig.photo_url_four != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_four) %>" class="d-block carousel-img">
-                  <% elsif @gig.photo_url_five != nil %>
+                  <% elsif @user_gig.gig.photo_url_five != nil %>
                     <img src="<%= (@user_gig.gig.photo_url_five) %>" class="d-block carousel-img">
                   <% end %>
                 </div>

@@ -10,17 +10,25 @@ class GigsController < ApplicationController
   def index
     @search_params = params[:query].downcase unless params[:query] == nil
     @search_params_two = params[:querycity].downcase unless params[:querycity] == nil
+    @search_params_three = params[:querygenre].downcase unless params[:querycity] == nil
     @gigs = policy_scope(Gig).all
     @user_gigs = UserGig.all
-    if @search_params != nil
-       @events_array = find_events_array_by_name(@search_params)
+    if @search_params != nil && @search_params_two == nil && @search_params_three == nil
+      @events_array = find_events_array_by_name(@search_params)
+    elsif @search_params != nil && @search_params_two != nil && @search_params_three == nil
+      @events_array = find_events_array_by_city_and_name(@search_params_two, @search_params)
+    elsif @search_params == nil && @search_params_two != nil && @search_params_three == nil
+      @events_array = find_events_array_by_city(@search_params_two)
+    elsif @search_params != nil && @search_params_two != nil && @search_params_three != nil
+      @events_array = find_events_array_by_city_name_and_genre(@search_params_two, @search_params, @search_params_three)
+    elsif @search_params == nil && @search_params_two != nil && @search_params_three != nil
+      @events_array = find_events_array_by_city_and_genre(@search_params_two, @search_params_three)
+    elsif @search_params != nil && @search_params_two == nil && @search_params_three != nil
+      @events_array = find_events_array_by_name_and_genre(@search_params, @search_params_three)
+    elsif @search_params == nil && @search_params_two == nil && @search_params_three != nil
+      @events_array = find_events_array_by_genre(@search_params_three)
     else
       @events_array = nil
-    end
-    if @search_params_two != nil
-      @events_array_two = find_events_array_by_city(@search_params_two)
-    else
-     @events_array_two = nil
     end
   end
 
@@ -166,6 +174,98 @@ class GigsController < ApplicationController
 
   def find_events_array_by_city(city)
     url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=#{city}&classificationName=music")
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(url)
+    response = http.request(request)
+    events = response.read_body
+    gigs = JSON.parse(events)
+    if gigs["_embedded"] != nil
+      events_hash = gigs["_embedded"]
+      events_hash_two = events_hash["events"]
+    else
+      events_hash_two = nil
+    end
+    return events_hash_two
+  end
+
+  def find_events_array_by_city_and_name(city, name)
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=#{city}&keyword=#{name}&classificationName=music")
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(url)
+    response = http.request(request)
+    events = response.read_body
+    gigs = JSON.parse(events)
+    if gigs["_embedded"] != nil
+      events_hash = gigs["_embedded"]
+      events_hash_two = events_hash["events"]
+    else
+      events_hash_two = nil
+    end
+    return events_hash_two
+  end
+
+  def find_events_array_by_city_and_genre(city, genre)
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=#{city}&classificationName=#{genre}")
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(url)
+    response = http.request(request)
+    events = response.read_body
+    gigs = JSON.parse(events)
+    if gigs["_embedded"] != nil
+      events_hash = gigs["_embedded"]
+      events_hash_two = events_hash["events"]
+    else
+      events_hash_two = nil
+    end
+    return events_hash_two
+  end
+
+  def find_events_array_by_genre(genre)
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&classificationName=#{genre}")
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(url)
+    response = http.request(request)
+    events = response.read_body
+    gigs = JSON.parse(events)
+    if gigs["_embedded"] != nil
+      events_hash = gigs["_embedded"]
+      events_hash_two = events_hash["events"]
+    else
+      events_hash_two = nil
+    end
+    return events_hash_two
+  end
+
+
+  def find_events_array_by_city_name_and_genre(city, name, genre)
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=#{city}&keyword=#{name}&classificationName=#{genre}")
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(url)
+    response = http.request(request)
+    events = response.read_body
+    gigs = JSON.parse(events)
+    if gigs["_embedded"] != nil
+      events_hash = gigs["_embedded"]
+      events_hash_two = events_hash["events"]
+    else
+      events_hash_two = nil
+    end
+    return events_hash_two
+  end
+
+
+  def find_events_array_by_name_and_genre(name, genre)
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&keyword=#{name}&classificationName=#{genre}")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
