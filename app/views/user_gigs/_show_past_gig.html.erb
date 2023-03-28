@@ -12,9 +12,9 @@
     <div class="past-user-gig-page-main">
       <div class="past-user-gig-page-main-left">
         <div class="past-user-gig-page-main-left-about">
+          <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), data: {turbo_frame: "modal"}, class: "primary-button-inverse-medium" %>
           <div class="past-artist-headline d-flex justify-content-between", style="width: 124%;">
             <h2><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %> </h2>
-            <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), data: {turbo_frame: "modal"}, class: "primary-button" %>
           </div>
 
            <p><span><%= @user_gig.gig.genre.capitalize %></span> <%= @user_gig.gig.date.strftime("%e %b %Y") unless @user_gig.gig.date == nil %></p>
@@ -82,7 +82,7 @@
     <div class="row mt-4 mb-4 justify-content-center">
       <% @user_gig.comments.each do |comment| %>
         <% if comment.files.attached?%>
-          <div class="col-md-4">
+          <div class="memories-grid">
             <% comment.files.each do |file| %>
               <div class="album-cards">
                 <% if file.image? %>
