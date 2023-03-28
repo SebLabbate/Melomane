@@ -20,7 +20,7 @@ class Gig < ApplicationRecord
 
 
   def parse_wiki_image
-    if artist != nil
+    if artist != nil && artist != ""
       page = Wikipedia.find(artist)
       photo = page.main_image_url
       if photo != nil
@@ -34,7 +34,7 @@ class Gig < ApplicationRecord
   end
 
   def spotify_genre
-    if artist != nil
+    if artist != nil && artist != ""
       RSpotify::authenticate('13a5a78c35794c128471c373008efb01', '1cfa0c2e5bc04728b9e9e56731e0db20')
       artists = RSpotify::Artist.search(artist)
       artist = artists.first
@@ -56,7 +56,7 @@ class Gig < ApplicationRecord
   end
 
   def spotify_images_artist
-    if artist != nil
+    if artist != nil && artist != ""
       RSpotify::authenticate('13a5a78c35794c128471c373008efb01', '1cfa0c2e5bc04728b9e9e56731e0db20')
       artists = RSpotify::Artist.search(artist)
       artist = artists.first
@@ -73,7 +73,7 @@ class Gig < ApplicationRecord
   end
 
   def spotify_images_albums
-    if artist != nil
+    if artist != nil && artist != ""
       RSpotify::authenticate('13a5a78c35794c128471c373008efb01', '1cfa0c2e5bc04728b9e9e56731e0db20')
       artists = RSpotify::Artist.search(artist)
       artist = artists.first
@@ -123,7 +123,7 @@ class Gig < ApplicationRecord
   end
 
   def parse_wiki_info
-    if artist != nil
+    if artist != nil && artist != ""
       page = Wikipedia.find(artist)
       if page.summary != nil
         info = "#{page.summary.split('.')[0]}.#{page.summary.split('.')[1]}."
@@ -142,7 +142,7 @@ class Gig < ApplicationRecord
   end
 
   def spotify_top_five
-    if artist != nil
+    if artist != nil && artist != ""
       RSpotify::authenticate('13a5a78c35794c128471c373008efb01', '1cfa0c2e5bc04728b9e9e56731e0db20')
       artists = RSpotify::Artist.search(artist)
       artist = artists.first
