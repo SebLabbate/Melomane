@@ -1,13 +1,13 @@
 <div class="center-container">
   <h2 class="m-3">Add a new gig</h2>
-  <div class="form-signup mb-3 overlay" style="width: 500px">
+  <div class="form-signup mb-3 overlay">
     <%= simple_form_for(@gig) do |f| %>
       <%= f.input :artist %>
       <%= f.input :venue %>
       <%= f.input :genre %>
       <%= f.input :date, as: :datetime, order: [:day, :month, :year] %>
       <%= f.input :private %>
-      <%= f.submit "Add gig", class: "btn btn-dark justify-content-center" %>
+      <%= f.submit "Add Gig", class: "btn btn-dark justify-content-center" %>
     <% end %>
   </div>
 </div>
