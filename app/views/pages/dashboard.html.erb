@@ -36,7 +36,7 @@
           <h2 class="ug">Your upcoming gigs</h2>
         <div class="past-gigs">
           <% @upcoming_gigs.each do |upcoming_gig| %>
-            <div class="upcoming-gigs-card">
+            <div class="past-gigs-card">
               <%= link_to user_gig_path(upcoming_gig) do %>
                   <% if upcoming_gig.gig.wiki_photo_url != nil %>
                   <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
