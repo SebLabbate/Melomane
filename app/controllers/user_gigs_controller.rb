@@ -108,7 +108,7 @@ class UserGigsController < ApplicationController
     @user_gig.user = current_user
     authorize @user_gig
     if @user_gig.save
-      redirect_to dashboard_path, notice: "Added to your gigs!"
+      redirect_to upcoming_gigs_user_gigs_path, notice: "Added to your gigs!"
     else
       render :new, status: :unprocessable_entity
     end
