@@ -22,7 +22,7 @@
             <h2> <%= @gig.artist.capitalize %> <span> @ </span> <%= @gig.venue %></h2>
           </div>
             <p>  <%= @gig&.date&.strftime("%e %b %Y") %>  </p>
-            <p class="text-justify"> <span class="first-word"> <strong> <%= @gig.genre.capitalize %> </strong> </span> - <%= @gig.artist_info %> </p>
+            <p class="text-justify"> <span class="first-word"> <strong> <%= @gig.genre.capitalize unless @gig.genre.nil?%> </strong> </span> - <%= @gig.artist_info %> </p>
         </div>
 
         <%# Map %>
@@ -176,9 +176,12 @@
   </div>
 
   <%# Other gigs suggestions %>
-  <div class="upcoming-user-gig-page-suggested-title justify-content-center">
-    <h4> Suggested <span><%= @gig.genre.capitalize %></span> gigs </h4>
-  </div>
+
+  <% if @similar_gigs != nil %>
+    <div class="upcoming-user-gig-page-suggested-title justify-content-center">
+      <h4> Suggested <span><%= @gig.genre.capitalize unless @gig.genre.nil?%></span> gigs </h4>
+    </div>
+   <% end %>
 
   <% if @other_gigs.length > 0 %>
     <div class="container">
@@ -187,10 +190,10 @@
           <% @similar_gigs.each do |gig| %>
             <div class="col-lg-4 col-md-6 col-sm-12 p-2">
               <div class="upcoming-user-gig-suggested">
-                <% if gig.wiki_photo_url != nil %>
-                  <img src="<%= gig.wiki_photo_url %>" class="upcoming-suggested-artist-image" alt="...">
-                <% elsif gig.photo_url_two != nil %>
-                  <img src="<%=gig.photo_url_two %>" class="upcoming-suggested-artist-image" alt="...">
+                <% if gig.photo_url_two != nil %>
+                  <img src="<%= gig.photo_url_two %>" class="upcoming-suggested-artist-image" alt="...">
+                <% elsif gig.photo_url_three != nil %>
+                  <img src="<%=gig.photo_url_three %>" class="upcoming-suggested-artist-image" alt="...">
                 <% elsif gig.photo_url_three != nil %>
                   <img src="<%= gig.photo_url_three %>" class="upcoming-suggested-artist-image" alt="...">
                 <% elsif gig.photo_url_four != nil %>
@@ -199,7 +202,7 @@
                   <img src="<%= gig.photo_url_five %>" class="upcoming-suggested-artist-image" alt="...">
                 <% end %>
                 <div class="upcoming-suggested-artist-details d-flex flex-column gap-1">
-                  <h5 class="card-title"><%= link_to "#{gig.artist}", gig_path(gig) %></h3>
+                  <h5 class="card-title"><%= link_to "#{gig.artist.capitalize}", gig_path(gig) %></h3>
                   <p>
                   <%= link_to "#{gig.venue}", gig_path(gig), class: "span-venue-marker" %>
                   <%= link_to "#{gig.date.strftime("%e %b %Y")}", gig_path(gig), class: "card-text" %></p>
