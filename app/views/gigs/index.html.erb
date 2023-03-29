@@ -54,7 +54,7 @@
                  <% else%>
                   <% @artist_name = event["_embedded"]["attractions"][0]["name"] %>
                   <% end %>
-                <% @new_gig = Gig.new(user_id: 1, name: "#{@artist_string}#{@event_string}", artist: @artist_name, venue: @event_venue, date: @event_date_string, longitude: @longitude, latitude: @latitude, tickets: @gig_tickets)%>
+                <% @new_gig = Gig.new(user: User.admin, name: "#{@artist_string}#{@event_string}", artist: @artist_name, venue: @event_venue, date: @event_date_string, longitude: @longitude, latitude: @latitude, tickets: @gig_tickets)%>
                 <% @new_gig.save! %>
           <div class="col-lg-4 col-md-6 col-sm-12 p-2">
             <div class="gig-index-card">

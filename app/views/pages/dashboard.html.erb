@@ -25,18 +25,18 @@
                   <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{past_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(past_gig) %></p>
                 </div>
             </div>
-              <% end %>
+          <% end %>
           <% end %>
         </div>
       </div>
 
       <div class="vl"></div>
 
-      <div class="upcoming-gigs-container">
+      <div class="past-gigs-container">
           <h2 class="ug">Your upcoming gigs</h2>
-        <div class="upcoming-gigs ">
+        <div class="past-gigs">
           <% @upcoming_gigs.each do |upcoming_gig| %>
-            <div class="upcoming-gigs-card">
+            <div class="past-gigs-card">
               <%= link_to user_gig_path(upcoming_gig) do %>
                   <% if upcoming_gig.gig.wiki_photo_url != nil %>
                   <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
