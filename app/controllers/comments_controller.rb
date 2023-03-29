@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_user_gig, only: %i[ new show create destroy_attachment]
+  before_action :set_user_gig, only: %i[new show create destroy_attachment]
   before_action :set_comment, only: :destroy_attachment
 
   def index
