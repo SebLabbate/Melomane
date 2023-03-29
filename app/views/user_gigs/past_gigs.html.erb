@@ -11,7 +11,7 @@
     <div class="text-btn">
       <h2 class="pg">Your past gigs</h2>
       <div class="pt-2">
-        <%= link_to(dashboard_new_path, class: "primary-button") do %>
+        <%= link_to(dashboard_new_path, data: {turbo_frame: "modal"}, class: "primary-button") do %>
         Add a new gig!
         <% end %>
       </div>

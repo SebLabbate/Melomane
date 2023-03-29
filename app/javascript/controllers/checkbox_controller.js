@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["parent" , "child"]
 
   connect() {
-    // console.log("Stimulus is connected !")
+    console.log("Stimulus is connected !")
     this.parentTarget.hidden = false
     this.childTargets.map(x => x.checked = false)
   }
