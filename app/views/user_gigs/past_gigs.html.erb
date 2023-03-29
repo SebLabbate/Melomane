@@ -6,8 +6,13 @@
   <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
 </div>
 
-<div class="gigs-container">
-  <div class="past-gigs-container" data-controller="checkbox">
+  <div class="d-flex create-container-upcoming">
+    <p id="create-gig">Couldn't find a gig?</p>
+    <%= link_to "Create gig", new_gig_path, class: "primary-button-inverse-small" %>
+  </div>
+
+<div class="gigs-container-pg">
+  <%# <div class="past-gigs-container" data-controller="checkbox"> %>
     <div class="text-btn">
       <h2 class="pg">Your past gigs</h2>
       <div class="pt-2">
@@ -23,19 +28,21 @@
       <label class="toggle"></label>
     </div>
     -->
-    <%= form_with url: past_gigs_user_gigs_path, html: { class: "form-container" }, method: :get do |f| %>
-      <%= f.select :artist, Gig.pluck(:artist).uniq, { prompt: 'Artist', selected: nil }, class: "form_artist" %>
-      <%= f.select :venue, Gig.pluck(:venue).uniq, { prompt: 'Venue', selected: nil }, class: "form_venue" %>
-      <%= f.select :genre, Gig.pluck(:genre).uniq, { prompt: 'Genre', selected: nil }, class: "form_genre" %>
-      <%= f.button :submit do %>
-        <i class="fa-solid fa-filter"></i>
+    <div style="width: 100%;">
+      <%= form_with url: past_gigs_user_gigs_path, html: { class: "form-container" }, method: :get do |f| %>
+        <%= f.select :artist, Gig.where("date < '#{DateTime.current}' AND user_id = '#{current_user.id}'").pluck(:artist).uniq, { prompt: 'Artist', selected: nil }, class: "form_artist" %>
+        <%= f.select :venue, Gig.where("date < '#{DateTime.current}' AND user_id = '#{current_user.id}'").pluck(:venue).uniq, { prompt: 'Venue', selected: nil }, class: "form_venue" %>
+        <%= f.select :genre, Gig.where("date < '#{DateTime.current}' AND user_id = '#{current_user.id}'").pluck(:genre).uniq, { prompt: 'Genre', selected: nil }, class: "form_genre" %>
+        <%= f.button :submit do %>
+          <i class="fa-solid fa-filter"></i>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
     <div class="all-past-gigs">
-      <div class="past-gigs">
+      <%# <div class="past-gigs"> %>
         <% @user_gigs.each do |user_gig| %>
           <% if user_gig.user_id == current_user.id && user_gig.gig.date != nil && user_gig.gig.date < DateTime.current %>
-            <div class="past-gigs-card">
+            <div class="past-gigs-card-pg">
               <%= link_to user_gig_path(user_gig) do %>
                   <% if user_gig.gig.wiki_photo_url != nil %>
                     <div class="pg-card-img-wrap"><img src="<%= user_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
@@ -59,7 +66,7 @@
             </div>
           <% end %>
         <% end %>
-      </div>
+      <%# </div> %>
     </div>
-  </div>
+  <%# </div> %>
 </div>

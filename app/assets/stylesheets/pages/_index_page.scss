@@ -77,31 +77,37 @@ h5{
   justify-content: center;
   .form-width {
     width: 600px;
+    height: 100%;
+    align-items: center;
+    gap: 8px;
   }
   .form-control{
     background-color:  #121212;
     color: white;
-    border-top-left-radius: 14px;
+    border-radius: 35px;
+    height: 35px;
     border-color:white;
-    border-bottom-left-radius: 14px;
-    border-right: none;
-    border-width: 1px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
+    // border-bottom-left-radius: 14px;
+    // border-right: none;
+    // border-width: 1px;
+    // border-top-right-radius: 0px;
+    // border-bottom-right-radius: 0px;
   }
   .search-btn{
     background-color:  #121212;
     color: #F4F798;
-    border-top-color: white;
-    border-right-color: white;
-    border-left-style: solid;
-    border-left-color: white;
-    border-bottom-style: solid;
-    border-bottom-color:white;
-    border-top-right-radius: 14px;
-    border-bottom-right-radius: 14px;
-    border-color: white;
-    border-width: 1px;
+    border: 1px solid white;
+    padding: 3px;
+    // border-top-color: white;
+    // border-right-color: white;
+    // border-left-style: solid;
+    // border-left-color: white;
+    // border-bottom-style: solid;
+    // border-bottom-color:white;
+    border-radius: 14px;
+    // border-bottom-right-radius: 14px;
+    // border-color: white;
+    // border-width: 1px;
   }
   #query {
     flex-grow: 1;

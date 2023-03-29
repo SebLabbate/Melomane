@@ -7,12 +7,12 @@
       <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
     </div>
 
-  <div class="gigs-container">
-      <div class="past-gigs-container">
+  <div class="gigs-container-db">
+      <div class="past-gigs-container-db">
           <h2 class="pg">Gigs you have been to</h2>
-        <div class="past-gigs ">
+        <div class="past-gigs-db">
           <% @past_gigs.each do |past_gig| %>
-            <div class="past-gigs-card">
+            <div class="past-gigs-card-db">
               <%= link_to user_gig_path(past_gig) do %>
                 <% if past_gig.gig.wiki_photo_url != nil %>
                   <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
@@ -32,12 +32,12 @@
 
       <div class="vl"></div>
 
-      <div class="past-gigs-container">
+      <div class="past-gigs-container-db">
           <h2 class="ug">Your upcoming gigs</h2>
-        <div class="past-gigs">
+        <div class="past-gigs-db">
           <% @upcoming_gigs.each do |upcoming_gig| %>
-            <div class="upcoming-gigs-card">
-              <%= link_to gig_path(upcoming_gig.gig) do %>
+            <div class="past-gigs-card-db">
+              <%= link_to user_gig_path(upcoming_gig) do %>
                   <% if upcoming_gig.gig.wiki_photo_url != nil %>
                   <div class="pg-card-img-wrap"><img src="<%= upcoming_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
                   <% elsif upcoming_gig.gig.photo_url_four != nil %>
