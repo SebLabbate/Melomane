@@ -14,7 +14,7 @@
 <div class="up-gigs-container">
   <% if @user_gigs.empty? %>
     <div class="message">
-      <h2 class="msg">Does your melodie ran out of notes ?</h2>
+      <h2 class="msg">Does your melody run out of notes?</h2>
       <%= link_to "Find a Gig", gigs_path, class: "primary-button-inverse" %>
     </div>
     <% else %>
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="cancel">
-                  <%= link_to "Cancel", user_gig_path(user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "cancel-btn" %>
+                  <%= link_to "Remove", user_gig_path(user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "cancel-btn" %>
                 </div>
                 <div class="edit">
                   <% if user_gig.gig.user_id == current_user.id%>
