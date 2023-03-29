@@ -33,7 +33,7 @@
 
   <div class="d-flex create-container">
     <p id="create-gig">Can't find a gig?</p>
-    <%= link_to "Create gig", new_gig_path, class: "primary-button-inverse-small", id: "create-gig-btn" %>
+    <%= link_to "Create gig", new_gig_path, data: {turbo_frame: "modal"}, class: "primary-button-inverse-small", id: "create-gig-btn" %>
   </div>
 </div>
 

@@ -111,6 +111,22 @@
   cursor: pointer;
 }
 
+.warning-button-medium {
+  background-color: #CF6679;
+  border: none;
+  border-radius: 45px;
+  color: #121212;
+  padding: 9px 23px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "Open Sans";
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
 .warning-button:hover {
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);

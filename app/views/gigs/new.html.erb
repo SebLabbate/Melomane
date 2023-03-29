@@ -1,13 +1,16 @@
-<div class="center-container">
-  <h2 class="m-3">Add a new gig</h2>
-  <div class="form-signup mb-3 overlay">
-    <%= simple_form_for(@gig) do |f| %>
-      <%= f.input :artist %>
-      <%= f.input :venue %>
-      <%= f.input :genre %>
-      <%= f.input :date, as: :datetime, order: [:day, :month, :year] %>
-      <%= f.input :private %>
-      <%= f.submit "Add Gig", class: "btn btn-dark justify-content-center" %>
-    <% end %>
+<%= turbo_frame_tag "modal" do %>
+  <div class="modal-form">
+    <div class="new-gig-modal-center-container">
+      <h2 class="m-3">Add a new gig</h2>
+      <div class="">
+        <%= simple_form_for (@gig), data: {turbo_frame: "_top"} do |f| %>
+          <%= f.input :artist %>
+          <%= f.input :venue %>
+          <%= f.input :genre %>
+          <%= f.input :date, as: :datetime, order: [:day, :month, :year] %>
+          <%= f.submit "Add Gig", class: "btn btn-dark justify-content-center" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
+<% end %>
