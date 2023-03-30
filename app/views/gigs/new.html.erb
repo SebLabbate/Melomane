@@ -4,10 +4,10 @@
       <h2 class="m-3">Add a new gig</h2>
       <div class="">
         <%= simple_form_for (@gig), data: {turbo_frame: "_top"} do |f| %>
-          <%= f.input :artist %>
-          <%= f.input :venue %>
-          <%= f.input :genre %>
-          <%= f.input :date, as: :datetime, order: [:day, :month, :year] %>
+          <%= f.input :artist, required: true %>
+          <%= f.input :venue, required: true %>
+          <%= f.input :genre, required: true %>
+          <%= f.input :date, as: :datetime, order: [:day, :month, :year], required: true %>
           <%= f.input :photo, as: :file %>
           <%= hidden_field_tag 'origin', @origin %>
           <%= f.submit "Add Gig", class: "btn btn-dark justify-content-center" %>
