@@ -126,7 +126,7 @@
 
   <%# Other gigs suggestions %>
   <div class="upcoming-user-gig-page-suggested-title justify-content-center">
-    <h4> Suggested <span><%= @user_gig.gig.genre.capitalize %></span> gigs </h4>
+    <h4> Suggested <span><%= @user_gig.gig.genre.capitalize unless @user_gig.gig.genre.nil? %></span> gigs </h4>
   </div>
 
   <div class="container">
