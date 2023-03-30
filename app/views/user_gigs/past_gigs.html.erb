@@ -1,15 +1,7 @@
-<div class="gigs-buttons">
-  <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
-        <div class="vl-s"></div>
-  <h2 class="ug"><%= link_to "Upcoming Gigs", upcoming_gigs_user_gigs_path, class: "link-ug-btn" %></h2>
-        <div class="vl-s"></div>
-  <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
+<div class="d-flex create-container-upcoming">
+  <p id="create-gig">Couldn't find a gig?</p>
+  <%= link_to "Create gig", new_gig_path(origin: action_name), data: {turbo_frame: "modal"}, class: "primary-button-inverse-small" %>
 </div>
-
-  <div class="d-flex create-container-upcoming">
-    <p id="create-gig">Couldn't find a gig?</p>
-    <%= link_to "Create gig", new_gig_path(origin: action_name), data: {turbo_frame: "modal"}, class: "primary-button-inverse-small" %>
-  </div>
 
 <div class="gigs-container-pg">
   <%# <div class="past-gigs-container" data-controller="checkbox"> %>
@@ -50,7 +42,11 @@
                     <div class="artist"><span><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></span></div>
                     <div class="vanue"><span><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", user_gig_path(user_gig) %></span></div>
                     <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(user_gig) %></span></div>
+                    <div class="past-cancel">
+                      <%= link_to "Remove", user_gig_path(user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "past-cancel-btn" %>
+                    </div>
                   </div>
+
                   <!--
                   <div class="toggle-box">
                     <input data-id="<%= user_gig.id %>" <%= user_gig.attended ? "checked" : "" %> type="checkbox" data-checkbox-target="child" data-action="change->checkbox#toggleParent">

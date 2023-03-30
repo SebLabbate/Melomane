@@ -1,12 +1,5 @@
 <div class="container">
   <div class="upcoming-user-gig-page">
-    <div class="gigs-buttons">
-      <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
-            <div class="vl-s"></div>
-      <h2 class="ug"><%= link_to "Upcoming Gigs", upcoming_gigs_user_gigs_path, class: "link-ug-btn" %></h2>
-            <div class="vl-s"></div>
-      <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
-    </div>
      <% unless @user_gig.gig.tickets == nil %>
        <a href="<% @user_gig.gig.tickets %>" target="_blank" class= "primary-button-inverse-medium d-inline-flex justify-content-end", id= "create-gig-btn"> buy tickets </a>
      <% end %>
@@ -45,7 +38,7 @@
       <%# Photos carousel %>
       <div class="gig-page-main-right">
         <div class="">
-          <h3 class="mt-4"> Pics of <%= @user_gig.gig.artist.capitalize %> </h3>
+          <h3 class="mt-4"> Pics of <%= @user_gig.gig.artist.titleize %> </h3>
           <div class="carousel-border mt-1 d-flex align-items-center">
             <div id="carouselExampleIndicators" class="carousel slide">
               <div class="carousel-indicators">
@@ -147,7 +140,7 @@
                 <img src="<%= gig.photo_url_five %>" class="upcoming-suggested-artist-image" alt="...">
               <% end %>
               <div class="upcoming-suggested-artist-details d-flex flex-column gap-1">
-                <h5 class="card-title"><%= link_to "#{gig.artist.capitalize}", gig_path(gig) %></h3>
+                <h5 class="card-title"><%= link_to "#{gig.artist.titleize}", gig_path(gig) %></h3>
                 <p>
                 <%= link_to "#{gig.venue}", gig_path(gig), class: "span-venue-marker" %>
                 <%= link_to "#{gig.date.strftime("%e %b %Y")}", gig_path(gig), class: "card-text" %></p>
