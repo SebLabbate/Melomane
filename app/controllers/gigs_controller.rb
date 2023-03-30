@@ -13,6 +13,7 @@ class GigsController < ApplicationController
     @search_params = params[:query].downcase unless params[:query] == nil
     @search_params_two = params[:querycity].downcase unless params[:querycity] == nil
     @search_params_three = params[:querygenre].downcase unless params[:querycity] == nil
+    @random_events_array = find_random_events_array
     if @search_params == ""
       @search_params = nil
     end
@@ -74,10 +75,12 @@ class GigsController < ApplicationController
     @gig = Gig.new(gig_params)
     @gig.user = current_user
     if @gig.save
-      @user_gig = UserGig.new
-      @user_gig.user = current_user
-      @user_gig.gig = @gig
-      @user_gig.save
+      if @origin != "index"
+        @user_gig = UserGig.new
+        @user_gig.user = current_user
+        @user_gig.gig = @gig
+        @user_gig.save
+      end
       if @origin == "past_gigs"
         redirect_to past_gigs_user_gigs_path
       elsif @origin == "upcoming_gigs"
@@ -179,6 +182,24 @@ class GigsController < ApplicationController
 
   def find_events_array_by_name(name)
     url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&keyword=#{name}&classificationName=music&size=200")
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(url)
+    response = http.request(request)
+    events = response.read_body
+    gigs = JSON.parse(events)
+    if gigs["_embedded"] != nil
+      events_hash = gigs["_embedded"]
+      events_hash_two = events_hash["events"]
+    else
+      events_hash_two = nil
+    end
+    return events_hash_two
+  end
+
+  def find_random_events_array
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&classificationName=rock&size=6")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
