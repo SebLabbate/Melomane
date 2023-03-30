@@ -78,9 +78,9 @@
                <%= hidden_field_tag 'origin', @origin %>
                 <%= f.submit @artist_name_shortened.titleize, class: "btn", id: "primary-text-inverse-small" %>
                 <% end %>
-               <p> <%= @event_venue %>  &#x2022;
+               <p> <%= @event_venue[0..21] %>  &#x2022;
                  <%= @event_date_string %> </p>
-                <p> <%= @gig_price %> </p>
+                <p> <span class="pound"><i class="fa-solid fa-euro-sign"></i><%= @gig_price.to_i %></span></p>
               </div>
             </div>
           </div>
