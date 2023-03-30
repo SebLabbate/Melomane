@@ -23,6 +23,10 @@
     </header>
 
     <main>
+      <% unless current_page?(root_path) %>
+        <%= render "shared/nav_links" %>
+      <% end %>
+      
       <%= yield %>
       <div
         class="modal"
