@@ -82,6 +82,8 @@ class GigsController < ApplicationController
         redirect_to past_gigs_user_gigs_path
       elsif @origin == "upcoming_gigs"
         redirect_to upcoming_gigs_user_gigs_path
+      elsif @origin == "index"
+        redirect_to gig_path(@gig)
       else
         redirect_to dashboard_path
       end

@@ -41,6 +41,7 @@
                 <% @longitude = event["_embedded"]["venues"][0]["location"]["longitude"] unless event["_embedded"]["venues"][0]["location"] == nil%>
                 <% @photo_one = event["images"][1]["url"] %>
                 <% @gig_tickets = event["url"] %>
+                <% @origin = action_name %>
                 <% if @search_params != nil && @search_params != ""%>
                  <% @artist_name_shortened = @search_params %>
                  <% else%>
@@ -72,9 +73,11 @@
               <%= f.hidden_field :longitude, value: @longitude    %>
               <%= f.hidden_field :latitude, value: @latitude    %>
               <%= f.hidden_field :photo_url_two, value: @photo_one    %>
+               <%= hidden_field_tag 'origin', @origin %>
                 <%= f.submit @artist_name_shortened, class: "card-title" %>
                 <% end %>
                <p> <%= @event_venue %>  &#x2022;
+               <%= action_name %>
                  <%= @event_date_string %> </p>
               </div>
             </div>
