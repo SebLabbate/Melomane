@@ -19,7 +19,7 @@
       <div class="upcoming-user-gig-page-main-left">
         <div class="upcoming-user-gig-page-main-left-about">
           <div class="upcoming-artist-headline d-flex justify-content-between", style="width: 124%;">
-            <h2> <%= @gig.artist.capitalize %> <span> @ </span> <%= @gig.venue %></h2>
+            <h2> <%= @gig.artist.capitalize%> <span> @ </span> <%= @gig.venue %></h2>
           </div>
             <p>  <%= @gig&.date&.strftime("%e %b %Y") %>  </p>
             <p class="text-justify"> <span class="first-word"> <strong> <%= @gig.genre.capitalize unless @gig.genre.nil?%> </strong> </span> - <%= @gig.artist_info %> </p>

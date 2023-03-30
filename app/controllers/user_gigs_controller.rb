@@ -27,10 +27,10 @@ class UserGigsController < ApplicationController
   end
 
   def new
+    raise
   end
 
   def past_gigs
-    # raise
     @genre = params[:genre]
     @venue = params[:venue]
     @artist = params[:artist]

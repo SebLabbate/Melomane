@@ -14,10 +14,10 @@
         <div class="past-user-gig-page-main-left-about">
           <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), data: {turbo_frame: "modal"}, class: "primary-button-inverse-medium" %>
           <div class="past-artist-headline d-flex justify-content-between", style="width: 124%;">
-            <h2><%= @user_gig.gig.artist %><span> @ </span> <%= @user_gig.gig.venue %> </h2>
+            <h2><%= @user_gig.gig.artist.capitalize %><span> @ </span> <%= @user_gig.gig.venue.capitalize %> </h2>
           </div>
 
-           <p><span><%= @user_gig.gig.genre.capitalize %></span> <%= @user_gig.gig.date.strftime("%e %b %Y") unless @user_gig.gig.date == nil %></p>
+           <p><span><%= @user_gig.gig.genre.capitalize unless @user_gig.gig.genre.nil? %></span> <%= @user_gig.gig.date.strftime("%e %b %Y") unless @user_gig.gig.date == nil %></p>
             <div class="">
               <div class="past-artist-photo">
                 <% if @user_gig.gig.wiki_photo_url != nil %>
@@ -47,7 +47,6 @@
               </div>
         </div>
       </div>
-
 
 
       <%# Music %>
