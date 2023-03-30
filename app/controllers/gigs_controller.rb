@@ -53,7 +53,6 @@ class GigsController < ApplicationController
   end
 
   def new
-
     @gig = Gig.new
     authorize @gig
   end
@@ -120,7 +119,8 @@ class GigsController < ApplicationController
     @markers =
       [{
         lat: @gig.latitude,
-        lng: @gig.longitude
+        lng: @gig.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { gig: @gig })
       }]
   end
 
