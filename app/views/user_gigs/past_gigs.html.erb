@@ -8,7 +8,7 @@
 
   <div class="d-flex create-container-upcoming">
     <p id="create-gig">Couldn't find a gig?</p>
-    <%= link_to "Create gig", new_gig_path, data: {turbo_frame: "modal"}, class: "primary-button-inverse-small" %>
+    <%= link_to "Create gig", new_gig_path(origin: action_name), data: {turbo_frame: "modal"}, class: "primary-button-inverse-small" %>
   </div>
 
 <div class="gigs-container-pg">
