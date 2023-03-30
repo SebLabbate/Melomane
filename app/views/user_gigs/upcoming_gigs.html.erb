@@ -14,7 +14,7 @@
 <div class="up-gigs-container">
   <% if @user_gigs.empty? %>
     <div class="message">
-      <h2 class="msg">Does your melody run out of notes?</h2>
+      <h2 class="msg">Did your melody run out of notes?</h2>
       <%= link_to "Find a Gig", gigs_path, class: "primary-button-inverse" %>
     </div>
     <% else %>
@@ -22,7 +22,7 @@
       <h2 class="ug">Your upcoming gigs</h2>
       <% @user_gigs.each do |user_gig| %>
           <% if user_gig.user_id == current_user.id && user_gig.gig.date > DateTime.current %>
-            <%= link_to user_gig_path(user_gig) do %>
+            <%= link_to gig_path(user_gig.gig) do %>
               <div class="up-gigs-card">
                 <% if user_gig.gig.wiki_photo_url != nil %>
                   <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.wiki_photo_url %>" class="ug-card-img"></div>
@@ -32,9 +32,9 @@
                   <div class="ug-card-img-wrap"><img src="<%= user_gig.gig.photo_url_five%>" class="ug-card-img"></div>
                   <% end %>
                 <div class="ug-card-content">
-                  <p class="artist"><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></p>
-                  <p class="vanue"><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", user_gig_path(user_gig) %></p>
-                  <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(user_gig) %></p>
+                  <p class="artist"><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  gig_path(user_gig.gig) %></p>
+                  <p class="vanue"><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", gig_path(user_gig.gig) %></p>
+                  <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", gig_path(user_gig.gig) %></p>
                 </div>
 
                 <div class="cancel">
