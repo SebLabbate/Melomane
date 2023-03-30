@@ -1,15 +1,7 @@
-<div class="gigs-buttons">
-  <h2 class="ug"><%= link_to "Dashboard", dashboard_path, class: "link-ug-btn" %></h2>
-        <div class="vl-s"></div>
-  <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
-        <div class="vl-s"></div>
-  <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
+<div class="d-flex create-container-upcoming">
+  <p id="create-gig">Couldn't find a gig?</p>
+  <%= link_to "Create a gig", new_gig_path, data: {turbo_frame: "modal"}, class: "primary-button-inverse-small" %>
 </div>
-
-  <div class="d-flex create-container-upcoming">
-    <p id="create-gig">Couldn't find a gig?</p>
-    <%= link_to "Create a gig", new_gig_path, data: {turbo_frame: "modal"}, class: "primary-button-inverse-small" %>
-  </div>
 
 <div class="up-gigs-container">
   <% if @user_gigs.empty? %>
