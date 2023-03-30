@@ -4,7 +4,6 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-
 class GigsController < ApplicationController
   before_action :set_gig, only: %i[show edit update]
 
