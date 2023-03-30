@@ -30,8 +30,8 @@
 </div>
 
 <div class="container">
-  <div class="row mt-4 mb-4 justify-content-center">
         <% if @events_array != nil %>
+         <div class="row mt-4 mb-4 justify-content-center">
         <% @events_array.each do |event| %>
                       <% @artist_string = event["name"] %>
               <% @event_venue = "#{event["_embedded"]["venues"][0]["name"]} - #{event["_embedded"]["venues"][0]["city"]["name"]}" %>
@@ -77,12 +77,45 @@
                 <%= f.submit @artist_name_shortened, class: "card-title" %>
                 <% end %>
                <p> <%= @event_venue %>  &#x2022;
-               <%= action_name %>
                  <%= @event_date_string %> </p>
               </div>
             </div>
           </div>
           <% end %>
+          <% elsif @events_array == nil && @search_params == nil && @search_params_two == nil && @search_params_three == nil %>
+           <div class="row mt-4 mb-4 justify-content-center">
+            <h2 class="pb-3"> Some gigs you might like </h2>
+              <% @random_events_array.each do |event| %>
+               <% @artist_name = event["_embedded"]["attractions"][0]["name"] unless  event["_embedded"]["attractions"] == nil %>
+                  <% @artist_name_shorten_array = @artist_name.split(" ")[0..5] unless @artist_name == nil  %>
+                    <% unless @artist_name_shorten_array == nil %>
+                     <% array = [] %>
+                  <% @artist_name_shorten_array.each do |word|  %>
+                  <% array << word %>
+                  <% end %>
+                  <% end %>
+                  <% @artist_name_shortened = array.join(" ") %>
+                  <% @event_venue = "#{event["_embedded"]["venues"][0]["name"]} - #{event["_embedded"]["venues"][0]["city"]["name"]}" %>
+                <% event_string = event["dates"]["start"]["dateTime"] %>
+                <% @event_date_string = event_string.split('T')[0] unless event_string == nil %>
+                <% @photo_one = event["images"][1]["url"] %>
+                     <div class="col-lg-4 col-md-6 col-sm-12 p-2">
+               <div class="gig-index-card">
+                       <% if @photo_one != nil %>
+                <img src="<%= @photo_one %>" class="card-img-top" alt="...">
+              <% else  %>
+                <img src="https://images.pexels.com/photos/1677710/pexels-photo-1677710.jpeg" class="card-img-top" alt="...">
+              <% end %>
+              <div class="card-body d-flex flex-column gap-1">
+               <p class="card-title"> <%= @artist_name_shortened  %> </p>
+               <p> <%= @event_venue %>  &#x2022;
+                 <%= @event_date_string %> </p>
+              </div>
+            </div>
+            </div>
+              <% end %>
+             <% else %>
+             <h2 class="pb-3">We didnt find any results for this... try and search by something else </h2>
             <% end %>
   </div>
 </div>
