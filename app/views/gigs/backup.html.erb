@@ -26,64 +26,54 @@
           class: "form-control",
           placeholder: "city"
         %>
-        <%= submit_tag "Search", class: "primary-button-inverse-md-sm"%>
+        <%= submit_tag "Search", class: "search-btn"%>
       <% end %>
     </div>
   </div>
 
   <div class="d-flex create-container">
     <p id="create-gig">Can't find a gig?</p>
-    <%= link_to "Create gig", new_gig_path, data: {turbo_frame: "modal"}, class: "primary-button-inverse-small", id: "create-gig-btn" %>
+    <%= link_to "Create gig", new_gig_path, class: "primary-button-inverse-small", id: "create-gig-btn" %>
   </div>
 </div>
 
 <div class="container">
   <div class="row mt-4 mb-4 justify-content-center">
+       <%# to search by artist name %>
         <% if @events_array != nil %>
-        <% @events_array.each do |event| %>
+        <% @events_array[0..5].each do |event| %>
                       <% @artist_string = event["name"] %>
               <% @event_venue = "#{event["_embedded"]["venues"][0]["name"]} - #{event["_embedded"]["venues"][0]["city"]["name"]}" %>
                 <% event_string = event["dates"]["start"]["dateTime"] %>
                 <% @event_date_string = event_string.split('T')[0] unless event_string == nil %>
                 <% @latitude = event["_embedded"]["venues"][0]["location"]["latitude"] unless event["_embedded"]["venues"][0]["location"] == nil%>
                 <% @longitude = event["_embedded"]["venues"][0]["location"]["longitude"] unless event["_embedded"]["venues"][0]["location"] == nil%>
-                <% @photo_one = event["images"][1]["url"] %>
-                <% @gig_tickets = event["url"] %>
                 <% if @search_params != nil && @search_params != ""%>
-                 <% @artist_name_shortened = @search_params %>
+                <% @gig_tickets = event["url"] %>
+                 <% @artist_name = @search_params %>
                  <% else%>
-                  <% @artist_name = event["_embedded"]["attractions"][0]["name"] unless  event["_embedded"]["attractions"] == nil %>
-                  <% @artist_name_shorten_array = @artist_name.split(" ")[0..5] unless @artist_name == nil  %>
-                  <% array = [] %>
-                  <% unless @artist_name_shorten_array == nil %>
-                  <% @artist_name_shorten_array.each do |word|  %>
-                  <% array << word %>
+                  <% @artist_name = event["_embedded"]["attractions"][0]["name"] %>
                   <% end %>
-                  <% end %>
-                  <% @artist_name_shortened = array.join(" ") %>
-                  <% end %>
-
+                <% @new_gig = Gig.new(user_id: 1, name: "#{@artist_string}#{@event_string}", artist: @artist_name, venue: @event_venue, date: @event_date_string, longitude: @longitude, latitude: @latitude, tickets: @gig_tickets)%>
+                <% @new_gig.save! %>
           <div class="col-lg-4 col-md-6 col-sm-12 p-2">
             <div class="gig-index-card">
-                       <% if @photo_one != nil %>
-                <img src="<%= @photo_one %>" class="card-img-top" alt="...">
-              <% else  %>
-                <img src="https://images.pexels.com/photos/1677710/pexels-photo-1677710.jpeg" class="card-img-top" alt="...">
+                       <% if @new_gig.wiki_photo_url != nil %>
+                <img src="<%= @new_gig.wiki_photo_url %>" class="card-img-top" alt="...">
+              <% elsif @new_gig.photo_url_two != nil %>
+                <img src="<%= @new_gig.photo_url_two %>" class="card-img-top" alt="...">
+              <% elsif @new_gig.photo_url_three != nil %>
+                <img src="<%= @new_gig.photo_url_three %>" class="card-img-top" alt="...">
+              <% elsif @new_gig.photo_url_four != nil %>
+                <img src="<%= @new_gig.photo_url_four %>" class="card-img-top" alt="...">
+              <% elsif @new_gig.photo_url_five != nil %>
+                <img src="<%= @new_gig.photo_url_five %>" class="card-img-top" alt="...">
               <% end %>
               <div class="card-body d-flex flex-column gap-1">
-              <%= simple_form_for @gig do |f| %>
-              <%= f.hidden_field :artist, value: @artist_name_shortened %>
-              <%= f.hidden_field :venue, value: @event_venue  %>
-              <%= f.hidden_field :user_id, value: User.first.id %>
-              <%= f.hidden_field :date, value: @event_date_string  %>
-              <%= f.hidden_field :tickets, value: @gig_tickets   %>
-              <%= f.hidden_field :longitude, value: @longitude    %>
-              <%= f.hidden_field :latitude, value: @latitude    %>
-              <%= f.hidden_field :photo_url_two, value: @photo_one    %>
-                <%= f.submit @artist_name_shortened, class: "card-title" %>
-                <% end %>
-               <p> <%= @event_venue %>  &#x2022;
-                 <%= @event_date_string %> </p>
+                <h5 class="card-title"><%= link_to "#{@artist_string}", gig_path(@new_gig.id) %></h5>
+               <p class="card-text"> <%= link_to "#{@event_venue}", gig_path(@new_gig.id) %>  &#x2022;
+                 <%= link_to "#{@event_date_string}", gig_path(@new_gig.id) %> </p>
+                  <%= link_to "Add to upcoming gigs", gig_user_gigs_path(@new_gig.id), data: {turbo_method: :post}, class: "gig-card-button text-center", style: "margin-top: 3px;" %>
               </div>
             </div>
           </div>

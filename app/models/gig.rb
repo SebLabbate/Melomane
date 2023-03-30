@@ -64,12 +64,12 @@ class Gig < ApplicationRecord
       image = artist.images[0]
       photo_url = image.values[1]
       if photo_url != nil
-        self.photo_url_two = photo_url
+        self.photo_url_four = photo_url
       else
-        self.photo_url_two = nil
+        self.photo_url_four = nil
       end
     else
-      self.photo_url_two = nil
+      self.photo_url_four = nil
     end
   end
 
@@ -101,9 +101,9 @@ class Gig < ApplicationRecord
       end
       photo_url = array[0]
       if photo_url != nil
-        self.photo_url_four = photo_url
+        self.photo_url_five = photo_url
       else
-        self.photo_url_four = nil
+        self.photo_url_five = nil
       end
   end
 
