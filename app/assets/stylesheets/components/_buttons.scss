@@ -79,6 +79,25 @@
   cursor: pointer;
 }
 
+#primary-text-inverse-small {
+  background-color: #121212;
+  color: #F4F798;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Open Sans";
+  cursor: pointer;
+  margin-left: -13px;
+  }
+
+
+#primary-text-inverse-small:hover{
+  color:#F7C729;
+}
+
+
+
 .primary-button-inverse-md-sm {
   background-color: #121212;
   border: 2px solid #F4F798;

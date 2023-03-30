@@ -74,7 +74,7 @@
               <%= f.hidden_field :latitude, value: @latitude    %>
               <%= f.hidden_field :photo_url_two, value: @photo_one    %>
                <%= hidden_field_tag 'origin', @origin %>
-                <%= f.submit @artist_name_shortened, class: "card-title" %>
+                <%= f.submit @artist_name_shortened.titleize, class: "btn", id: "primary-text-inverse-small" %>
                 <% end %>
                <p> <%= @event_venue %>  &#x2022;
                  <%= @event_date_string %> </p>
