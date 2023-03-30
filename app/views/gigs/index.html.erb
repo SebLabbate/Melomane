@@ -68,7 +68,7 @@
               <%= simple_form_for @gig do |f| %>
               <%= f.hidden_field :artist, value: @artist_name_shortened %>
               <%= f.hidden_field :venue, value: @event_venue  %>
-              <%= f.hidden_field :user_id, value: User.admin %>
+              <%= f.hidden_field :user_id, value: User.first.id %>
               <%= f.hidden_field :date, value: @event_date_string  %>
               <%= f.hidden_field :tickets, value: @gig_tickets   %>
               <%= f.hidden_field :longitude, value: @longitude    %>
@@ -110,9 +110,9 @@
                 <img src="https://images.pexels.com/photos/1677710/pexels-photo-1677710.jpeg" class="card-img-top" alt="...">
               <% end %>
               <div class="card-body d-flex flex-column gap-1">
-               <p class="card-title"> <%= @artist_name_shortened  %> </p>
+               <p style="margin-left: 2px" id="primary-text-inverse-small"> <%= @artist_name_shortened.titleize[0..33] %></p>
                <p> <%= @event_venue %>  &#x2022;
-                 <%= @event_date_string %> </p>
+                <%= @event_date_string %> </p>
               </div>
             </div>
             </div>
