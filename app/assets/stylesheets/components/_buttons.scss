@@ -127,7 +127,7 @@
   cursor: pointer;
 }
 
-.warning-button:hover {
+.warning-button:hover, .warning-button-medium:hover {
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);

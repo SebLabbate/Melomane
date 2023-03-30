@@ -13,12 +13,10 @@ class Gig < ApplicationRecord
   has_many :user_gigs
   has_many_attached :photos
 
-
   #validates :artist, :date, :venue, presence: true
 
   before_create :parse_wiki_image, :spotify_genre, :spotify_images_artist, :spotify_images_albums, :pexel_photos
   before_create :parse_wiki_info, :spotify_top_five
-
 
   def parse_wiki_image
     if artist != nil && artist != ""
@@ -64,12 +62,12 @@ class Gig < ApplicationRecord
       image = artist.images[0]
       photo_url = image.values[1]
       if photo_url != nil
-        self.photo_url_two = photo_url
+        self.photo_url_four = photo_url
       else
-        self.photo_url_two = nil
+        self.photo_url_four = nil
       end
     else
-      self.photo_url_two = nil
+      self.photo_url_four = nil
     end
   end
 
@@ -101,9 +99,9 @@ class Gig < ApplicationRecord
       end
       photo_url = array[0]
       if photo_url != nil
-        self.photo_url_four = photo_url
+        self.photo_url_five = photo_url
       else
-        self.photo_url_four = nil
+        self.photo_url_five = nil
       end
   end
 

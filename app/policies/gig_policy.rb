@@ -11,7 +11,7 @@ class GigPolicy < ApplicationPolicy
   end
 
   def new?
-    return create?
+    return true
   end
 
   def create?

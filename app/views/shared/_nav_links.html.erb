@@ -1,0 +1,35 @@
+<div class="gigs-buttons">
+  <ul class="d-flex" style="list-style-type: none;">
+    <li>
+      <% if action_name == "dashboard" %>
+        <h2 class="pg"><%= link_to "Dashboard", dashboard_path, class: "link-pg-btn", id: "selected-link" %></h2>
+      <% else %>
+        <h2 class="pg"><%= link_to "Dashboard", dashboard_path, class: "link-pg-btn" %></h2>
+      <% end %>
+    </li>
+      <div class="vl-s"></div>
+    <li>
+      <% if action_name == "index" %>
+        <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn", id: "selected-link" %></h2>
+      <% else %>
+        <h2 class="ug"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
+      <% end %>
+    </li>
+      <div class="vl-s"></div>
+    <li>
+      <% if action_name == "upcoming_gigs" %>
+        <h2 class="ug"><%= link_to "Upcoming Gigs", upcoming_gigs_user_gigs_path, class: "link-ug-btn", id: "selected-link" %></h2>
+      <% else %>
+        <h2 class="ug"><%= link_to "Upcoming Gigs", upcoming_gigs_user_gigs_path, class: "link-ug-btn" %></h2>
+      <% end %>
+    </li>
+      <div class="vl-s"></div>
+    <li>
+      <% if action_name == "past_gigs" %>
+        <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn", id: "selected-link" %></h2>
+      <% else %>
+        <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
+      <% end %>
+    </li>
+  </ul>
+</div>

@@ -4,13 +4,24 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
+
 class GigsController < ApplicationController
   before_action :set_gig, only: %i[show edit update]
 
   def index
+    @gig = Gig.new
     @search_params = params[:query].downcase unless params[:query] == nil
     @search_params_two = params[:querycity].downcase unless params[:querycity] == nil
     @search_params_three = params[:querygenre].downcase unless params[:querycity] == nil
+    if @search_params == ""
+      @search_params = nil
+    end
+    if @search_params_two == ""
+      @search_params_two = nil
+    end
+    if @search_params_three == ""
+      @search_params_three = nil
+    end
     @gigs = policy_scope(Gig).all
     @user_gigs = UserGig.all
     if @search_params != nil && @search_params_two == nil && @search_params_three == nil
@@ -127,7 +138,8 @@ class GigsController < ApplicationController
     @markers =
       [{
         lat: @gig.latitude,
-        lng: @gig.longitude
+        lng: @gig.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { gig: @gig })
       }]
   end
 
@@ -155,7 +167,8 @@ class GigsController < ApplicationController
   end
 
   def gig_params
-    params.require(:gig).permit(:name, :artist, :venue, :genre, :user_id, :date, :private)
+    p params
+    params.require(:gig).permit(:name, :artist, :venue, :genre, :user_id, :date, :private, :latitude, :longitude, :tickets, :photo_url_two)
   end
 
   def set_gig
@@ -163,7 +176,7 @@ class GigsController < ApplicationController
   end
 
   def find_events_array_by_name(name)
-    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&keyword=#{name}&classificationName=music")
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&keyword=#{name}&classificationName=music&size=200")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -181,7 +194,7 @@ class GigsController < ApplicationController
   end
 
   def find_events_array_by_city(city)
-    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=#{city}&classificationName=music")
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=#{city}&classificationName=music&size=200")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -199,7 +212,7 @@ class GigsController < ApplicationController
   end
 
   def find_events_array_by_city_and_name(city, name)
-    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=#{city}&keyword=#{name}&classificationName=music")
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=#{city}&keyword=#{name}&classificationName=music&size=200")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -217,7 +230,7 @@ class GigsController < ApplicationController
   end
 
   def find_events_array_by_city_and_genre(city, genre)
-    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=#{city}&classificationName=#{genre}")
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=#{city}&classificationName=#{genre}&size=200")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -235,7 +248,7 @@ class GigsController < ApplicationController
   end
 
   def find_events_array_by_genre(genre)
-    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&classificationName=#{genre}")
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&classificationName=#{genre}&size=200")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -254,7 +267,7 @@ class GigsController < ApplicationController
 
 
   def find_events_array_by_city_name_and_genre(city, name, genre)
-    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=#{city}&keyword=#{name}&classificationName=#{genre}")
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=#{city}&keyword=#{name}&classificationName=#{genre}&size=200")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -273,7 +286,7 @@ class GigsController < ApplicationController
 
 
   def find_events_array_by_name_and_genre(name, genre)
-    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&keyword=#{name}&classificationName=#{genre}")
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&keyword=#{name}&classificationName=#{genre}&size=200")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -291,7 +304,7 @@ class GigsController < ApplicationController
   end
 
   def get_track_id(artist_first_name, artist_last_name, song_name)
-    url = URI("https://soundcloud-scraper.p.rapidapi.com/v1/search/tracks?term=#{artist_first_name}%20#{artist_last_name}%20#{song_name}")
+    url = URI("https://soundcloud-scraper.p.rapidapi.com/v1/search/tracks?term=#{artist_first_name}%20#{artist_last_name}%20#{song_name}&size=200")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -359,5 +372,6 @@ class GigsController < ApplicationController
     track_url = get_track_url(track_id)
     return track_url
   end
+
 
 end
