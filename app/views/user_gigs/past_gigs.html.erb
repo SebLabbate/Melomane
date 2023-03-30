@@ -39,6 +39,9 @@
           <% if user_gig.user_id == current_user.id && user_gig.gig.date != nil && user_gig.gig.date < DateTime.current %>
             <div class="past-gigs-card-pg">
               <%= link_to user_gig_path(user_gig) do %>
+                <% if user_gig.gig.photo.attached? %>
+                  <div class="pg-card-img-wrap"><%= cl_image_tag user_gig.gig.photo.key, class: "pg-card-img"%></div>
+                <% else %>
                   <% if user_gig.gig.wiki_photo_url != nil %>
                     <div class="pg-card-img-wrap"><img src="<%= user_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
                       <% elsif user_gig.gig.photo_url_four != nil %>
@@ -46,6 +49,7 @@
                       <% elsif user_gig.gig.photo_url_five != nil %>
                     <div class="pg-card-img-wrap"><img src="<%= user_gig.gig.photo_url_five %>" class="pg-card-img"></div>
                   <% end %>
+                <% end %>
                   <div class="pg-card-content">
                     <div class="artist"><span><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></span></div>
                     <div class="vanue"><span><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", user_gig_path(user_gig) %></span></div>

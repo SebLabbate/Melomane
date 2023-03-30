@@ -4,6 +4,7 @@ require 'openssl'
 
 class UserGigsController < ApplicationController
   before_action :set_user_gig, only: %i[show edit update destroy]
+  # before_action :set_gig
 
   def index
     @user_gigs = policy_scope(UserGig).all
@@ -147,8 +148,13 @@ class UserGigsController < ApplicationController
     @user_gig = UserGig.find(params[:id])
   end
 
+
+  def set_gig
+    @gig = Gig.find(params[:id])
+  end
+
   def user_gig_params
-    params.require(:user_gig).permit(:comment, :attended, :user_id, gig_attributes: [:id, :artist, :venue, :genre, :date])
+    params.require(:user_gig).permit(:comment, :attended, :user_id, :photo, gig_attributes: [:id, :artist, :venue, :genre, :date])
   end
 
   def find_other_genres
