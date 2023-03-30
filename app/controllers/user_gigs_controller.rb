@@ -136,9 +136,14 @@ class UserGigsController < ApplicationController
   def destroy
     authorize @user_gig
     @user_gig.destroy
-    respond_to do |format|
-      format.html { redirect_to dashboard_path, notice: "Gig removed" }
-      format.json { head :no_content }
+    return redirect_to request.referrer if request.referrer.present?
+
+    if params[:page] == "user_gigs/past_gigs"
+      redirect_to past_gigs_user_gigs_path, status: :see_other
+    elsif params[:page] == "upcoming_gigs"
+      redirect_to upcoming_gigs_path, status: :see_other
+    else
+      redirect_to dashboard_path, status: :see_other
     end
   end
 
