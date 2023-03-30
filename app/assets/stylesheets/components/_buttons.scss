@@ -54,7 +54,7 @@
   cursor: pointer;
 }
 
-.primary-button-inverse:hover, .primary-button-inverse-small:hover, .primary-button-inverse-medium:hover {
+.primary-button-inverse:hover, .primary-button-inverse-small:hover, .primary-button-inverse-medium:hover, .primary-button-inverse-md-sm:hover {
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
@@ -79,6 +79,22 @@
   cursor: pointer;
 }
 
+.primary-button-inverse-md-sm {
+  background-color: #121212;
+  border: 2px solid #F4F798;
+  border-radius: 45px;
+  color: #F4F798;
+  padding: 4px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "Open Sans";
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
 .warning-button {
   background-color: #CF6679;
   border: none;
@@ -89,6 +105,22 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  font-weight: bold;
+  font-family: "Open Sans";
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.warning-button-medium {
+  background-color: #CF6679;
+  border: none;
+  border-radius: 45px;
+  color: #121212;
+  padding: 9px 23px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
   font-weight: bold;
   font-family: "Open Sans";
   margin: 4px 2px;

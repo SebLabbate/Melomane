@@ -59,11 +59,22 @@
   }
 
   .gig-page-main-right {
-    display: flex;
-    gap: 30px;
     width: 40%;
-    margin-right: 0px;
-    float:right;
-    margin-bottom:20px;
-    color: white;
+    float: right;
+  }
+
+  .gigs-player {
+    width: 70%;
+    color:white;
+    audio{
+      float:right;
+    }
+    p {
+      padding-bottom: 20px;
+    }
+  }
+
+  .text-justify {
+    text-align: justify;
+    width: 93%;
   }

@@ -1,7 +1,6 @@
 .text-btn {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 20px;
 }
 
@@ -20,9 +19,12 @@
 
 
 .form-container {
+  // display: inline-block;
   border: 2px solid #F4F798;
   border-radius: 14px;
   padding: 8px;
+  margin: 0 auto;
+  width: fit-content;
 }
 
 
@@ -37,4 +39,10 @@
 
 #submit {
   width: 50px;
+}
+
+.all-past-gigs {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  // width: 50%;
 }

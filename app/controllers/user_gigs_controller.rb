@@ -27,43 +27,49 @@ class UserGigsController < ApplicationController
   end
 
   def new
+    raise
   end
 
   def past_gigs
-    # raise
     @genre = params[:genre]
     @venue = params[:venue]
     @artist = params[:artist]
 
-    @genre_gig = []
-    @venue_gig = []
-    @artist_gig = []
+    @genre_gig = ""
+    @venue_gig = ""
+    @artist_gig = ""
     @user_gigs = policy_scope(UserGig).all
     authorize @user_gigs
 
-    if @genre
-      @genre_gig = policy_scope(UserGig.joins(:gig)).where("gigs.genre = '#{@genre}'")
+    query = ""
+
+    if @genre.present?
+      @genre_gig = "gigs.genre = '#{@genre}'"
     end
 
-    if @venue
-      @venue_gig = policy_scope(UserGig.joins(:gig)).where("gigs.venue = '#{@venue}'")
+    if @venue.present?
+      @venue_gig = "gigs.venue = '#{@venue}'"
     end
 
-    if @artist
-      @artist_gig = policy_scope(UserGig.joins(:gig)).where("gigs.artist = '#{@artist}'")
+    if @artist.present?
+      @artist_gig = "gigs.artist = '#{@artist}'"
     end
 
-    if @genre || @venue || @artist
-      @user_gigs = @genre_gig + @venue_gig + @artist_gig
-      @user_gigs = @user_gigs.uniq
+    array = [@genre_gig, @venue_gig, @artist_gig]
+
+    array.each do |gig|
+      if query == "" && gig != ""
+        query += gig
+      elsif gig != ""
+        query += " AND #{gig}"
+      end
     end
 
-    # if @genre
-    #   @user_gigs = policy_scope(UserGig.joins(:gig)).where("gigs.genre = '#{@genre}' AND gigs.venue = '#{@venue}'")
-    #   # raise
-    # else
-    #   @user_gigs = policy_scope(UserGig.joins(:gig)).all
-    # end
+    if query == ""
+      @user_gigs = policy_scope(UserGig.joins(:gig)).all
+    else
+      @user_gigs = policy_scope(UserGig.joins(:gig)).where(query)
+    end
   end
 
   def upcoming_gigs
@@ -71,11 +77,13 @@ class UserGigsController < ApplicationController
     authorize @user_gigs
     @user_gigs = @user_gigs.select { |user_gig| user_gig.gig.date > DateTime.current if user_gig.gig.date != nil }
     @markers = @user_gigs.map do |user_gig|
-      {
-        lat: user_gig.gig.latitude,
-        lng: user_gig.gig.longitude,
-        info_window_html: render_to_string(partial: "popup", locals: {user_gig: user_gig})
-      }
+      if user_gig.gig.longitude != nil
+        {
+          lat: user_gig.gig.latitude,
+          lng: user_gig.gig.longitude,
+          info_window_html: render_to_string(partial: "popup", locals: {user_gig: user_gig})
+        }
+      end
     end
   end
 
@@ -100,7 +108,7 @@ class UserGigsController < ApplicationController
     @user_gig.user = current_user
     authorize @user_gig
     if @user_gig.save
-      redirect_to dashboard_path, notice: "Added to your gigs!"
+      redirect_to upcoming_gigs_user_gigs_path, notice: "Added to your gigs!"
     else
       render :new, status: :unprocessable_entity
     end

@@ -11,4 +11,8 @@ class User < ApplicationRecord
   validates :user_name, :password, :email, presence: true
   validates :email, uniqueness: true
   validates :password, length: { minimum: 6 }
+
+  def self.admin
+    User.find_by(email: "admin@admin.com")
+  end
 end
