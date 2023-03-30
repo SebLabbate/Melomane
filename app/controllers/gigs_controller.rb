@@ -4,7 +4,6 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-
 class GigsController < ApplicationController
   before_action :set_gig, only: %i[show edit update]
 
@@ -173,7 +172,7 @@ class GigsController < ApplicationController
 
   def gig_params
     p params
-    params.require(:gig).permit(:name, :artist, :venue, :genre, :user_id, :date, :private, :latitude, :longitude, :tickets, :photo_url_two, :gig_price)
+    params.require(:gig).permit(:name, :artist, :venue, :genre, :user_id, :photo, :date, :private, :latitude, :longitude, :tickets, :photo_url_two)
   end
 
   def set_gig
@@ -199,7 +198,7 @@ class GigsController < ApplicationController
   end
 
   def find_random_events_array
-    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&classificationName=rock&size=6")
+    url = URI("https://app.ticketmaster.com/discovery/v2/events.json?apikey=dQnJo7HE3HCwNKc3HbpQvCF3ps9exT7y&locale=*&city=Madrid&classificationName=music&size=200")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE

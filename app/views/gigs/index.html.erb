@@ -87,7 +87,7 @@
           <% end %>
           <% elsif @events_array == nil && @search_params == nil && @search_params_two == nil && @search_params_three == nil %>
            <div class="row mt-4 mb-4 justify-content-center">
-            <h2 class="pb-3"> Some gigs you might like </h2>
+            <h2 class="pb-3 text-center" style="margin-top: 25px; margin-bottom: 20px; "> Some gigs you might like </h2>
               <% @random_events_array.each do |event| %>
                <% @artist_name = event["_embedded"]["attractions"][0]["name"] unless  event["_embedded"]["attractions"] == nil %>
                   <% @artist_name_shorten_array = @artist_name.split(" ")[0..5] unless @artist_name == nil  %>
@@ -118,7 +118,7 @@
             </div>
               <% end %>
              <% else %>
-             <h2 class="pb-3">We didnt find any results for this... try and search by something else </h2>
+             <h2 class="text-center" style="margin-top: 80px;">We didnt find any results for this... try again! </h2>
             <% end %>
   </div>
 </div>
