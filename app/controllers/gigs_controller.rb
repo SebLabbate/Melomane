@@ -53,12 +53,13 @@ class GigsController < ApplicationController
   end
 
   def new
-
+    @origin = params[:origin]
     @gig = Gig.new
     authorize @gig
   end
 
   def create
+    @origin = params[:origin]
     @gig = Gig.new(gig_params)
     @gig.user = current_user
     if @gig.save
@@ -66,7 +67,13 @@ class GigsController < ApplicationController
       @user_gig.user = current_user
       @user_gig.gig = @gig
       @user_gig.save
-      redirect_to dashboard_path
+      if @origin == "past_gigs"
+        redirect_to past_gigs_user_gigs_path
+      elsif @origin == "upcoming_gigs"
+        redirect_to upcoming_gigs_user_gigs_path
+      else
+        redirect_to dashboard_path
+      end
     else
       render :new, status: :unprocessable_entity
     end
