@@ -104,9 +104,9 @@ h2 {
 .modal-form {
   // padding: 20px;
   // border: 0.1rem solid white;
-  border-radius: 20px;
-  height: auto;
-  width: 100%;
+  // border-radius: 20px;
+  // height: auto;
+  // width: 120%;
 
   h2 {
     font-size: 20px;
@@ -120,13 +120,13 @@ h2 {
     width: 90%;
   }
   .btn {
-    width: 50%;
+    width: 30%;
     background-color: #F4F798;
     font-weight: bold;
     margin-top: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     color: black;
-    margin-left: 80px;
+    margin-left: 170px;
   }
   .btn:hover {
     background-color: #F7C729;
@@ -159,12 +159,13 @@ h2 {
 .modal-content {
   background-color: #1c1919;
   border-radius: 12px;
+  width: 600px;
 }
 
 .edit-modal-center-container {
   background-color: #1c1919;
   padding-left: 50px;
-  width: 112%;
+  width: 140%;
   border-radius: 20px;
 
   .datetime {
@@ -172,13 +173,13 @@ h2 {
   }
 
   .btn {
-    width: 50%;
+    width: 30%;
     background-color: #F4F798;
     font-weight: bold;
     margin-top: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     color: black;
-    margin-left: 94px;
+    margin-left: 230px;
   }
 }
 
@@ -190,4 +191,18 @@ h2 {
   .datetime {
     width: 91%;
   }
+}
+
+h2.m-3 {
+  margin-top: 25px !important;
+}
+
+.model {
+  border-radius: 20px;
+  height: auto;
+  width: 120%;
+}
+
+h2.pt-5 {
+  padding: 25px !important;
 }
