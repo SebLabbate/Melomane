@@ -68,7 +68,7 @@
               <%= simple_form_for @gig do |f| %>
               <%= f.hidden_field :artist, value: @artist_name_shortened %>
               <%= f.hidden_field :venue, value: @event_venue  %>
-              <%= f.hidden_field :user_id, value: User.first.id %>
+              <%= f.hidden_field :user_id, value: User.admin %>
               <%= f.hidden_field :date, value: @event_date_string  %>
               <%= f.hidden_field :tickets, value: @gig_tickets   %>
               <%= f.hidden_field :longitude, value: @longitude    %>
