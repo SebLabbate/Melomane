@@ -6,11 +6,15 @@
           <% @past_gigs.each do |past_gig| %>
             <div class="past-gigs-card-db">
               <%= link_to user_gig_path(past_gig) do %>
+              <% if past_gig.gig.photo.attached? %>
+                  <div class="pg-card-img-wrap"><%= cl_image_tag past_gig.gig.photo.key, class: "pg-card-img"%></div>
+              <% else %>
                 <% if past_gig.gig.wiki_photo_url != nil %>
                   <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.wiki_photo_url %>" class="pg-card-img"></div>
                   <% elsif past_gig.gig.photo_url_four != nil %>
                   <div class="pg-card-img-wrap"><img src="<%= past_gig.gig.photo_url_four %>" class="pg-card-img"></div>
                   <% end %>
+              <% end %>
                 <div class="pg-card-content">
                   <p class="artist"><i class="fa-solid fa-music"></i> <%= link_to "#{past_gig.gig.artist}", user_gig_path(past_gig) %></p>
                   <p class="vanue"><i class="fa-solid fa-location-dot"></i> <%= link_to "#{past_gig.gig.venue.titleize[0..20]}", user_gig_path(past_gig) %></p>

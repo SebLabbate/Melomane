@@ -12,13 +12,17 @@
            <p><span><%= @user_gig.gig.genre.capitalize unless @user_gig.gig.genre.nil? %></span> <%= @user_gig.gig.date.strftime("%e %b %Y") unless @user_gig.gig.date == nil %></p>
             <div class="">
               <div class="past-artist-photo">
+              <% if @user_gig.gig.photo.attached?  %>
+                <%= cl_image_tag @user_gig.gig.photo.key %>
+              <% else %>
                 <% if @user_gig.gig.wiki_photo_url != nil %>
-                  <img src="<%= (@user_gig.gig.wiki_photo_url) %>">
-                  <% elsif @user_gig.gig.photo_url_four != nil %>
+                  <img src="<%= (@user_gig.gig.wiki_photo_url)%>">
+               <% elsif @user_gig.gig.photo_url_four != nil %>
                   <img src="<%= (@user_gig.gig.photo_url_four) %>">
-                  <% elsif @user_gig.gig.photo_url_five != nil %>
-                  <img src="<%= (@user_gig.gig.photo_url_five) %>">
-                  <% end %>
+                <%elsif @user_gig.gig.photo_url_five != nil %>
+                  <img src="<%= (@user_gig.gig.photo_url_five)%>">
+                 <% end %>
+              <% end %>
               </div>
 
                 <div class="mt-2">

@@ -8,6 +8,7 @@
           <%= f.input :venue %>
           <%= f.input :genre %>
           <%= f.input :date, as: :datetime, order: [:day, :month, :year] %>
+          <%= f.input :photo, as: :file %>
           <%= hidden_field_tag 'origin', @origin %>
           <%= f.submit "Add Gig", class: "btn btn-dark justify-content-center" %>
         <% end %>
