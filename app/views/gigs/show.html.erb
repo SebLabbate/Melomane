@@ -18,7 +18,10 @@
           <div class="upcoming-artist-headline d-flex justify-content-between", style="width: 124%;">
             <h2> <%= @gig.artist.titleize%> <span> @ </span> <%= @gig.venue %></h2>
           </div>
-            <p>  <%= @gig&.date&.strftime("%e %b %Y") %>  </p>
+            <div class="d-flex">
+              <p>  <%= @gig&.date&.strftime("%e %b %Y") %>  - </p>
+              <p>  &nbsp; <span class="pound"><i class="fa-solid fa-euro-sign"></i><%= @gig.gig_price.to_i %></span></p>
+            </div>
             <p class="text-justify"> <span class="first-word"> <strong> <%= @gig.genre.titleize unless @gig.genre.nil?%> </strong> </span> - <%= @gig.artist_info %> </p>
         </div>
 
