@@ -1,20 +1,12 @@
 <div class="container">
   <div class="past-user-gig-page">
-    <div class="gigs-buttons">
-      <h2 class="pg"><%= link_to "Past Gigs", past_gigs_user_gigs_path, class: "link-pg-btn" %></h2>
-            <div class="vl-s"></div>
-      <h2 class="ug"><%= link_to "Upcoming Gigs", upcoming_gigs_user_gigs_path, class: "link-ug-btn" %></h2>
-            <div class="vl-s"></div>
-      <h2 class="gg"><%= link_to "Find a Gig", gigs_path, class: "link-gg-btn" %></h2>
-    </div>
-
     <%# Memories %>
     <div class="past-user-gig-page-main">
       <div class="past-user-gig-page-main-left">
         <div class="past-user-gig-page-main-left-about">
           <%= link_to "Add a memory", new_user_gig_comment_path(@user_gig), data: {turbo_frame: "modal"}, class: "primary-button-inverse-medium" %>
           <div class="past-artist-headline d-flex justify-content-between", style="width: 124%;">
-            <h2><%= @user_gig.gig.artist.capitalize %><span> @ </span> <%= @user_gig.gig.venue.capitalize %> </h2>
+            <h2><%= @user_gig.gig.artist.titleize %><span> @ </span> <%= @user_gig.gig.venue.capitalize %> </h2>
           </div>
 
            <p><span><%= @user_gig.gig.genre.capitalize unless @user_gig.gig.genre.nil? %></span> <%= @user_gig.gig.date.strftime("%e %b %Y") unless @user_gig.gig.date == nil %></p>

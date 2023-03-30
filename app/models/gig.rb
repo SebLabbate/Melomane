@@ -13,12 +13,10 @@ class Gig < ApplicationRecord
   has_many :user_gigs
   has_many_attached :photos
 
-
   #validates :artist, :date, :venue, presence: true
 
   before_create :parse_wiki_image, :spotify_genre, :spotify_images_artist, :spotify_images_albums, :pexel_photos
   before_create :parse_wiki_info, :spotify_top_five
-
 
   def parse_wiki_image
     if artist != nil && artist != ""
