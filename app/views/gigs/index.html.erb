@@ -80,7 +80,9 @@
                 <% end %>
                <p> <%= @event_venue[0..21] %>  &#x2022;
                  <%= @event_date_string %> </p>
-                <p> <span class="pound"><i class="fa-solid fa-euro-sign"></i><%= @gig_price.to_i %></span></p>
+                 <% unless @gig_price.nil? %>
+                  <p> <span class="pound"><i class="fa-solid fa-euro-sign"></i><%= @gig_price.to_i %></span></p>
+                 <% end %>
               </div>
             </div>
           </div>
