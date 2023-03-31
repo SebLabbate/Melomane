@@ -20,6 +20,7 @@
           </div>
             <div class="d-flex">
               <p>  <%= @gig&.date&.strftime("%e %b %Y") %>  - </p>
+              <p>  &nbsp; <span class="pound"><i class="fa-solid fa-euro-sign"></i><%= @gig.gig_price unless @gig.gig_price.nil? %></span></p>
             </div>
             <p class="text-justify"> <span class="first-word"> <strong> <%= @gig.genre.titleize unless @gig.genre.nil?%> </strong> </span> - <%= @gig.artist_info %> </p>
         </div>
