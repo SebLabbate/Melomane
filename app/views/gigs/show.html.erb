@@ -20,7 +20,7 @@
           </div>
             <div class="d-flex">
               <p>  <%= @gig&.date&.strftime("%e %b %Y") %></p>
-              <% unless @gig.gig_price.empty? %>
+              <% unless @gig.gig_price.empty? ||@gig.gig_price.nil?%>
                 <p> &nbsp; - &nbsp; <span class="pound"><i class="fa-solid fa-euro-sign"></i><%= @gig.gig_price.to_i %></span></p>
               <% end %>
             </div>
