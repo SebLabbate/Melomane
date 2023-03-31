@@ -61,7 +61,6 @@ class GigsController < ApplicationController
     @audio_two = return_audio(@gig.song_two)
     @audio_three = return_audio(@gig.song_three)
     set_markers
-    
   end
 
   def new
