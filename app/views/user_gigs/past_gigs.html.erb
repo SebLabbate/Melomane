@@ -44,8 +44,8 @@
                 <% end %>
                   <div class="pg-card-content">
                     <div class="artist"><span><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  user_gig_path(user_gig) %></span></div>
-                    <div class="vanue"><span><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", user_gig_path(user_gig) %></span></div>
-                    <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(user_gig) %></span></div>
+                    <div class="vanue"><span><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize[0..22]}", user_gig_path(user_gig) %></span></div>
+                    <div class="date"><span><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y")}", user_gig_path(user_gig) %></span></div>
                     <div class="past-cancel">
                       <%= link_to "Remove", user_gig_path(user_gig), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "past-cancel-btn" %>
                     </div>
