@@ -18,7 +18,7 @@
                 <div class="pg-card-content">
                   <p class="artist"><i class="fa-solid fa-music"></i> <%= link_to "#{past_gig.gig.artist}", user_gig_path(past_gig) %></p>
                   <p class="vanue"><i class="fa-solid fa-location-dot"></i> <%= link_to "#{past_gig.gig.venue.titleize[0..20]}", user_gig_path(past_gig) %></p>
-                  <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{past_gig.gig.date.strftime("%e %b %Y %H:%M")}", user_gig_path(past_gig) %></p>
+                  <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{past_gig.gig.date.strftime("%e %b %Y")}", user_gig_path(past_gig) %></p>
                 </div>
             </div>
           <% end %>
@@ -42,7 +42,7 @@
                 <div class="pg-card-content">
                   <p class="artist"><i class="fa-solid fa-music"></i> <%= link_to "#{upcoming_gig.gig.artist.titleize}", gig_path(upcoming_gig.gig) %></p>
                   <p class="vanue"><i class="fa-solid fa-location-dot"></i> <%= link_to "#{upcoming_gig.gig.venue.titleize[0..20]}", gig_path(upcoming_gig.gig)%></p>
-                  <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{upcoming_gig.gig.date.strftime("%e %b %Y %H:%M")}", gig_path(upcoming_gig.gig)%></p>
+                  <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{upcoming_gig.gig.date.strftime("%e %b %Y")}", gig_path(upcoming_gig.gig)%></p>
                 </div>
               <% end %>
             </div>

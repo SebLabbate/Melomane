@@ -30,7 +30,7 @@
                 <div class="ug-card-content">
                   <p class="artist"><i class="fa-solid fa-music"></i> <%= link_to "#{user_gig.gig.artist.titleize}",  gig_path(user_gig.gig) %></p>
                   <p class="vanue"><i class="fa-solid fa-location-dot"></i> <%= link_to "#{user_gig.gig.venue.titleize}", gig_path(user_gig.gig) %></p>
-                  <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y %H:%M")}", gig_path(user_gig.gig) %></p>
+                  <p class="date"><i class="fa-solid fa-calendar-days"></i> <%= link_to "#{user_gig.gig.date.strftime("%e %b %Y")}", gig_path(user_gig.gig) %></p>
                 </div>
 
                 <div class="cancel">
