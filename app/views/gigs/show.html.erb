@@ -2,7 +2,7 @@
   <div class="upcoming-user-gig-page">
     <% unless @user_gigs.find { |user_gig| user_gig.gig_id == @gig.id && user_gig.user_id == @current_user.id } != nil %>
       <div class="d-flex gap-3">
-        <% unless @gig.tickets == nil %>
+        <% unless @gig.tickets == nil || @gig.tickets.empty? %>
           <a href="<%= @gig.tickets %>" target="_blank" class= "primary-button-inverse-medium d-inline-flex justify-content-end", id= "create-gig-btn"> Buy Tickets </a>
         <% end %>
         <%= link_to "Save!", gig_user_gigs_path(@gig), data: {turbo_method: :post}, class: "primary-button-inverse-medium d-inline-flex justify-content-end", id: "create-gig-btn" %>

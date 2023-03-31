@@ -61,7 +61,7 @@ class GigsController < ApplicationController
     @audio_two = return_audio(@gig.song_two)
     @audio_three = return_audio(@gig.song_three)
     set_markers
-    
+
   end
 
   def new
@@ -75,7 +75,7 @@ class GigsController < ApplicationController
     @gig = Gig.new(gig_params)
     @gig.user = current_user
     if @gig.save
-      if @origin != "index"
+      if @origin != "index" && @origin != ""
         @user_gig = UserGig.new
         @user_gig.user = current_user
         @user_gig.gig = @gig
@@ -85,7 +85,7 @@ class GigsController < ApplicationController
         redirect_to past_gigs_user_gigs_path
       elsif @origin == "upcoming_gigs"
         redirect_to upcoming_gigs_user_gigs_path
-      elsif @origin == "index"
+      elsif @origin == "index" || @origin.empty?
         redirect_to gig_path(@gig)
       else
         redirect_to dashboard_path
@@ -327,7 +327,8 @@ class GigsController < ApplicationController
   end
 
   def get_track_id(artist_first_name, artist_last_name, song_name)
-    url = URI("https://soundcloud-scraper.p.rapidapi.com/v1/search/tracks?term=#{artist_first_name}%20#{artist_last_name}%20#{song_name}&size=200")
+    song_name_converted = song_name.gsub(/[^[:ascii:]]/, '')
+    url = URI("https://soundcloud-scraper.p.rapidapi.com/v1/search/tracks?term=#{artist_first_name}%20#{artist_last_name}%20#{song_name_converted}&size=200")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
