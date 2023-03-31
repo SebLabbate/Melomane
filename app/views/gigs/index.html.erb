@@ -76,10 +76,11 @@
               <%= f.hidden_field :photo_url_two, value: @photo_one   %>
               <%= f.hidden_field :gig_price, value: @gig_price %>
                <%= hidden_field_tag 'origin', @origin %>
-                <%= f.submit @artist_name_shortened.titleize[0..33], class: "btn", id: "primary-text-inverse-small" %>
+                <%= f.submit @artist_name_shortened.titleize, class: "btn", id: "primary-text-inverse-small" %>
                 <% end %>
-               <p> <%= @event_venue[0..21] %>  &#x2022;
-                 <%= @event_date_string %> </p>
+
+               <p> <%= @event_venue %> </p>
+               <p> <%= @event_date_string %> </p>
                  <% unless @gig_price.nil? %>
                   <p> <span class="pound"><i class="fa-solid fa-euro-sign"></i><%= @gig_price.to_i %></span></p>
                  <% end %>
@@ -123,10 +124,10 @@
               <%= f.hidden_field :photo_url_two, value: @photo_one   %>
               <%= f.hidden_field :gig_price, value: @gig_price %>
                <%= hidden_field_tag 'origin', @origin %>
-                <%= f.submit @artist_name_shortened.titleize[0..33], class: "btn", id: "primary-text-inverse-small" %>
+                <%= f.submit @artist_name_shortened.titleize, class: "btn", id: "primary-text-inverse-small" %>
                 <% end %>
-               <p> <%= @event_venue[0..21] %>  &#x2022;
-                <%= @event_date_string %> </p>
+               <p> <%= @event_venue %> </p>
+                <p> <%= @event_date_string %> </p>
                 <% unless @gig_price.nil? %>
                   <p> <span class="pound"><i class="fa-solid fa-euro-sign"></i><%= @gig_price.to_i %></span></p>
                  <% end %>
