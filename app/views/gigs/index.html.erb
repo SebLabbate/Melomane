@@ -81,7 +81,7 @@
 
                <p> <%= @event_venue %> </p>
                <p> <%= @event_date_string %> </p>
-                 <% unless @gig_price.nil? %>
+                 <% unless @gig_price.nil? || @gig_price == 0 %>
                   <p> <span class="pound"><i class="fa-solid fa-euro-sign"></i><%= @gig_price.to_i %></span></p>
                  <% end %>
               </div>
