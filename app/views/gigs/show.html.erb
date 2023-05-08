@@ -188,6 +188,10 @@
     <div class="upcoming-user-gig-page-suggested-title justify-content-center">
       <h4> Suggested <span><%= @gig.genre.capitalize unless @gig.genre.nil?%></span> gigs </h4>
     </div>
+    <% else %>
+      <div class="m-10">
+        <%= link_to "Find a Gig", gigs_path, class: "primary-button-inverse" %>
+      </div>
    <% end %>
 
   <% if @other_gigs.length > 0 %>

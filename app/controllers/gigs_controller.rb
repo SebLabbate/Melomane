@@ -332,7 +332,7 @@ class GigsController < ApplicationController
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     request = Net::HTTP::Get.new(url)
-    request["X-RapidAPI-Key"] = 'bb141578ecmsh6d28efe29ac7316p11e81cjsn2a1ed1dbaddf'
+    request["X-RapidAPI-Key"] = ENV.fetch('RAPID_API_KEY')
     request["X-RapidAPI-Host"] = 'soundcloud-scraper.p.rapidapi.com'
     response = http.request(request)
     string = response.read_body
@@ -352,7 +352,7 @@ class GigsController < ApplicationController
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     request = Net::HTTP::Get.new(url)
-    request["X-RapidAPI-Key"] = 'bb141578ecmsh6d28efe29ac7316p11e81cjsn2a1ed1dbaddf'
+    request["X-RapidAPI-Key"] = ENV.fetch('RAPID_API_KEY')
     request["X-RapidAPI-Host"] = 'soundcloud-scraper.p.rapidapi.com'
     response = http.request(request)
     body = response.read_body
